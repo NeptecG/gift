@@ -13,7 +13,8 @@ export const ui = {
     'nav.home': 'Αρχική',
     'nav.services': 'Υπηρεσίες',
     'nav.shop': 'Κατάστημα',
-    'nav.about': 'Σχετικά',
+    'nav.gallery': 'Gallery',
+    'nav.about': 'Σχετικά με εμάς',
     'nav.contact': 'Επικοινωνία',
     'nav.menu': 'Μενού',
 
@@ -76,7 +77,11 @@ export const ui = {
     'shop.cat.health': 'Υγεία',
     'shop.empty': 'Δεν υπάρχουν προϊόντα σε αυτή την κατηγορία.',
 
-    'about.kicker': 'Σχετικά',
+    'gallery.kicker': 'Συλλογή',
+    'gallery.title': 'Στιγμές από το Vet & Pet',
+    'gallery.intro': 'Ο χώρος μας, οι φίλοι μας και η καθημερινή φροντίδα. Πατήστε σε μια φωτογραφία για μεγέθυνση.',
+
+    'about.kicker': 'Σχετικά με εμάς',
     'about.title': 'Η ιστορία μας',
     'about.lead':
       'Το Vet & Pet γεννήθηκε από μια απλή πεποίθηση: τα ζώα αξίζουν φροντίδα με αγάπη και σεβασμό.',
@@ -136,6 +141,9 @@ export const ui = {
     'meta.shop.title': 'Κατάστημα — Vet & Pet',
     'meta.shop.desc':
       'Pet shop: τροφές, παιχνίδια, αξεσουάρ και προϊόντα υγείας για σκύλους και γάτες.',
+    'meta.gallery.title': 'Gallery — Vet & Pet',
+    'meta.gallery.desc':
+      'Φωτογραφίες από το Vet & Pet — ο χώρος μας, οι φίλοι μας και η καθημερινή φροντίδα.',
     'meta.about.title': 'Σχετικά — Vet & Pet',
     'meta.about.desc':
       'Η ιστορία της Κατερίνας και του Vet & Pet — φροντίδα με αγάπη, σεβασμό και επιστήμη.',
@@ -151,7 +159,8 @@ export const ui = {
     'nav.home': 'Home',
     'nav.services': 'Services',
     'nav.shop': 'Shop',
-    'nav.about': 'About',
+    'nav.gallery': 'Gallery',
+    'nav.about': 'About us',
     'nav.contact': 'Contact',
     'nav.menu': 'Menu',
 
@@ -214,7 +223,11 @@ export const ui = {
     'shop.cat.health': 'Health',
     'shop.empty': 'No products in this category yet.',
 
-    'about.kicker': 'About',
+    'gallery.kicker': 'Gallery',
+    'gallery.title': 'Moments at Vet & Pet',
+    'gallery.intro': 'Our space, our friends, and everyday care. Tap a photo to enlarge.',
+
+    'about.kicker': 'About us',
     'about.title': 'Our story',
     'about.lead':
       'Vet & Pet was born from a simple belief: animals deserve care given with love and respect.',
@@ -274,6 +287,9 @@ export const ui = {
     'meta.shop.title': 'Shop — Vet & Pet',
     'meta.shop.desc':
       'Pet shop: food, toys, accessories, and health products for dogs and cats.',
+    'meta.gallery.title': 'Gallery — Vet & Pet',
+    'meta.gallery.desc':
+      'Photos from Vet & Pet — our space, our friends, and everyday care.',
     'meta.about.title': 'About — Vet & Pet',
     'meta.about.desc':
       "Katerina's story and the Vet & Pet philosophy — care given with love, respect, and science.",

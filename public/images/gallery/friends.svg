@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#E8E6DA"/><stop offset="1" stop-color="#F0D9CC"/>
+  </linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  
+  <g fill="#1A1A1A" opacity="0.08" transform="translate(250 560) scale(2.4)">
+    <ellipse cx="0" cy="16" rx="23" ry="19"/><ellipse cx="-23" cy="-10" rx="9" ry="11"/>
+    <ellipse cx="-8" cy="-23" rx="9" ry="12"/><ellipse cx="8" cy="-23" rx="9" ry="12"/><ellipse cx="23" cy="-10" rx="9" ry="11"/>
+  </g>
+  <text x="48" y="746" font-family="Alegreya, Georgia, serif" font-style="italic" font-size="54" fill="#1A1A1A" opacity="0.72">Οι φίλοι μας</text>
+  <text x="48" y="56" font-family="Alegreya Sans, sans-serif" font-size="20" letter-spacing="3" fill="#D9531E" opacity="0.85">PLACEHOLDER</text>
+</svg>

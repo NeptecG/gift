@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#DAD7C6"/><stop offset="1" stop-color="#E8E6DA"/>
+  </linearGradient></defs>
+  <rect width="1200" height="780" fill="url(#g)"/>
+  <circle cx="980" cy="250" r="90" fill="none" stroke="#1A1A1A" stroke-width="3" opacity="0.1"/>
+  <text x="48" y="726" font-family="Alegreya, Georgia, serif" font-style="italic" font-size="54" fill="#1A1A1A" opacity="0.72">Pet shop</text>
+  <text x="48" y="56" font-family="Alegreya Sans, sans-serif" font-size="20" letter-spacing="3" fill="#D9531E" opacity="0.85">PLACEHOLDER</text>
+</svg>

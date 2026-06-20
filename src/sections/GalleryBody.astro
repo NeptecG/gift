@@ -1,0 +1,227 @@
+---
+import { type Locale, t } from '../i18n/ui';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+// [PLACEHOLDER] swap the *.svg tiles for real clinic photos. Real photos: cats.jpg, handpaw.jpg
+type Item = { src: string; w: number; h: number; el: string; en: string };
+const items: Item[] = [
+  { src: '/images/gallery/handpaw.jpg', w: 1050, h: 1400, el: 'Χέρι και πατούσα', en: 'Hand & paw' },
+  { src: '/images/gallery/space.svg', w: 1200, h: 800, el: 'Ο χώρος μας', en: 'Our space' },
+  { src: '/images/gallery/exam.svg', w: 820, h: 1120, el: 'Εξεταστήριο', en: 'Exam room' },
+  { src: '/images/gallery/cats.jpg', w: 1050, h: 1400, el: 'Οι μικροί μας φίλοι', en: 'Our little friends' },
+  { src: '/images/gallery/shop.svg', w: 1200, h: 780, el: 'Pet shop', en: 'Pet shop' },
+  { src: '/images/gallery/welcome.svg', w: 1000, h: 1000, el: 'Καλώς ήρθατε', en: 'Welcome' },
+  { src: '/images/gallery/care.svg', w: 820, h: 1180, el: 'Φροντίδα με αγάπη', en: 'Loving care' },
+  { src: '/images/gallery/friends.svg', w: 1200, h: 800, el: 'Οι φίλοι μας', en: 'Our friends' },
+  { src: '/images/gallery/checkup.svg', w: 820, h: 1120, el: 'Προληπτικός έλεγχος', en: 'Wellness check' },
+  { src: '/images/gallery/play.svg', w: 1000, h: 1000, el: 'Παιχνίδι', en: 'Playtime' },
+];
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{t(locale, 'gallery.kicker')}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{t(locale, 'gallery.title')}</h1>
+  <p class="page-intro reveal" style="--reveal-delay:120ms">{t(locale, 'gallery.intro')}</p>
+</section>
+
+<section class="container gallery-section">
+  <div class="masonry">
+    {items.map((it) => (
+      <figure class="g-item" data-cap={it.el} data-cap-en={it.en}>
+        <img src={it.src} alt={locale === 'el' ? it.el : it.en} width={it.w} height={it.h} loading="lazy" decoding="async" />
+      </figure>
+    ))}
+  </div>
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 1.5rem; max-width: 48rem; }
+  .page-title { font-size: clamp(2.4rem, 1.4rem + 4vw, 4rem); line-height: 1.04; margin-top: 0.8rem; }
+  .page-intro { margin-top: 1.2rem; font-size: 1.2rem; line-height: 1.6; color: var(--color-ink-soft); }
+  .gallery-section { padding-bottom: 2rem; }
+</style>
+
+<style is:global>
+  /* ---- ordered masonry (JS rebuilds into flex columns for reading order) ---- */
+  .masonry { columns: 3; column-gap: 1rem; }
+  .masonry.m-flex { display: flex; gap: 1rem; align-items: flex-start; }
+  .masonry.m-flex .m-col { flex: 1; min-width: 0; }
+  .masonry .g-item {
+    break-inside: avoid; margin: 0 0 1rem; border-radius: 1rem; overflow: hidden;
+    cursor: pointer; position: relative; box-shadow: 0 10px 30px -18px rgba(26, 22, 14, 0.5);
+  }
+  .masonry .g-item img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .js .masonry .g-item { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+  .js .masonry .g-item.g-in { opacity: 1; transform: none; }
+  .masonry .g-item::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(26, 22, 14, 0.5));
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .masonry .g-item:hover img { transform: scale(1.05); }
+  .masonry .g-item:hover::after { opacity: 1; }
+  @media (max-width: 980px) { .masonry { columns: 2; } }
+  @media (max-width: 600px) { .masonry { columns: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .js .masonry .g-item { opacity: 1; transform: none; }
+  }
+
+  /* ---- lightbox carousel ---- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200; background: rgba(20, 17, 12, 0.95);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .lightbox.open { opacity: 1; visibility: visible; }
+  .lb-stage { position: absolute; inset: 0; overflow: hidden; touch-action: pan-y; cursor: grab; }
+  .lb-stage.dragging { cursor: grabbing; }
+  .lb-track { display: flex; height: 100%; will-change: transform; }
+  .lb-track.anim { transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .lb-slide { flex: 0 0 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 7vh 5vw; }
+  .lb-slide img { max-width: 90vw; max-height: 78vh; object-fit: contain; border-radius: 8px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55); user-select: none; -webkit-user-drag: none; }
+  .lb-counter { position: absolute; top: clamp(1rem, 4vh, 2.2rem); left: 0; right: 0; text-align: center; color: var(--color-paper); font-size: 0.82rem; letter-spacing: 0.22em; font-variant-numeric: tabular-nums; pointer-events: none; }
+  .lb-cap { position: absolute; bottom: clamp(1.2rem, 5vh, 2.6rem); left: 0; right: 0; text-align: center; color: var(--color-paper); font-family: var(--font-serif); font-size: clamp(1rem, 2.4vw, 1.3rem); font-style: italic; padding: 0 1.5rem; pointer-events: none; }
+  .lightbox button {
+    position: absolute; z-index: 2; color: var(--color-paper); width: 54px; height: 54px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; cursor: pointer;
+    background: rgba(239, 233, 220, 0.1); border: 1px solid rgba(239, 233, 220, 0.22); transition: background 0.2s, border-color 0.2s;
+  }
+  .lightbox button:hover { background: var(--color-orange); border-color: var(--color-orange); }
+  .lb-close { top: clamp(1rem, 3.5vh, 1.6rem); right: clamp(1rem, 4vw, 1.8rem); font-size: 1.3rem; }
+  .lb-prev { left: clamp(0.8rem, 3vw, 1.8rem); top: 50%; transform: translateY(-50%); }
+  .lb-next { right: clamp(0.8rem, 3vw, 1.8rem); top: 50%; transform: translateY(-50%); }
+  @media (max-width: 768px) { .lightbox button { width: 44px; height: 44px; } .lightbox .lb-prev, .lightbox .lb-next { display: none; } }
+</style>
+
+<script>
+  // Ported from the Kokkinos gallery system: ordered masonry + lightbox carousel.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+  const masonryEl = document.querySelector<HTMLElement>('.masonry');
+
+  if (masonryEl) {
+    const mItems = Array.from(masonryEl.querySelectorAll<HTMLElement>('.g-item'));
+    mItems.forEach((item, i) => { item.dataset.gi = String(i); });
+
+    // ordered masonry: drop each photo into the shortest column (keeps reading flow)
+    let mCols = 0;
+    const colCount = () => { const w = window.innerWidth; return w <= 600 ? 1 : w <= 980 ? 2 : 3; };
+    const layout = () => {
+      const n = colCount();
+      if (n === mCols) return;
+      mCols = n;
+      masonryEl.innerHTML = '';
+      masonryEl.classList.add('m-flex');
+      const cols: HTMLElement[] = [], heights: number[] = [];
+      for (let ci = 0; ci < n; ci++) { const c = document.createElement('div'); c.className = 'm-col'; masonryEl.appendChild(c); cols.push(c); heights.push(0); }
+      mItems.forEach((item) => {
+        const img = item.querySelector('img');
+        const w = img ? +(img.getAttribute('width') || 0) : 0;
+        const h = img ? +(img.getAttribute('height') || 0) : 0;
+        const aspect = (w && h) ? h / w : 1;
+        let k = 0;
+        for (let j = 1; j < n; j++) { if (heights[j] < heights[k] - 0.001) k = j; }
+        cols[k].appendChild(item);
+        heights[k] += aspect + 0.04;
+      });
+    };
+    layout();
+    window.addEventListener('resize', layout);
+
+    // staggered reveal
+    if (reduce || !('IntersectionObserver' in window)) {
+      mItems.forEach((i) => i.classList.add('g-in'));
+    } else {
+      const obs = new IntersectionObserver((entries) => {
+        let batch = 0;
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.style.transitionDelay = (batch * 100) + 'ms';
+          el.classList.add('g-in');
+          obs.unobserve(el);
+          batch++;
+          el.addEventListener('transitionend', function clr() { el.style.transitionDelay = ''; el.removeEventListener('transitionend', clr); });
+        });
+      }, { threshold: 0.06, rootMargin: '0px 0px -5% 0px' });
+      mItems.forEach((i) => obs.observe(i));
+    }
+
+    // ---- lightbox ----
+    const figs = mItems.slice().sort((a, b) => (+(a.dataset.gi || 0)) - (+(b.dataset.gi || 0)));
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', 'Gallery');
+    lb.innerHTML =
+      '<div class="lb-stage"><div class="lb-track">' +
+        '<div class="lb-slide"><img alt="" draggable="false"></div>' +
+        '<div class="lb-slide"><img alt="" draggable="false"></div>' +
+        '<div class="lb-slide"><img alt="" draggable="false"></div>' +
+      '</div></div>' +
+      '<div class="lb-counter"></div><div class="lb-cap"></div>' +
+      '<button class="lb-close" aria-label="Close">✕</button>' +
+      '<button class="lb-prev" aria-label="Previous">‹</button>' +
+      '<button class="lb-next" aria-label="Next">›</button>';
+    document.body.appendChild(lb);
+
+    const stage = lb.querySelector<HTMLElement>('.lb-stage')!;
+    const track = lb.querySelector<HTMLElement>('.lb-track')!;
+    const slideImgs = lb.querySelectorAll<HTMLImageElement>('.lb-slide img');
+    const counterEl = lb.querySelector<HTMLElement>('.lb-counter')!;
+    const capEl = lb.querySelector<HTMLElement>('.lb-cap')!;
+    let idx = 0, animating = false, mMoved = false;
+
+    const wrap = (i: number) => (i + figs.length) % figs.length;
+    const srcOf = (i: number) => figs[wrap(i)].querySelector('img')?.getAttribute('src') || '';
+    const capOf = (i: number) => {
+      const f = figs[wrap(i)];
+      const en = root.getAttribute('lang') === 'en';
+      return (en ? (f.getAttribute('data-cap-en') || f.getAttribute('data-cap')) : (f.getAttribute('data-cap') || f.getAttribute('data-cap-en'))) || '';
+    };
+    const placeTrack = () => { track.classList.remove('anim'); track.style.transform = 'translateX(' + (-stage.clientWidth) + 'px)'; };
+    const render = () => {
+      slideImgs[0].src = srcOf(idx - 1); slideImgs[1].src = srcOf(idx); slideImgs[2].src = srcOf(idx + 1);
+      slideImgs[1].alt = capOf(idx);
+      counterEl.textContent = (idx + 1) + ' / ' + figs.length;
+      capEl.textContent = capOf(idx);
+      placeTrack();
+    };
+    const slide = (delta: number) => {
+      if (animating) return;
+      const w = stage.clientWidth; animating = true; track.classList.add('anim');
+      track.style.transform = 'translateX(' + (-w - delta * w) + 'px)';
+      setTimeout(() => { if (delta) idx = wrap(idx + delta); render(); animating = false; }, reduce ? 20 : 430);
+    };
+    const open = (i: number) => { idx = wrap(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; render(); };
+    const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+
+    figs.forEach((f, i) => {
+      f.setAttribute('tabindex', '0'); f.setAttribute('role', 'button');
+      f.addEventListener('click', () => open(i));
+      f.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); } });
+    });
+    lb.querySelector('.lb-close')!.addEventListener('click', close);
+    lb.querySelector('.lb-prev')!.addEventListener('click', (e) => { e.stopPropagation(); slide(-1); });
+    lb.querySelector('.lb-next')!.addEventListener('click', (e) => { e.stopPropagation(); slide(1); });
+    stage.addEventListener('click', (e) => { if (mMoved) { mMoved = false; return; } if ((e.target as HTMLElement).classList.contains('lb-slide')) close(); });
+    window.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') slide(-1); else if (e.key === 'ArrowRight') slide(1);
+    });
+    window.addEventListener('resize', () => { if (lb.classList.contains('open') && !animating) placeTrack(); });
+
+    // touch + mouse drag
+    let downX = 0, downY = 0, dragging = false, dx = 0;
+    stage.addEventListener('touchstart', (e) => { if (animating) return; const t = e.changedTouches[0]; downX = t.clientX; downY = t.clientY; dragging = true; dx = 0; track.classList.remove('anim'); }, { passive: true });
+    stage.addEventListener('touchmove', (e) => { if (!dragging) return; const t = e.changedTouches[0]; const mx = t.clientX - downX, my = t.clientY - downY; if (Math.abs(mx) < Math.abs(my) && Math.abs(dx) < 6) return; dx = mx; track.style.transform = 'translateX(' + (-stage.clientWidth + mx) + 'px)'; }, { passive: true });
+    stage.addEventListener('touchend', () => { if (!dragging) return; dragging = false; const th = Math.min(70, stage.clientWidth * 0.16); if (dx <= -th) slide(1); else if (dx >= th) slide(-1); else slide(0); dx = 0; }, { passive: true });
+    let mDown = false, mStartX = 0, mDx = 0;
+    stage.addEventListener('mousedown', (e) => { if (animating || e.button !== 0) return; mDown = true; mStartX = e.clientX; mDx = 0; mMoved = false; track.classList.remove('anim'); stage.classList.add('dragging'); e.preventDefault(); });
+    window.addEventListener('mousemove', (e) => { if (!mDown) return; mDx = e.clientX - mStartX; if (Math.abs(mDx) > 4) mMoved = true; track.style.transform = 'translateX(' + (-stage.clientWidth + mDx) + 'px)'; });
+    window.addEventListener('mouseup', () => { if (!mDown) return; mDown = false; stage.classList.remove('dragging'); const th = Math.min(70, stage.clientWidth * 0.16); if (mDx <= -th) slide(1); else if (mDx >= th) slide(-1); else if (mMoved) slide(0); mDx = 0; });
+  }
+</script>

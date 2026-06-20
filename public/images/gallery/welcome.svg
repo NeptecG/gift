@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F0D9CC"/><stop offset="1" stop-color="#E8E6DA"/>
+  </linearGradient></defs>
+  <rect width="1000" height="1000" fill="url(#g)"/>
+  <path opacity="0.12" fill="#D9531E" transform="translate(760 760) scale(1.4)" d="M0 36 C-44 8 -70-16 -70-46 A34 34 0 0 1 0-58 A34 34 0 0 1 70-46 C70-16 44 8 0 36 Z"/>
+  <text x="48" y="946" font-family="Alegreya, Georgia, serif" font-style="italic" font-size="45" fill="#1A1A1A" opacity="0.72">Καλώς ήρθατε</text>
+  <text x="48" y="56" font-family="Alegreya Sans, sans-serif" font-size="20" letter-spacing="3" fill="#D9531E" opacity="0.85">PLACEHOLDER</text>
+</svg>
