@@ -12,21 +12,39 @@ interface Props {
 const { locale, category, name, desc, price, image } = Astro.props;
 const priceLabel = formatPrice(locale, price, t(locale, 'cta.askStore'));
 const catLabel = t(locale, `shop.cat.${category}` as UIKey);
+const uid = 'prod-' + Math.random().toString(36).slice(2, 9);
+const viewLabel = locale === 'el' ? 'Δείτε' : 'View';
 ---
 
 <article class="prod-card reveal" data-category={category}>
-  <div class="prod-media">
-    <img src={image} alt={name} loading="lazy" width="400" height="300" />
-    <span class="prod-tag">{catLabel}</span>
-  </div>
-  <div class="prod-body">
-    <h3 class="prod-name">{name}</h3>
-    <p class="prod-desc">{desc}</p>
-    <div class="prod-foot">
-      <span class="prod-price" data-ask={price == null ? '' : null}>{priceLabel}</span>
-      <a class="prod-link" href={localizedPath(locale, '/contact')}>{t(locale, 'cta.askStore')}</a>
+  <button type="button" class="prod-trigger" aria-haspopup="dialog" aria-controls={uid} aria-label={`${viewLabel}: ${name}`}>
+    <div class="prod-media">
+      <img src={image} alt={name} loading="lazy" width="400" height="300" />
+      <span class="prod-tag">{catLabel}</span>
     </div>
-  </div>
+    <div class="prod-body">
+      <h3 class="prod-name">{name}</h3>
+      <p class="prod-desc">{desc}</p>
+      <div class="prod-foot">
+        <span class="prod-price" data-ask={price == null ? '' : null}>{priceLabel}</span>
+        <span class="prod-view">{viewLabel} <span aria-hidden="true">→</span></span>
+      </div>
+    </div>
+  </button>
+
+  <dialog id={uid} class="prod-dialog" aria-labelledby={`${uid}-title`}>
+    <form method="dialog" class="dialog-closeform">
+      <button class="dialog-close" aria-label={locale === 'el' ? 'Κλείσιμο' : 'Close'}>&times;</button>
+    </form>
+    <img class="dialog-img" src={image} alt={name} width="400" height="300" />
+    <div class="dialog-content">
+      <span class="dialog-tag">{catLabel}</span>
+      <h3 id={`${uid}-title`} class="dialog-title">{name}</h3>
+      <p class="dialog-desc">{desc}</p>
+      <p class="dialog-price" data-ask={price == null ? '' : null}>{priceLabel}</p>
+      <a class="btn btn-primary dialog-cta" href={localizedPath(locale, '/contact')}>{t(locale, 'cta.askStore')}</a>
+    </div>
+  </dialog>
 </article>
 
 <style>
@@ -40,6 +58,13 @@ const catLabel = t(locale, `shop.cat.${category}` as UIKey);
     transition: transform 0.22s ease, box-shadow 0.22s ease;
   }
   .prod-card:hover { transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(26, 22, 14, 0.5); }
+
+  /* whole card is the trigger button */
+  .prod-trigger {
+    display: flex; flex-direction: column; flex: 1;
+    text-align: left; background: none; border: none; padding: 0; margin: 0;
+    font: inherit; color: inherit; cursor: pointer; width: 100%;
+  }
 
   .prod-media { position: relative; aspect-ratio: 4 / 3; background: var(--color-sand); }
   .prod-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -56,9 +81,62 @@ const catLabel = t(locale, `shop.cat.${category}` as UIKey);
   .prod-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.1rem; }
   .prod-price { font-family: var(--font-serif); font-weight: 700; font-size: 1.4rem; color: var(--color-ink); white-space: nowrap; }
   .prod-price[data-ask] { font-size: 1rem; font-style: italic; color: var(--color-ink-faint); }
-  .prod-link {
-    font-weight: 600; font-size: 0.95rem; color: var(--color-orange-deep); text-decoration: none;
-    white-space: nowrap; border-bottom: 1.5px solid transparent; transition: border-color 0.2s ease;
+  .prod-view {
+    font-weight: 600; font-size: 0.95rem; color: var(--color-orange-deep);
+    white-space: nowrap; display: inline-flex; gap: 0.25rem; transition: transform 0.2s ease;
   }
-  .prod-link:hover { border-color: var(--color-orange-deep); }
+  .prod-trigger:hover .prod-view { transform: translateX(3px); }
+
+  /* ---- modal ---- */
+  .prod-dialog {
+    position: fixed; inset: 0; margin: auto; /* center in viewport */
+    width: min(92vw, 26rem);
+    max-height: 90vh;
+    border: none; padding: 0; border-radius: 1.3rem;
+    background: var(--color-paper-raised); color: var(--color-ink);
+    box-shadow: 0 40px 80px -30px rgba(26, 22, 14, 0.6);
+    overflow: auto;
+  }
+  .prod-dialog::backdrop { background: rgba(26, 22, 14, 0.55); }
+  .prod-dialog[open] { animation: dialog-in 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .prod-dialog[open] { animation: none; } }
+
+  .dialog-closeform { position: absolute; top: 0.6rem; right: 0.6rem; margin: 0; z-index: 2; }
+  .dialog-close {
+    width: 2.2rem; height: 2.2rem; border-radius: 50%; cursor: pointer;
+    border: none; background: color-mix(in srgb, var(--color-paper-raised) 85%, transparent);
+    color: var(--color-ink); font-size: 1.5rem; line-height: 1; display: grid; place-items: center;
+    box-shadow: 0 4px 12px -4px rgba(26, 22, 14, 0.4);
+  }
+  .dialog-close:hover { background: var(--color-ink); color: var(--color-paper-raised); }
+
+  .dialog-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--color-sand); }
+  .dialog-content { padding: 1.4rem 1.5rem 1.6rem; }
+  .dialog-tag {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-orange-deep);
+  }
+  .dialog-title { font-size: 1.7rem; line-height: 1.1; margin-top: 0.4rem; }
+  .dialog-desc { margin-top: 0.7rem; color: var(--color-ink-soft); line-height: 1.6; }
+  .dialog-price {
+    margin-top: 1rem; font-family: var(--font-serif); font-weight: 700; font-size: 1.9rem; color: var(--color-ink);
+  }
+  .dialog-price[data-ask] { font-size: 1.15rem; font-style: italic; color: var(--color-ink-faint); }
+  .dialog-cta { margin-top: 1.3rem; width: 100%; }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.prod-card').forEach((card) => {
+    const dialog = card.querySelector('dialog') as HTMLDialogElement | null;
+    const trigger = card.querySelector('.prod-trigger') as HTMLButtonElement | null;
+    if (!dialog || !trigger) return;
+    trigger.addEventListener('click', () => dialog.showModal());
+    // click on the backdrop (outside the dialog box) closes it
+    dialog.addEventListener('click', (e) => {
+      const r = dialog.getBoundingClientRect();
+      const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!inside) dialog.close();
+    });
+  });
+</script>
