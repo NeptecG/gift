@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import { type Locale, t, localizedPath } from '../i18n/ui';
+import ServiceCard from '../components/ServiceCard.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{t(locale, 'services.kicker')}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{t(locale, 'services.title')}</h1>
+  <p class="page-intro reveal" style="--reveal-delay:120ms">{t(locale, 'services.intro')}</p>
+</section>
+
+<section class="container">
+  <div class="svc-grid">
+    {services.map((s) => (
+      <ServiceCard locale={locale} icon={s.data.icon} title={locale === 'el' ? s.data.title_el : s.data.title_en} desc={locale === 'el' ? s.data.desc_el : s.data.desc_en} />
+    ))}
+  </div>
+</section>
+
+<section class="container">
+  <div class="svc-cta reveal">
+    <div>
+      <h2 class="svc-cta-title">{t(locale, 'services.cta.title')}</h2>
+      <p class="svc-cta-body">{t(locale, 'services.cta.body')}</p>
+    </div>
+    <a href={localizedPath(locale, '/contact')} class="btn btn-primary">{t(locale, 'cta.book')}</a>
+  </div>
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 2rem; max-width: 48rem; }
+  .page-title { font-size: clamp(2.4rem, 1.4rem + 4vw, 4rem); line-height: 1.04; margin-top: 0.8rem; }
+  .page-intro { margin-top: 1.2rem; font-size: 1.2rem; line-height: 1.6; color: var(--color-ink-soft); }
+
+  .svc-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+
+  .svc-cta {
+    margin-top: clamp(3rem, 6vw, 5rem);
+    display: grid; gap: 1.5rem; align-items: center;
+    background: var(--color-ink); color: var(--color-paper);
+    border-radius: 1.5rem; padding: clamp(2rem, 4vw, 3rem);
+  }
+  @media (min-width: 720px) { .svc-cta { grid-template-columns: 1fr auto; } }
+  .svc-cta-title { color: var(--color-paper-raised); font-size: clamp(1.6rem, 1rem + 2vw, 2.3rem); }
+  .svc-cta-body { margin-top: 0.5rem; color: color-mix(in srgb, var(--color-paper) 75%, transparent); }
+</style>

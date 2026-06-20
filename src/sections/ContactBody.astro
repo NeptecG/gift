@@ -1,0 +1,91 @@
+---
+import { type Locale, t } from '../i18n/ui';
+import SignupForm from '../components/SignupForm.astro';
+import CatAccent from '../components/art/CatAccent.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+// [PLACEHOLDER] real clinic details before launch
+const ADDRESS = locale === 'el' ? 'Οδός Παραδείγματος 12, Αθήνα 11522' : '12 Example Street, Athens 11522';
+const PHONE = '+30 21 0000 0000';
+const EMAIL = 'hello@vetandpet.gr';
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{t(locale, 'contact.kicker')}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{t(locale, 'contact.title')}</h1>
+  <p class="page-intro reveal" style="--reveal-delay:120ms">{t(locale, 'contact.intro')}</p>
+</section>
+
+<section class="container contact-grid">
+  <div class="contact-info reveal">
+    <dl class="info-list">
+      <div>
+        <dt>{t(locale, 'contact.addressLabel')}</dt>
+        <dd>{ADDRESS}</dd>
+      </div>
+      <div>
+        <dt>{t(locale, 'contact.phoneLabel')}</dt>
+        <dd><a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a></dd>
+      </div>
+      <div>
+        <dt>{t(locale, 'contact.emailLabel')}</dt>
+        <dd><a href={`mailto:${EMAIL}`}>{EMAIL}</a></dd>
+      </div>
+      <div>
+        <dt>{t(locale, 'contact.hoursLabel')}</dt>
+        <dd>
+          {t(locale, 'hours.weekdays')}: {t(locale, 'hours.weekdaysValue')}<br />
+          {t(locale, 'hours.saturday')}: {t(locale, 'hours.saturdayValue')}<br />
+          {t(locale, 'hours.sunday')}: {t(locale, 'hours.closed')}
+        </dd>
+      </div>
+    </dl>
+
+    <div class="contact-map" aria-hidden="true">
+      <span class="map-pin"><CatAccent variant="paw" class="map-pin-svg" /></span>
+      <span class="map-note">{locale === 'el' ? 'Χάρτης — σύντομα' : 'Map — coming soon'}</span>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap reveal" style="--reveal-delay:100ms">
+    <h2 class="form-title">{t(locale, 'contact.formTitle')}</h2>
+    <SignupForm locale={locale} variant="contact" />
+  </div>
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 1.5rem; max-width: 48rem; }
+  .page-title { font-size: clamp(2.4rem, 1.4rem + 4vw, 4rem); line-height: 1.04; margin-top: 0.8rem; }
+  .page-intro { margin-top: 1.2rem; font-size: 1.2rem; line-height: 1.6; color: var(--color-ink-soft); }
+
+  .contact-grid { display: grid; gap: 2rem; align-items: start; padding-bottom: 2rem; }
+  @media (min-width: 880px) { .contact-grid { grid-template-columns: 0.9fr 1.1fr; gap: 3rem; } }
+
+  .info-list { display: grid; gap: 1.4rem; }
+  .info-list dt { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-orange); margin-bottom: 0.35rem; }
+  .info-list dd { font-size: 1.1rem; line-height: 1.5; }
+  .info-list a { color: var(--color-ink); text-decoration: none; border-bottom: 1.5px solid color-mix(in srgb, var(--color-orange) 40%, transparent); }
+  .info-list a:hover { border-color: var(--color-orange); }
+
+  .contact-map {
+    position: relative; margin-top: 1.8rem; min-height: 13rem; border-radius: 1rem;
+    background:
+      radial-gradient(circle at 70% 40%, color-mix(in srgb, var(--color-orange) 12%, transparent), transparent 60%),
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-ink) 5%, transparent) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 5%, transparent) 0 1px, transparent 1px 28px),
+      var(--color-sand);
+    display: grid; place-items: center;
+  }
+  .map-pin { display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--color-orange); box-shadow: 0 12px 24px -12px var(--color-orange); }
+  .map-pin-svg { width: 1.6rem; height: 1.6rem; color: var(--color-paper-raised); transform: rotate(45deg); }
+  .map-note { position: absolute; bottom: 0.9rem; font-size: 0.8rem; color: var(--color-ink-faint); }
+
+  .contact-form-wrap {
+    background: var(--color-paper-raised);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border-radius: 1.3rem; padding: clamp(1.5rem, 3vw, 2.2rem);
+  }
+  .form-title { font-size: 1.7rem; margin-bottom: 1.3rem; }
+</style>

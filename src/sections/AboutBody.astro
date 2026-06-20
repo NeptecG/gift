@@ -1,0 +1,76 @@
+---
+import { type Locale, t, localizedPath } from '../i18n/ui';
+import HandPawArt from '../components/art/HandPawArt.astro';
+import CatAccent from '../components/art/CatAccent.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const values = [
+  { t: t(locale, 'about.value1.title'), d: t(locale, 'about.value1.body') },
+  { t: t(locale, 'about.value2.title'), d: t(locale, 'about.value2.body') },
+  { t: t(locale, 'about.value3.title'), d: t(locale, 'about.value3.body') },
+];
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{t(locale, 'about.kicker')}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{t(locale, 'about.title')}</h1>
+  <p class="about-lead reveal" style="--reveal-delay:120ms">{t(locale, 'about.lead')}</p>
+</section>
+
+<!-- Hand + paw centerpiece (IMG_4709) -->
+<section class="container">
+  <div class="centerpiece reveal">
+    <HandPawArt caption={t(locale, 'about.paw.caption')} />
+  </div>
+</section>
+
+<!-- Story -->
+<section class="container story">
+  <p class="story-p reveal">{t(locale, 'about.body1')}</p>
+  <p class="story-p reveal" style="--reveal-delay:80ms">{t(locale, 'about.body2')}</p>
+</section>
+
+<!-- Values -->
+<section class="container values">
+  <h2 class="values-title reveal">{t(locale, 'about.values.title')}</h2>
+  <div class="values-grid">
+    {values.map((v, i) => (
+      <article class="value-card reveal" style={`--reveal-delay:${i * 90}ms`}>
+        <span class="value-paw"><CatAccent variant="paw" class="value-paw-svg" /></span>
+        <h3 class="value-name">{v.t}</h3>
+        <p class="value-body">{v.d}</p>
+      </article>
+    ))}
+  </div>
+  <div class="values-cta reveal">
+    <a href={localizedPath(locale, '/contact')} class="btn btn-primary">{t(locale, 'cta.contactUs')}</a>
+  </div>
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 2rem; max-width: 50rem; }
+  .page-title { font-size: clamp(2.4rem, 1.4rem + 4vw, 4.2rem); line-height: 1.04; margin-top: 0.8rem; }
+  .about-lead { margin-top: 1.2rem; font-size: 1.35rem; line-height: 1.55; color: var(--color-ink); font-family: var(--font-serif); font-style: italic; max-width: 40rem; }
+
+  .centerpiece { max-width: 38rem; margin-inline: auto; padding-block: 1rem clamp(1.5rem, 4vw, 3rem); }
+
+  .story { max-width: 44rem; }
+  .story-p { font-size: 1.18rem; line-height: 1.75; color: var(--color-ink-soft); }
+  .story-p + .story-p { margin-top: 1.5rem; }
+
+  .values { padding-top: clamp(3rem, 6vw, 5rem); }
+  .values-title { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); margin-bottom: 2rem; }
+  .values-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .value-card {
+    background: var(--color-paper-raised);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border-radius: var(--radius-card); padding: 1.8rem 1.6rem;
+  }
+  .value-paw { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border-radius: 0.8rem; background: var(--color-orange-soft); }
+  .value-paw-svg { width: 1.6rem; height: 1.6rem; color: var(--color-orange-deep); }
+  .value-name { font-size: 1.5rem; margin-top: 1rem; }
+  .value-body { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
+  .values-cta { margin-top: 2.5rem; display: flex; justify-content: center; }
+</style>

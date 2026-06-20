@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import { type Locale, t, type UIKey } from '../i18n/ui';
+import ProductCard from '../components/ProductCard.astro';
+import SignupForm from '../components/SignupForm.astro';
+import CatAccent from '../components/art/CatAccent.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+const categories = ['all', 'food', 'toys', 'accessories', 'health'] as const;
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{t(locale, 'shop.kicker')}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{t(locale, 'shop.title')}</h1>
+  <p class="page-intro reveal" style="--reveal-delay:120ms">{t(locale, 'shop.intro')}</p>
+</section>
+
+<!-- Waiting list -->
+<section class="container">
+  <div class="waitlist reveal">
+    <span class="waitlist-cat"><CatAccent variant="sitting" class="waitlist-cat-svg" /></span>
+    <div class="waitlist-copy">
+      <h2 class="waitlist-title">{t(locale, 'shop.soon.title')}</h2>
+      <p class="waitlist-body">{t(locale, 'shop.soon.body')}</p>
+    </div>
+    <div class="waitlist-form">
+      <SignupForm locale={locale} variant="waitlist" />
+    </div>
+  </div>
+</section>
+
+<!-- Filter -->
+<section class="container shop-controls">
+  <div class="filter" role="group" aria-label={t(locale, 'shop.title')}>
+    {categories.map((c, i) => (
+      <button type="button" class:list={['filter-btn', { active: i === 0 }]} data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>
+        {t(locale, `shop.cat.${c}` as UIKey)}
+      </button>
+    ))}
+  </div>
+</section>
+
+<!-- Catalog -->
+<section class="container">
+  <div class="shop-grid">
+    {products.map((p) => (
+      <ProductCard locale={locale} category={p.data.category} name={locale === 'el' ? p.data.name_el : p.data.name_en} desc={locale === 'el' ? p.data.desc_el : p.data.desc_en} price={p.data.price} image={p.data.image} />
+    ))}
+  </div>
+  <p class="shop-empty" hidden>{t(locale, 'shop.empty')}</p>
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 1.5rem; max-width: 48rem; }
+  .page-title { font-size: clamp(2.4rem, 1.4rem + 4vw, 4rem); line-height: 1.04; margin-top: 0.8rem; }
+  .page-intro { margin-top: 1.2rem; font-size: 1.2rem; line-height: 1.6; color: var(--color-ink-soft); }
+
+  .waitlist {
+    position: relative; overflow: hidden;
+    display: grid; gap: 1.4rem; align-items: center;
+    background: var(--color-orange-soft);
+    border: 1px solid color-mix(in srgb, var(--color-orange) 30%, transparent);
+    border-radius: 1.3rem; padding: clamp(1.5rem, 3vw, 2.4rem);
+  }
+  @media (min-width: 860px) { .waitlist { grid-template-columns: auto 1fr 1.1fr; gap: 2rem; } }
+  .waitlist-cat { display: none; }
+  @media (min-width: 860px) { .waitlist-cat { display: grid; place-items: center; } }
+  .waitlist-cat-svg { width: 4.5rem; height: 4.5rem; color: var(--color-orange-deep); }
+  .waitlist-title { font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem); color: var(--color-ink); }
+  .waitlist-body { margin-top: 0.4rem; color: var(--color-ink-soft); line-height: 1.5; }
+
+  .shop-controls { padding-top: clamp(2.5rem, 5vw, 3.5rem); padding-bottom: 1.5rem; }
+  .filter { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .filter-btn {
+    font: inherit; font-weight: 600; font-size: 0.98rem;
+    padding: 0.5rem 1.1rem; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--color-ink-soft);
+    border: 1.5px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+    transition: all 0.18s ease;
+  }
+  .filter-btn:hover { border-color: var(--color-ink); color: var(--color-ink); }
+  .filter-btn.active { background: var(--color-ink); color: var(--color-paper-raised); border-color: var(--color-ink); }
+
+  .shop-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); }
+  .shop-empty { margin-top: 2rem; text-align: center; color: var(--color-ink-faint); font-size: 1.1rem; }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.shop-grid [data-category]');
+  const empty = document.querySelector<HTMLElement>('.shop-empty');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      buttons.forEach((b) => {
+        const on = b === btn;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+      let shown = 0;
+      cards.forEach((c) => {
+        const match = f === 'all' || c.dataset.category === f;
+        c.hidden = !match;
+        if (match) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+    });
+  });
+</script>
