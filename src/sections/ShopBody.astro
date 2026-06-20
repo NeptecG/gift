@@ -68,7 +68,7 @@ const categories = ['all', 'food', 'toys', 'accessories', 'health'] as const;
   @media (min-width: 860px) { .waitlist { grid-template-columns: auto 1fr 1.1fr; gap: 2rem; } }
   .waitlist-cat { display: none; }
   @media (min-width: 860px) { .waitlist-cat { display: grid; place-items: center; } }
-  .waitlist-cat-svg { width: 4.5rem; height: 4.5rem; color: var(--color-orange-deep); }
+  :global(.waitlist-cat-svg) { width: 4.5rem; height: 4.5rem; color: var(--color-orange-deep); }
   .waitlist-title { font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem); color: var(--color-ink); }
   .waitlist-body { margin-top: 0.4rem; color: var(--color-ink-soft); line-height: 1.5; }
 

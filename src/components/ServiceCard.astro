@@ -38,7 +38,7 @@ const { icon, title, desc } = Astro.props;
     background: var(--color-orange-soft);
     color: var(--color-orange-deep);
   }
-  .svc-icon-svg { width: 1.7rem; height: 1.7rem; }
+  :global(.svc-icon-svg) { width: 1.7rem; height: 1.7rem; }
   .svc-title { font-size: 1.45rem; margin-top: 1.1rem; }
   .svc-desc { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
 </style>

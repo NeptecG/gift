@@ -79,7 +79,7 @@ const EMAIL = 'hello@vetandpet.gr';
     display: grid; place-items: center;
   }
   .map-pin { display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--color-orange); box-shadow: 0 12px 24px -12px var(--color-orange); }
-  .map-pin-svg { width: 1.6rem; height: 1.6rem; color: var(--color-paper-raised); transform: rotate(45deg); }
+  :global(.map-pin-svg) { width: 1.6rem; height: 1.6rem; color: var(--color-paper-raised); transform: rotate(45deg); }
   .map-note { position: absolute; bottom: 0.9rem; font-size: 0.8rem; color: var(--color-ink-faint); }
 
   .contact-form-wrap {

@@ -1,43 +1,60 @@
-# Astro Starter Kit: Minimal
+# Vet & Pet — Veterinary Clinic & Pet Shop
 
-```sh
-npm create astro@latest -- --template minimal
+Bilingual (Greek / English) marketing site for Katerina's clinic, built with
+Astro + Tailwind. Greek is the main site (`/`); English mirrors it under `/en`.
+
+## Run it
+
+```bash
+npm install
+npm run dev      # http://localhost:4321  (live editing)
+npm run build    # outputs static site to dist/
+npm run preview  # serve the built dist/ locally
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> Windows note: the project folder must stay named **`Kate`** (capital K). A
+> casing mismatch between the folder and the path used to run it breaks the CSS
+> build. See `tasks/lessons.md`.
 
-## 🚀 Project Structure
+## Swap the placeholder content before launch
 
-Inside of your Astro project, you'll see the following folders and files:
+Search the code for `[PLACEHOLDER]`. The real values to fill in:
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+| What | Where |
+|------|-------|
+| Address, phone, email | `src/components/Footer.astro`, `src/sections/ContactBody.astro`, `src/sections/HomeBody.astro` |
+| Opening hours | `src/i18n/ui.ts` (`hours.*` keys) |
+| Services list | `src/content/services/*.json` |
+| Products + prices + photos | `src/content/products/*.json` (+ images in `public/images/products/`) |
+| Map | placeholder block in Contact/Home — drop in a real embed later |
+| Public site URL | `astro.config.mjs` (`site`) and `public/robots.txt` |
+
+All page text lives in `src/i18n/ui.ts` (Greek + English side by side).
+
+## Contact / waiting-list form
+
+The contact and "notify me" forms post to `PUBLIC_FORM_ENDPOINT` if set,
+otherwise they fall back to opening the visitor's email app (`mailto:`), so they
+work even before a backend exists.
+
+To collect submissions by email, create a free [Formspree](https://formspree.io)
+form and add its endpoint:
+
+```bash
+# .env
+PUBLIC_FORM_ENDPOINT=https://formspree.io/f/your-id
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deploy
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Static output — deploy `dist/` anywhere. For Vercel: import the repo, framework
+**Astro**, build `npm run build`, output `dist`. Set `PUBLIC_FORM_ENDPOINT` in
+the Vercel env vars and update `site` in `astro.config.mjs` to the real domain.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Turning on a real online shop later
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Today the shop is a showcase catalog with a waiting list. The product data is
+already typed (`src/content.config.ts`), so when Katerina wants real online
+orders: add a cart + a checkout provider (Stripe/Viva Wallet) + accounts
+(Supabase), and switch the product card's "Ask in store" CTA to "Add to cart".
+Nothing in the catalog needs rewriting.
