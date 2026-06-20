@@ -24,7 +24,7 @@ const altHref = altLocalePath(locale, path);
 <header class="site-header">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 md:px-5">
     <a href={homeHref} class="brand" aria-label="Vet & Pet — home">
-      <img src="/logo.png" class="brand-logo" alt="" width="60" height="60" />
+      <img src="/logo-mark.png" class="brand-logo" alt="" width="64" height="64" />
       <span class="brand-word">Vet <span class="amp">&amp;</span> Pet</span>
     </a>
 
@@ -82,10 +82,9 @@ const altHref = altLocalePath(locale, path);
     margin-left: -0.35rem; /* nudge brand a touch further left */
   }
   .brand-logo {
-    height: 3.1rem;
+    height: 4rem; /* transparent mark — a bit bigger, fills the bar nicely */
     width: auto;
     object-fit: contain;
-    mix-blend-mode: multiply; /* logo's cream bg melts into the navbar */
     flex: none;
   }
   .brand-word {
