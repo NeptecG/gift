@@ -25,6 +25,7 @@ const EMAIL = 'hello@vetandpet.gr';
 <footer class="site-footer">
   <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1.1fr] md:px-8">
     <div class="foot-brand">
+      <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
       <div class="foot-word">Vet <span class="amp">&amp;</span> Pet</div>
       <p class="foot-tagline">{t(locale, 'footer.tagline')}</p>
       <CatAccent variant="sitting" class="foot-cat" />
@@ -71,6 +72,14 @@ const EMAIL = 'hello@vetandpet.gr';
     margin-top: 6rem;
     background: var(--color-ink);
     color: color-mix(in srgb, var(--color-paper) 85%, transparent);
+  }
+  .foot-logo {
+    display: block;
+    width: 6.5rem;
+    height: auto;
+    border-radius: 1rem;
+    margin-bottom: 1.25rem;
+    background: var(--color-paper);
   }
   .foot-word {
     font-family: var(--font-serif);
