@@ -122,10 +122,9 @@ const altHref = altLocalePath(locale, path);
     transform-origin: left;
     transition: transform 0.25s ease;
   }
-  .nav-link:hover { color: var(--color-ink); }
-  .nav-link:hover::after { transform: scaleX(1); }
-  .nav-link.active { color: var(--color-ink); }
-  .nav-link.active::after { transform: scaleX(1); }
+  .nav-link:hover { color: var(--color-orange); }
+  .nav-link.active { color: var(--color-orange); }
+  .nav-link.active::after { transform: scaleX(1); } /* underline marks the current page only */
 
   .header-actions { display: flex; align-items: center; gap: 0.6rem; margin-right: -0.25rem; }
   .lang-switch {
