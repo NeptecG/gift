@@ -1,0 +1,148 @@
+---
+import { type Locale, t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  variant?: 'waitlist' | 'contact';
+}
+const { locale, variant = 'contact' } = Astro.props;
+
+// ponytail: no backend yet. Posts to PUBLIC_FORM_ENDPOINT (e.g. Formspree) if set,
+// else falls back to a mailto: link so nothing breaks pre-launch. Upgrade path when
+// she wants real online ordering: swap the endpoint for an API route + checkout.
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+const MAILTO = 'hello@vetandpet.gr'; // [PLACEHOLDER] clinic inbox
+const submitLabel = variant === 'waitlist' ? t(locale, 'shop.notify') : t(locale, 'form.send');
+---
+
+<form
+  class:list={['signup', `signup--${variant}`]}
+  data-endpoint={endpoint}
+  data-mailto={MAILTO}
+  data-variant={variant}
+  novalidate
+>
+  {variant === 'contact' && (
+    <label class="field">
+      <span class="field-label">{t(locale, 'form.name')}</span>
+      <input type="text" name="name" autocomplete="name" required />
+    </label>
+  )}
+
+  <label class="field">
+    <span class="field-label">{t(locale, 'form.email')}</span>
+    <input type="email" name="email" autocomplete="email" required placeholder={variant === 'waitlist' ? 'you@example.com' : undefined} />
+  </label>
+
+  {variant === 'contact' && (
+    <label class="field">
+      <span class="field-label">{t(locale, 'form.message')}</span>
+      <textarea name="message" rows="4" required></textarea>
+    </label>
+  )}
+
+  {/* honeypot — hidden from humans, catches bots */}
+  <div class="hp" aria-hidden="true">
+    <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <button type="submit" class="btn btn-primary signup-submit" data-label={submitLabel} data-sending={t(locale, 'form.sending')}>
+    {submitLabel}
+  </button>
+
+  <p class="signup-status" role="status" aria-live="polite"
+     data-ok={t(locale, 'form.ok')}
+     data-err={t(locale, 'form.err')}
+     data-required={t(locale, 'form.required')}
+     data-invalid={t(locale, 'form.invalidEmail')}></p>
+</form>
+
+<style>
+  .signup { display: grid; gap: 1rem; }
+  .signup--waitlist { grid-template-columns: 1fr auto; align-items: end; gap: 0.7rem; }
+  @media (max-width: 560px) { .signup--waitlist { grid-template-columns: 1fr; } }
+
+  .field { display: grid; gap: 0.4rem; }
+  .field-label { font-size: 0.85rem; font-weight: 600; color: var(--color-ink-soft); }
+  .signup input, .signup textarea {
+    width: 100%;
+    padding: 0.8rem 0.95rem;
+    font: inherit;
+    color: var(--color-ink);
+    background: var(--color-paper-raised);
+    border: 1.5px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+    border-radius: 0.7rem;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .signup input:focus, .signup textarea:focus {
+    outline: none;
+    border-color: var(--color-orange);
+    box-shadow: 0 0 0 3px var(--color-orange-soft);
+  }
+  .signup textarea { resize: vertical; }
+  .signup [aria-invalid='true'] { border-color: #c0392b; }
+
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .signup--waitlist .signup-submit { white-space: nowrap; }
+  .signup-status { font-size: 0.95rem; min-height: 1.2em; }
+  .signup-status[data-state='ok'] { color: var(--color-leaf); font-weight: 600; }
+  .signup-status[data-state='err'] { color: #c0392b; }
+  .signup--waitlist .signup-status { grid-column: 1 / -1; }
+</style>
+
+<script>
+  function wire(form: HTMLFormElement) {
+    const status = form.querySelector<HTMLParagraphElement>('.signup-status')!;
+    const btn = form.querySelector<HTMLButtonElement>('.signup-submit')!;
+    const endpoint = form.dataset.endpoint || '';
+    const mailto = form.dataset.mailto || '';
+    const variant = form.dataset.variant || 'contact';
+
+    const setStatus = (key: 'ok' | 'err' | 'required' | 'invalid', state: 'ok' | 'err') => {
+      status.textContent = status.dataset[key] || '';
+      status.dataset.state = state;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // honeypot tripped → silently pretend success
+      if ((form.elements.namedItem('_gotcha') as HTMLInputElement)?.value) { setStatus('ok', 'ok'); return; }
+
+      const email = form.elements.namedItem('email') as HTMLInputElement;
+      const required = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]')];
+      for (const el of required) el.setAttribute('aria-invalid', el.value.trim() ? 'false' : 'true');
+      if (required.some((el) => !el.value.trim())) { setStatus('required', 'err'); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) { email.setAttribute('aria-invalid', 'true'); setStatus('invalid', 'err'); return; }
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      delete (data as any)._gotcha;
+      (data as any)._subject = variant === 'waitlist' ? 'Vet & Pet — waiting list signup' : 'Vet & Pet — contact form';
+
+      if (!endpoint) {
+        const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
+        window.location.href = `mailto:${mailto}?subject=${encodeURIComponent(data._subject as string)}&body=${encodeURIComponent(body)}`;
+        setStatus('ok', 'ok');
+        form.reset();
+        return;
+      }
+
+      btn.disabled = true;
+      const labelSending = btn.dataset.sending || '...';
+      const labelDefault = btn.dataset.label || btn.textContent || '';
+      btn.textContent = labelSending;
+      try {
+        const res = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        if (!res.ok) throw new Error('bad status');
+        setStatus('ok', 'ok');
+        form.reset();
+      } catch {
+        setStatus('err', 'err');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = labelDefault;
+      }
+    });
+  }
+  document.querySelectorAll<HTMLFormElement>('form.signup').forEach(wire);
+</script>

@@ -28,6 +28,7 @@ const ogImage = site + '/logo.png';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -50,6 +51,23 @@ const ogImage = site + '/logo.png';
       <slot />
     </main>
     <Footer locale={locale} />
+    <script>
+      const els = document.querySelectorAll('.reveal');
+      if (els.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
     <style>
       .skip-link {
         position: absolute;

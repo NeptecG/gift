@@ -1,0 +1,72 @@
+---
+import { type Locale, t, localizedPath } from '../i18n/ui';
+import HandPawArt from './art/HandPawArt.astro';
+import CatAccent from './art/CatAccent.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="kicker reveal">{t(locale, 'hero.kicker')}</p>
+      <h1 class="hero-title reveal" style="--reveal-delay:80ms">{t(locale, 'hero.title')}</h1>
+      <p class="hero-lead reveal" style="--reveal-delay:160ms">{t(locale, 'hero.lead')}</p>
+      <div class="hero-actions reveal" style="--reveal-delay:240ms">
+        <a href={localizedPath(locale, '/contact')} class="btn btn-primary">{t(locale, 'cta.book')}</a>
+        <a href={localizedPath(locale, '/services')} class="btn btn-outline">{t(locale, 'cta.viewServices')}</a>
+      </div>
+    </div>
+
+    <div class="hero-art reveal" style="--reveal-delay:200ms">
+      <HandPawArt eager />
+      <span class="hero-badge">
+        <CatAccent variant="paw" class="hero-badge-paw" />
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: clamp(2.5rem, 4vw, 5rem); padding-bottom: clamp(2.5rem, 4vw, 4rem); overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; }
+  }
+
+  .hero-title {
+    font-size: clamp(2.7rem, 1.4rem + 5.4vw, 5rem);
+    line-height: 1.02;
+    margin-top: 1rem;
+    letter-spacing: -0.005em;
+  }
+  .hero-lead {
+    margin-top: 1.4rem;
+    max-width: 34rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+  .hero-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+  .hero-art { position: relative; }
+  .hero-badge {
+    position: absolute;
+    bottom: -1.1rem;
+    left: -1.1rem;
+    width: 4.6rem; height: 4.6rem;
+    display: grid; place-items: center;
+    background: var(--color-orange);
+    border-radius: 50%;
+    box-shadow: 0 14px 30px -14px var(--color-orange);
+  }
+  .hero-badge-paw { width: 2.4rem; height: 2.4rem; color: var(--color-paper-raised); }
+  @media (max-width: 520px) { .hero-badge { width: 3.6rem; height: 3.6rem; } .hero-badge-paw { width: 1.9rem; height: 1.9rem; } }
+</style>

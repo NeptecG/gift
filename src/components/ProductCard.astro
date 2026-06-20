@@ -1,0 +1,64 @@
+---
+import { type Locale, t, formatPrice, localizedPath, type UIKey } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  category: 'food' | 'toys' | 'accessories' | 'health';
+  name: string;
+  desc: string;
+  price: number | null;
+  image: string;
+}
+const { locale, category, name, desc, price, image } = Astro.props;
+const priceLabel = formatPrice(locale, price, t(locale, 'cta.askStore'));
+const catLabel = t(locale, `shop.cat.${category}` as UIKey);
+---
+
+<article class="prod-card reveal" data-category={category}>
+  <div class="prod-media">
+    <img src={image} alt={name} loading="lazy" width="400" height="300" />
+    <span class="prod-tag">{catLabel}</span>
+  </div>
+  <div class="prod-body">
+    <h3 class="prod-name">{name}</h3>
+    <p class="prod-desc">{desc}</p>
+    <div class="prod-foot">
+      <span class="prod-price" data-ask={price == null ? '' : null}>{priceLabel}</span>
+      <a class="prod-link" href={localizedPath(locale, '/contact')}>{t(locale, 'cta.askStore')}</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .prod-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-paper-raised);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .prod-card:hover { transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(26, 22, 14, 0.5); }
+
+  .prod-media { position: relative; aspect-ratio: 4 / 3; background: var(--color-sand); }
+  .prod-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .prod-tag {
+    position: absolute; top: 0.7rem; left: 0.7rem;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--color-paper-raised); color: var(--color-ink-soft);
+    padding: 0.3rem 0.6rem; border-radius: 999px;
+  }
+
+  .prod-body { display: flex; flex-direction: column; flex: 1; padding: 1.1rem 1.2rem 1.2rem; }
+  .prod-name { font-size: 1.3rem; line-height: 1.15; }
+  .prod-desc { margin-top: 0.4rem; color: var(--color-ink-soft); font-size: 0.98rem; line-height: 1.5; flex: 1; }
+  .prod-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.1rem; }
+  .prod-price { font-family: var(--font-serif); font-weight: 700; font-size: 1.4rem; color: var(--color-ink); white-space: nowrap; }
+  .prod-price[data-ask] { font-size: 1rem; font-style: italic; color: var(--color-ink-faint); }
+  .prod-link {
+    font-weight: 600; font-size: 0.95rem; color: var(--color-orange-deep); text-decoration: none;
+    white-space: nowrap; border-bottom: 1.5px solid transparent; transition: border-color 0.2s ease;
+  }
+  .prod-link:hover { border-color: var(--color-orange-deep); }
+</style>

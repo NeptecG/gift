@@ -1,10 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeBody from '../sections/HomeBody.astro';
 ---
 
 <BaseLayout locale="el" path="/" titleKey="meta.home.title" descKey="meta.home.desc">
-  <section class="mx-auto max-w-3xl px-6 py-24">
-    <h1 class="text-6xl text-ink">Vet &amp; Pet</h1>
-    <p class="mt-4 text-2xl font-serif italic text-orange">Καλώς ήρθατε — header/footer check</p>
-  </section>
+  <HomeBody locale="el" />
 </BaseLayout>

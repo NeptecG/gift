@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import { type Locale, t, localizedPath } from '../i18n/ui';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import CatAccent from '../components/art/CatAccent.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const services = (await getCollection('services'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+
+const allProducts = await getCollection('products');
+const featured = (allProducts.filter((p) => p.data.featured).length ? allProducts.filter((p) => p.data.featured) : allProducts)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+---
+
+<Hero locale={locale} />
+
+<!-- Services preview -->
+<section class="container section">
+  <header class="section-head">
+    <div>
+      <p class="kicker reveal">{t(locale, 'home.services.kicker')}</p>
+      <h2 class="section-title reveal">{t(locale, 'home.services.title')}</h2>
+    </div>
+    <p class="section-sub reveal">{t(locale, 'home.services.sub')}</p>
+  </header>
+  <div class="card-grid">
+    {services.map((s) => (
+      <ServiceCard locale={locale} icon={s.data.icon} title={locale === 'el' ? s.data.title_el : s.data.title_en} desc={locale === 'el' ? s.data.desc_el : s.data.desc_en} />
+    ))}
+  </div>
+  <div class="section-cta reveal">
+    <a href={localizedPath(locale, '/services')} class="btn btn-outline">{t(locale, 'cta.viewServices')}</a>
+  </div>
+</section>
+
+<!-- Meet Katerina -->
+<section class="about-band">
+  <div class="container about-grid">
+    <div class="about-mark reveal">
+      <CatAccent variant="sitting" class="about-cat" />
+    </div>
+    <div class="about-copy reveal" style="--reveal-delay:120ms">
+      <p class="kicker">{t(locale, 'home.about.kicker')}</p>
+      <h2 class="section-title">{t(locale, 'home.about.title')}</h2>
+      <p class="about-text">{t(locale, 'home.about.body')}</p>
+      <a href={localizedPath(locale, '/about')} class="btn btn-outline">{t(locale, 'cta.learnMore')}</a>
+    </div>
+  </div>
+</section>
+
+<!-- Shop teaser -->
+<section class="container section">
+  <header class="section-head">
+    <div>
+      <p class="kicker reveal">{t(locale, 'home.shop.kicker')}</p>
+      <h2 class="section-title reveal">{t(locale, 'home.shop.title')}</h2>
+    </div>
+    <p class="section-sub reveal">{t(locale, 'home.shop.sub')}</p>
+  </header>
+  <div class="card-grid">
+    {featured.map((p) => (
+      <ProductCard locale={locale} category={p.data.category} name={locale === 'el' ? p.data.name_el : p.data.name_en} desc={locale === 'el' ? p.data.desc_el : p.data.desc_en} price={p.data.price} image={p.data.image} />
+    ))}
+  </div>
+  <div class="section-cta reveal">
+    <a href={localizedPath(locale, '/shop')} class="btn btn-primary">{t(locale, 'cta.viewShop')}</a>
+  </div>
+</section>
+
+<!-- Visit us -->
+<section class="container section">
+  <div class="visit">
+    <div class="visit-copy reveal">
+      <p class="kicker">{t(locale, 'home.visit.kicker')}</p>
+      <h2 class="section-title">{t(locale, 'home.visit.title')}</h2>
+      <dl class="visit-info">
+        <div>
+          <dt>{t(locale, 'home.visit.addressLabel')}</dt>
+          <dd>{locale === 'el' ? 'Οδός Παραδείγματος 12, Αθήνα 11522' : '12 Example Street, Athens 11522'}</dd>
+        </div>
+        <div>
+          <dt>{t(locale, 'home.visit.hoursLabel')}</dt>
+          <dd>{t(locale, 'hours.weekdays')}: {t(locale, 'hours.weekdaysValue')}<br />{t(locale, 'hours.saturday')}: {t(locale, 'hours.saturdayValue')}</dd>
+        </div>
+      </dl>
+      <div class="visit-actions">
+        <a href={localizedPath(locale, '/contact')} class="btn btn-primary">{t(locale, 'cta.book')}</a>
+        <a href="https://www.openstreetmap.org/search?query=Athens" target="_blank" rel="noopener" class="btn btn-outline">{t(locale, 'cta.directions')}</a>
+      </div>
+    </div>
+    <div class="visit-map reveal" style="--reveal-delay:120ms" aria-hidden="true">
+      <span class="visit-pin"><CatAccent variant="paw" class="visit-pin-paw" /></span>
+      <span class="visit-map-note">{locale === 'el' ? 'Χάρτης — σύντομα' : 'Map — coming soon'}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section { padding-top: clamp(3rem, 6vw, 5.5rem); padding-bottom: clamp(1rem, 2vw, 2rem); }
+  .section-head {
+    display: grid; gap: 1rem; margin-bottom: 2.4rem;
+  }
+  @media (min-width: 820px) {
+    .section-head { grid-template-columns: 1fr 1fr; align-items: end; }
+    .section-sub { text-align: right; }
+  }
+  .section-sub { max-width: 30rem; color: var(--color-ink-soft); font-size: 1.1rem; line-height: 1.55; }
+  @media (min-width: 820px) { .section-sub { justify-self: end; } }
+
+  .card-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); }
+  .section-cta { margin-top: 2.4rem; display: flex; justify-content: center; }
+
+  .about-band { background: var(--color-sand); margin-top: clamp(3rem, 6vw, 5.5rem); }
+  .about-grid {
+    display: grid; gap: 2rem; align-items: center;
+    padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  @media (min-width: 820px) { .about-grid { grid-template-columns: 0.7fr 1.3fr; gap: 3rem; } }
+  .about-mark { display: grid; place-items: center; }
+  .about-cat { width: clamp(7rem, 16vw, 11rem); height: auto; color: var(--color-orange); }
+  .about-text { margin: 1.3rem 0 2rem; font-size: 1.18rem; line-height: 1.65; color: var(--color-ink-soft); max-width: 38rem; }
+
+  .visit {
+    display: grid; gap: 2rem; align-items: stretch;
+    background: var(--color-paper-raised);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border-radius: 1.5rem; padding: clamp(1.6rem, 4vw, 3rem); overflow: hidden;
+  }
+  @media (min-width: 820px) { .visit { grid-template-columns: 1.1fr 0.9fr; } }
+  .visit-info { display: grid; gap: 1.2rem; margin: 1.4rem 0 2rem; }
+  .visit-info dt { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-orange); margin-bottom: 0.3rem; }
+  .visit-info dd { font-size: 1.08rem; line-height: 1.5; }
+  .visit-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .visit-map {
+    position: relative; min-height: 14rem; border-radius: 1rem;
+    background:
+      radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--color-orange) 12%, transparent), transparent 60%),
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-ink) 5%, transparent) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 5%, transparent) 0 1px, transparent 1px 28px),
+      var(--color-sand);
+    display: grid; place-items: center;
+  }
+  .visit-pin { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--color-orange); box-shadow: 0 12px 24px -12px var(--color-orange); }
+  .visit-pin-paw { width: 1.7rem; height: 1.7rem; color: var(--color-paper-raised); transform: rotate(45deg); }
+  .visit-map-note { position: absolute; bottom: 0.9rem; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--color-ink-faint); }
+</style>

@@ -1,0 +1,44 @@
+---
+import type { Locale } from '../i18n/ui';
+import ServiceIcon from './art/ServiceIcon.astro';
+
+interface Props {
+  locale: Locale;
+  icon: string;
+  title: string;
+  desc: string;
+}
+const { icon, title, desc } = Astro.props;
+---
+
+<article class="svc-card reveal">
+  <span class="svc-icon"><ServiceIcon name={icon} class="svc-icon-svg" /></span>
+  <h3 class="svc-title">{title}</h3>
+  <p class="svc-desc">{desc}</p>
+</article>
+
+<style>
+  .svc-card {
+    background: var(--color-paper-raised);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border-radius: var(--radius-card);
+    padding: 1.6rem 1.5rem;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+  .svc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px -26px rgba(26, 22, 14, 0.5);
+    border-color: color-mix(in srgb, var(--color-orange) 35%, transparent);
+  }
+  .svc-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3.1rem; height: 3.1rem;
+    border-radius: 0.85rem;
+    background: var(--color-orange-soft);
+    color: var(--color-orange-deep);
+  }
+  .svc-icon-svg { width: 1.7rem; height: 1.7rem; }
+  .svc-title { font-size: 1.45rem; margin-top: 1.1rem; }
+  .svc-desc { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
+</style>
