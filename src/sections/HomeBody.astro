@@ -43,10 +43,7 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
 <!-- Meet Katerina -->
 <section class="about-band">
   <div class="container about-grid">
-    <div class="about-mark reveal">
-      <CatAccent variant="sitting" class="about-cat" />
-    </div>
-    <div class="about-copy reveal" style="--reveal-delay:120ms">
+    <div class="about-copy reveal">
       <p class="kicker">{t(locale, 'home.about.kicker')}</p>
       <h2 class="section-title">{t(locale, 'home.about.title')}</h2>
       <p class="about-text">{t(locale, 'home.about.body')}</p>
@@ -119,12 +116,10 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
 
   .about-band { background: var(--color-sand); margin-top: clamp(3rem, 6vw, 5.5rem); }
   .about-grid {
-    display: grid; gap: 2rem; align-items: center;
+    display: block;
     padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem);
   }
-  @media (min-width: 820px) { .about-grid { grid-template-columns: 0.7fr 1.3fr; gap: 3rem; } }
-  .about-mark { display: grid; place-items: center; }
-  :global(.about-cat) { width: clamp(7rem, 16vw, 11rem); height: auto; color: var(--color-ink); }
+  .about-copy { max-width: 44rem; }
   .about-text { margin: 1.3rem 0 2rem; font-size: 1.18rem; line-height: 1.65; color: var(--color-ink-soft); max-width: 38rem; }
 
   .visit {

@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import { type Locale, t, type UIKey } from '../i18n/ui';
 import ProductCard from '../components/ProductCard.astro';
 import SignupForm from '../components/SignupForm.astro';
-import CatAccent from '../components/art/CatAccent.astro';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -21,7 +20,6 @@ const categories = ['all', 'food', 'toys', 'accessories', 'health'] as const;
 <!-- Waiting list -->
 <section class="container">
   <div class="waitlist reveal">
-    <span class="waitlist-cat"><CatAccent variant="sitting" class="waitlist-cat-svg" /></span>
     <div class="waitlist-copy">
       <h2 class="waitlist-title">{t(locale, 'shop.soon.title')}</h2>
       <p class="waitlist-body">{t(locale, 'shop.soon.body')}</p>
@@ -65,10 +63,7 @@ const categories = ['all', 'food', 'toys', 'accessories', 'health'] as const;
     border: 1px solid color-mix(in srgb, var(--color-orange) 30%, transparent);
     border-radius: 1.3rem; padding: clamp(1.5rem, 3vw, 2.4rem);
   }
-  @media (min-width: 860px) { .waitlist { grid-template-columns: auto 1fr 1.1fr; gap: 2rem; } }
-  .waitlist-cat { display: none; }
-  @media (min-width: 860px) { .waitlist-cat { display: grid; place-items: center; } }
-  :global(.waitlist-cat-svg) { width: 4.5rem; height: 4.5rem; color: var(--color-orange-deep); }
+  @media (min-width: 860px) { .waitlist { grid-template-columns: 1fr 1.1fr; gap: 2.5rem; } }
   .waitlist-title { font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem); color: var(--color-ink); }
   .waitlist-body { margin-top: 0.4rem; color: var(--color-ink-soft); line-height: 1.5; }
 
