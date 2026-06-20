@@ -1,14 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-const products = await getCollection('products');
-const services = await getCollection('services');
 ---
 
 <BaseLayout locale="el" path="/" titleKey="meta.home.title" descKey="meta.home.desc">
-  <main class="mx-auto max-w-3xl px-6 py-24">
+  <section class="mx-auto max-w-3xl px-6 py-24">
     <h1 class="text-6xl text-ink">Vet &amp; Pet</h1>
-    <p class="mt-4 text-2xl font-serif italic text-orange">Καλώς ήρθατε — Loving care for every animal</p>
-    <p class="mt-6 text-ink-soft">Φροντίδα με αγάπη για κάθε ζώο. {products.length} προϊόντα · {services.length} υπηρεσίες.</p>
-  </main>
+    <p class="mt-4 text-2xl font-serif italic text-orange">Καλώς ήρθατε — header/footer check</p>
+  </section>
 </BaseLayout>

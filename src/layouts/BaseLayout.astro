@@ -2,7 +2,9 @@
 
 import '../styles/fonts.ts';
 import '../styles/global.css';
-import { type Locale, t, altLocalePath, type UIKey } from '../i18n/ui';
+import { type Locale, t, type UIKey } from '../i18n/ui';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   locale: Locale;
@@ -42,6 +44,24 @@ const ogImage = site + '/logo.png';
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
-    <slot />
+    <a href="#main" class="skip-link">{locale === 'el' ? 'Μετάβαση στο περιεχόμενο' : 'Skip to content'}</a>
+    <Header locale={locale} path={path} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0.5rem;
+        z-index: 100;
+        background: var(--color-ink);
+        color: var(--color-paper-raised);
+        padding: 0.6rem 1rem;
+        border-radius: 0.5rem;
+      }
+      .skip-link:focus { left: 0.5rem; }
+    </style>
   </body>
 </html>

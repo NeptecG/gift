@@ -1,0 +1,111 @@
+---
+import { type Locale, t, localizedPath } from '../i18n/ui';
+import CatAccent from './art/CatAccent.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+
+const nav = [
+  { key: 'nav.home', route: '/' },
+  { key: 'nav.services', route: '/services' },
+  { key: 'nav.shop', route: '/shop' },
+  { key: 'nav.about', route: '/about' },
+  { key: 'nav.contact', route: '/contact' },
+] as const;
+
+// [PLACEHOLDER] swap for the clinic's real details before launch
+const ADDRESS = locale === 'el' ? 'Οδός Παραδείγματος 12, Αθήνα 11522' : '12 Example Street, Athens 11522';
+const PHONE = '+30 21 0000 0000';
+const EMAIL = 'hello@vetandpet.gr';
+---
+
+<footer class="site-footer">
+  <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1.1fr] md:px-8">
+    <div class="foot-brand">
+      <div class="foot-word">Vet <span class="amp">&amp;</span> Pet</div>
+      <p class="foot-tagline">{t(locale, 'footer.tagline')}</p>
+      <CatAccent variant="sitting" class="foot-cat" />
+    </div>
+
+    <nav class="foot-col" aria-label={t(locale, 'footer.explore')}>
+      <h2 class="foot-h">{t(locale, 'footer.explore')}</h2>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={localizedPath(locale, item.route)}>{t(locale, item.key)}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="foot-col">
+      <h2 class="foot-h">{t(locale, 'footer.visit')}</h2>
+      <address class="foot-address">
+        <span>{ADDRESS}</span>
+        <a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a>
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </address>
+    </div>
+
+    <div class="foot-col">
+      <h2 class="foot-h">{t(locale, 'contact.hoursLabel')}</h2>
+      <dl class="foot-hours">
+        <div><dt>{t(locale, 'hours.weekdays')}</dt><dd>{t(locale, 'hours.weekdaysValue')}</dd></div>
+        <div><dt>{t(locale, 'hours.saturday')}</dt><dd>{t(locale, 'hours.saturdayValue')}</dd></div>
+        <div><dt>{t(locale, 'hours.sunday')}</dt><dd>{t(locale, 'hours.closed')}</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="foot-bar">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-5 text-sm sm:flex-row md:px-8">
+      <p>© {year} Vet &amp; Pet. {t(locale, 'footer.rights')}</p>
+      <p class="foot-made">{locale === 'el' ? 'Φτιαγμένο με αγάπη για τα ζώα' : 'Made with love for animals'} <span aria-hidden="true">🐾</span></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 6rem;
+    background: var(--color-ink);
+    color: color-mix(in srgb, var(--color-paper) 85%, transparent);
+  }
+  .foot-word {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--color-paper-raised);
+    line-height: 1;
+  }
+  .foot-word .amp { color: var(--color-orange); font-style: italic; }
+  .foot-tagline { margin-top: 0.75rem; max-width: 22rem; line-height: 1.55; }
+  .foot-cat { width: 3rem; height: 3rem; margin-top: 1.25rem; color: color-mix(in srgb, var(--color-paper) 30%, transparent); }
+
+  .foot-h {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    margin-bottom: 1rem;
+  }
+  .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .foot-col a, .foot-address a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  .foot-col a:hover, .foot-address a:hover { color: var(--color-paper-raised); }
+
+  .foot-address { font-style: normal; display: flex; flex-direction: column; gap: 0.55rem; line-height: 1.5; }
+
+  .foot-hours { display: flex; flex-direction: column; gap: 0.55rem; }
+  .foot-hours > div { display: flex; justify-content: space-between; gap: 1rem; }
+  .foot-hours dt { color: color-mix(in srgb, var(--color-paper) 65%, transparent); }
+  .foot-hours dd { color: var(--color-paper-raised); font-variant-numeric: tabular-nums; }
+
+  .foot-bar {
+    border-top: 1px solid color-mix(in srgb, var(--color-paper) 12%, transparent);
+    color: color-mix(in srgb, var(--color-paper) 60%, transparent);
+  }
+  .foot-made { display: inline-flex; align-items: center; gap: 0.4rem; }
+</style>
