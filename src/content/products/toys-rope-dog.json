@@ -1,0 +1,10 @@
+{
+  "category": "toys",
+  "order": 2,
+  "price": 8.9,
+  "image": "/images/products/toys.svg",
+  "name_el": "Παιχνίδι Σχοινί για Σκύλους",
+  "name_en": "Rope Tug Dog Toy",
+  "desc_el": "Ανθεκτικό βαμβακερό σχοινί για παιχνίδι και καθαρισμό δοντιών.",
+  "desc_en": "Durable cotton rope for play and gentle teeth cleaning."
+}

@@ -1,0 +1,10 @@
+{
+  "category": "health",
+  "order": 3,
+  "price": 11.5,
+  "image": "/images/products/health.svg",
+  "name_el": "Πολυβιταμινούχα Πάστα",
+  "name_en": "Multivitamin Paste",
+  "desc_el": "Ενισχύει την ενέργεια και το ανοσοποιητικό.",
+  "desc_en": "Supports energy levels and the immune system."
+}

@@ -1,0 +1,11 @@
+{
+  "category": "accessories",
+  "order": 2,
+  "featured": true,
+  "price": 9.5,
+  "image": "/images/products/accessories.svg",
+  "name_el": "Κεραμικό Μπολ Φαγητού",
+  "name_en": "Ceramic Food Bowl",
+  "desc_el": "Σταθερό, αντιολισθητικό μπολ που πλένεται εύκολα.",
+  "desc_en": "Stable, non-slip bowl that is easy to clean."
+}

@@ -1,0 +1,10 @@
+{
+  "category": "accessories",
+  "order": 1,
+  "price": 12,
+  "image": "/images/products/accessories.svg",
+  "name_el": "Δερμάτινο Κολάρο",
+  "name_en": "Leather Collar",
+  "desc_el": "Μαλακό, ανθεκτικό κολάρο με ρυθμιζόμενο μέγεθος.",
+  "desc_en": "Soft, durable collar with adjustable sizing."
+}

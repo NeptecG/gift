@@ -1,0 +1,10 @@
+{
+  "category": "food",
+  "order": 3,
+  "price": 12.9,
+  "image": "/images/products/food.svg",
+  "name_el": "Υγρή Τροφή Γάτας (Πακέτο 12)",
+  "name_en": "Cat Wet Food (Pack of 12)",
+  "desc_el": "Τρυφερά κομμάτια σε σάλτσα, πλούσια σε πρωτεΐνη.",
+  "desc_en": "Tender chunks in gravy, rich in protein."
+}

@@ -1,0 +1,11 @@
+{
+  "category": "food",
+  "order": 1,
+  "featured": true,
+  "price": 14.9,
+  "image": "/images/products/food.svg",
+  "name_el": "Ξηρά Τροφή για Γατάκια",
+  "name_en": "Kitten Dry Food",
+  "desc_el": "Πλήρης ισορροπημένη τροφή για γατάκια έως 12 μηνών.",
+  "desc_en": "Complete balanced nutrition for kittens up to 12 months."
+}

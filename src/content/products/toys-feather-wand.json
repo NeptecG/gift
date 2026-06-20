@@ -1,0 +1,11 @@
+{
+  "category": "toys",
+  "order": 1,
+  "featured": true,
+  "price": 6.5,
+  "image": "/images/products/toys.svg",
+  "name_el": "Ραβδί με Φτερά για Γάτες",
+  "name_en": "Feather Wand Cat Toy",
+  "desc_el": "Διεγείρει το ένστικτο του κυνηγιού και κρατά τη γάτα δραστήρια.",
+  "desc_en": "Sparks the hunting instinct and keeps your cat active."
+}

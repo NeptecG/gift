@@ -1,0 +1,11 @@
+{
+  "category": "health",
+  "order": 1,
+  "featured": true,
+  "price": 18,
+  "image": "/images/products/health.svg",
+  "name_el": "Αντιπαρασιτικό Spot-On",
+  "name_en": "Flea & Tick Spot-On",
+  "desc_el": "Μηνιαία προστασία από ψύλλους και κρότωνες.",
+  "desc_en": "Monthly protection against fleas and ticks."
+}

@@ -1,0 +1,10 @@
+{
+  "category": "health",
+  "order": 2,
+  "price": 5.9,
+  "image": "/images/products/health.svg",
+  "name_el": "Οδοντικά Sticks",
+  "name_en": "Dental Sticks",
+  "desc_el": "Καθημερινή φροντίδα στόματος που μειώνει την πλάκα.",
+  "desc_en": "Daily oral care that helps reduce plaque."
+}

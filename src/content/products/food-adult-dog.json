@@ -1,0 +1,10 @@
+{
+  "category": "food",
+  "order": 2,
+  "price": 24.5,
+  "image": "/images/products/food.svg",
+  "name_el": "Ξηρά Τροφή για Ενήλικους Σκύλους",
+  "name_en": "Adult Dog Dry Food",
+  "desc_el": "Καθημερινή διατροφή με κοτόπουλο και ρύζι, για όλες τις φυλές.",
+  "desc_en": "Everyday chicken & rice formula for all breeds."
+}
