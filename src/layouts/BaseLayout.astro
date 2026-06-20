@@ -1,0 +1,47 @@
+---
+
+import '../styles/fonts.ts';
+import '../styles/global.css';
+import { type Locale, t, altLocalePath, type UIKey } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  /** route key, e.g. "/", "/shop" — used for hreflang + language switch */
+  path: string;
+  titleKey: UIKey;
+  descKey: UIKey;
+}
+const { locale, path, titleKey, descKey } = Astro.props;
+
+const title = t(locale, titleKey);
+const description = t(locale, descKey);
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const elPath = path === '/' ? '/' : path;
+const enPath = path === '/' ? '/en/' : '/en' + path;
+const ogImage = site + '/logo.png';
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="alternate" hreflang="el" href={site + elPath} />
+    <link rel="alternate" hreflang="en" href={site + enPath} />
+    <link rel="alternate" hreflang="x-default" href={site + elPath} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={locale === 'el' ? 'el_GR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

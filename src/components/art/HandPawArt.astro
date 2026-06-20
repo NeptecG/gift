@@ -1,0 +1,62 @@
+---
+/**
+ * The hand-meets-paw artwork (IMG_4709) — Katerina's own clinic wire-art,
+ * the piece she loves. Served through Astro's image pipeline (resized + webp).
+ * The near-neutral wall blends into the site's paper palette.
+ *
+ * Props: class (wrapper), caption (optional), eager (LCP hint)
+ */
+import { Image } from 'astro:assets';
+import handPaw from '../../assets/hand-paw.jpeg';
+
+interface Props {
+  class?: string;
+  caption?: string;
+  eager?: boolean;
+}
+const { class: cls = '', caption, eager = false } = Astro.props;
+---
+
+<figure class={`hp-figure ${cls}`}>
+  <div class="hp-frame">
+    <Image
+      src={handPaw}
+      alt="A human hand and a cat's paw reaching toward each other — wire art in the clinic"
+      widths={[480, 768, 1100]}
+      sizes="(max-width: 768px) 92vw, 560px"
+      loading={eager ? 'eager' : 'lazy'}
+      class="hp-img"
+    />
+  </div>
+  {caption && <figcaption class="hp-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .hp-figure { margin: 0; }
+  .hp-frame {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--color-paper-raised);
+    box-shadow:
+      0 1px 0 rgba(26, 22, 14, 0.04),
+      0 24px 50px -28px rgba(26, 22, 14, 0.4);
+    border: 1px solid rgba(26, 22, 14, 0.08);
+  }
+  .hp-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply; /* lets the wall melt into our cream paper */
+  }
+  .hp-caption {
+    margin-top: 0.9rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: var(--color-ink-soft);
+    text-align: center;
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+</style>

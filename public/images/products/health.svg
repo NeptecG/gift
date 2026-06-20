@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Health">
+  <rect width="400" height="300" fill="#e8e6da"/>
+  <path d="M200 206 c-44 -28 -70 -52 -70 -82 a34 34 0 0 1 70 -12 a34 34 0 0 1 70 12 c0 30 -26 54 -70 82 Z"
+        fill="none" stroke="#1a1a1a" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M200 112 v44 M178 134 h44" stroke="#d9531e" stroke-width="7" stroke-linecap="round"/>
+</svg>

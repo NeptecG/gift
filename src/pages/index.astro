@@ -1,20 +1,14 @@
 ---
-import '../styles/fonts.ts';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const products = await getCollection('products');
+const services = await getCollection('services');
 ---
 
-<html lang="el">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vet & Pet</title>
-  </head>
-  <body>
-    <main class="mx-auto max-w-3xl px-6 py-24">
-      <h1 class="text-6xl text-ink">Vet &amp; Pet</h1>
-      <p class="mt-4 text-2xl font-serif italic text-orange">Καλώς ήρθατε — Loving care for every animal</p>
-      <p class="mt-6 text-ink-soft">Φροντίδα με αγάπη για κάθε ζώο. Greek glyph check: αβγδεζηθικλμνξοπρστυφχψω ΆΈΉΊΌΎΏ.</p>
-      <p class="mt-2 font-serif text-3xl">Αλεγκρέγια — Alegreya display</p>
-    </main>
-  </body>
-</html>
+<BaseLayout locale="el" path="/" titleKey="meta.home.title" descKey="meta.home.desc">
+  <main class="mx-auto max-w-3xl px-6 py-24">
+    <h1 class="text-6xl text-ink">Vet &amp; Pet</h1>
+    <p class="mt-4 text-2xl font-serif italic text-orange">Καλώς ήρθατε — Loving care for every animal</p>
+    <p class="mt-6 text-ink-soft">Φροντίδα με αγάπη για κάθε ζώο. {products.length} προϊόντα · {services.length} υπηρεσίες.</p>
+  </main>
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+/**
+ * Small playful marks in the clinic's line aesthetic (echoes the black-cat
+ * decals in IMG_4710). Used for bullets, the scroll-top button, footer flourish.
+ * Props: variant 'paw' | 'sitting', class
+ */
+interface Props {
+  variant?: 'paw' | 'sitting';
+  class?: string;
+}
+const { variant = 'paw', class: cls = '' } = Astro.props;
+---
+
+{variant === 'paw' && (
+  <svg class={cls} viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="50" cy="66" rx="23" ry="19" />
+    <ellipse cx="27" cy="40" rx="9" ry="11" />
+    <ellipse cx="42" cy="27" rx="9" ry="12" />
+    <ellipse cx="58" cy="27" rx="9" ry="12" />
+    <ellipse cx="73" cy="40" rx="9" ry="11" />
+  </svg>
+)}
+
+{variant === 'sitting' && (
+  <svg class={cls} viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M50 90 C 29 90 22 85 22 70 C 22 58 26 49 35 45 C 28 42 25 33 25 24 L 25 11 L 39 28 C 42 26 46 25 50 25 C 54 25 58 26 61 28 L 75 11 L 75 24 C 75 33 72 42 65 45 C 74 49 78 58 78 70 C 78 78 76 84 68 87 C 80 86 86 78 83 69 C 91 75 90 90 76 91 Z" />
+  </svg>
+)}

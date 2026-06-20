@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Food">
+  <rect width="400" height="300" fill="#e8e6da"/>
+  <g fill="none" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 168 h160 a16 16 0 0 1 -16 36 H136 a16 16 0 0 1 -16 -36 Z"/>
+    <path d="M132 168 c10 -26 36 -42 68 -42 s58 16 68 42"/>
+  </g>
+  <g fill="#d9531e">
+    <circle cx="170" cy="150" r="7"/>
+    <circle cx="200" cy="142" r="7"/>
+    <circle cx="230" cy="150" r="7"/>
+    <circle cx="186" cy="158" r="6"/>
+    <circle cx="216" cy="158" r="6"/>
+  </g>
+</svg>
