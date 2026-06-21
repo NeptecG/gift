@@ -22,7 +22,7 @@ const altHref = altLocalePath(locale, path);
 ---
 
 <header class="site-header">
-  <div class="container flex items-center justify-between gap-4 py-1">
+  <div class="container flex items-center justify-between gap-4 py-2">
     <a href={homeHref} class="brand" aria-label="Vet & Pet — home">
       <img src="/logo-mark.png" class="brand-logo" alt="" width="64" height="64" />
       <span class="brand-word">Vet <span class="amp">&amp;</span> Pet</span>
@@ -76,18 +76,16 @@ const altHref = altLocalePath(locale, path);
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.6rem;
     text-decoration: none;
     color: var(--color-ink);
   }
   .brand-logo {
-    height: 5.62rem; /* big mark; overflows the compact bar downward only */
+    /* trimmed mark — sits fully inside the bar; the bar's padding is the gap */
+    height: 3rem;
     width: auto;
     object-fit: contain;
     flex: none;
-    margin-top: -1.4rem;     /* pull up so the illustration sits level with the wordmark */
-    margin-bottom: -1.93rem; /* compact bar; extra height overflows downward (transparent) */
-    margin-left: -0.85rem;   /* visible illustration sits at the content's left edge */
   }
   .brand-word {
     font-family: var(--font-serif);
@@ -96,7 +94,6 @@ const altHref = altLocalePath(locale, path);
     letter-spacing: 0.01em;
     line-height: 1;
     white-space: nowrap;
-    margin-left: -1.45rem; /* pull into the logo's transparent right padding */
   }
   .brand-word .amp { color: var(--color-orange); font-style: italic; }
 
