@@ -22,7 +22,7 @@ const altHref = altLocalePath(locale, path);
 ---
 
 <header class="site-header">
-  <div class="container flex items-center justify-between gap-4 py-1.5">
+  <div class="container flex items-center justify-between gap-4 py-1">
     <a href={homeHref} class="brand" aria-label="Vet & Pet — home">
       <img src="/logo-mark.png" class="brand-logo" alt="" width="64" height="64" />
       <span class="brand-word">Vet <span class="amp">&amp;</span> Pet</span>
@@ -85,8 +85,8 @@ const altHref = altLocalePath(locale, path);
     width: auto;
     object-fit: contain;
     flex: none;
-    margin-top: -0.2rem;     /* keep the head inside the screen (not clipped) */
-    margin-bottom: -2.4rem;  /* overflow goes downward (transparent, invisible) */
+    margin-top: -1.95rem;    /* pull up so the illustration sits level with the wordmark */
+    margin-bottom: -2.7rem;  /* compact bar; extra height overflows downward (transparent) */
     margin-left: -1.2rem;    /* visible illustration sits at the content's left edge */
   }
   .brand-word {
