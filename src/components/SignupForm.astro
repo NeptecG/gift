@@ -41,7 +41,7 @@ const submitLabel = variant === 'waitlist' ? t(locale, 'shop.notify') : t(locale
     </label>
   )}
 
-  {/* honeypot — hidden from humans, catches bots */}
+  {/* honeypot - hidden from humans, catches bots */}
   <div class="hp" aria-hidden="true">
     <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
   </div>
@@ -117,7 +117,7 @@ const submitLabel = variant === 'waitlist' ? t(locale, 'shop.notify') : t(locale
 
       const data = Object.fromEntries(new FormData(form).entries());
       delete (data as any)._gotcha;
-      (data as any)._subject = variant === 'waitlist' ? 'Vet & Pet — waiting list signup' : 'Vet & Pet — contact form';
+      (data as any)._subject = variant === 'waitlist' ? 'Vet & Pet - waiting list signup' : 'Vet & Pet - contact form';
 
       if (!endpoint) {
         const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');

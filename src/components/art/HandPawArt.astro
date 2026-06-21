@@ -1,31 +1,38 @@
 ---
 /**
- * The hand-meets-paw artwork (IMG_4709) — Katerina's own clinic wire-art,
- * the piece she loves. Served through Astro's image pipeline (resized + webp).
- * The near-neutral wall blends into the site's paper palette.
+ * Framed image used for the hero art and the About centerpiece.
+ * Served through Astro's image pipeline (resized + webp).
  *
- * Props: class (wrapper), caption (optional), eager (LCP hint)
+ * Props:
+ *   image   imported ImageMetadata
+ *   alt     alt text
+ *   caption optional caption under the frame
+ *   eager   LCP hint
+ *   blend   multiply-blend the image into the paper (for cream-bg line art)
  */
 import { Image } from 'astro:assets';
-import handPaw from '../../assets/hand-paw.jpeg';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
+  image: ImageMetadata;
+  alt: string;
   class?: string;
   caption?: string;
   eager?: boolean;
+  blend?: boolean;
 }
-const { class: cls = '', caption, eager = false } = Astro.props;
+const { image, alt, class: cls = '', caption, eager = false, blend = false } = Astro.props;
 ---
 
 <figure class={`hp-figure ${cls}`}>
   <div class="hp-frame">
     <Image
-      src={handPaw}
-      alt="A human hand and a cat's paw reaching toward each other — wire art in the clinic"
+      src={image}
+      alt={alt}
       widths={[480, 768, 1100]}
       sizes="(max-width: 768px) 92vw, 560px"
       loading={eager ? 'eager' : 'lazy'}
-      class="hp-img"
+      class:list={['hp-img', { blend }]}
     />
   </div>
   {caption && <figcaption class="hp-caption">{caption}</figcaption>}
@@ -46,8 +53,8 @@ const { class: cls = '', caption, eager = false } = Astro.props;
     display: block;
     width: 100%;
     height: auto;
-    mix-blend-mode: multiply; /* lets the wall melt into our cream paper */
   }
+  .hp-img.blend { mix-blend-mode: multiply; } /* cream-bg line art melts into paper */
   .hp-caption {
     margin-top: 0.9rem;
     font-family: var(--font-serif);

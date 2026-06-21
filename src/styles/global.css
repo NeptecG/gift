@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-/* Fonts self-hosted via @fontsource — imported in src/styles/fonts.ts:
-   Display: Alegreya — warm characterful serif (full Greek).
-   Body: Alegreya Sans — humanist sans, same superfamily (full Greek). */
+/* Fonts self-hosted via @fontsource - imported in src/styles/fonts.ts:
+   Display: Alegreya - warm characterful serif (full Greek).
+   Body: Alegreya Sans - humanist sans, same superfamily (full Greek). */
 
 @theme {
-  /* palette — derived from the logo (cream / ink / warm orange cat) */
+  /* palette - derived from the logo (cream / ink / warm orange cat) */
   --color-paper: #e8e6da;
   --color-paper-raised: #fcfbf7;
   --color-sand: #dad7c6;
@@ -16,7 +16,7 @@
   --color-orange: #d9531e;
   --color-orange-deep: #b8410f;
   --color-orange-soft: #f0d9cc;
-  --color-leaf: #5e6b4f; /* muted olive — quiet secondary for "playful + warm" */
+  --color-leaf: #5e6b4f; /* muted olive - quiet secondary for "playful + warm" */
 
   /* type */
   --font-serif: 'Alegreya', Georgia, 'Times New Roman', serif;
@@ -125,7 +125,7 @@
   .btn-outline:hover { border-color: var(--color-ink); background: var(--color-ink); color: var(--color-paper-raised); }
 }
 
-/* scroll reveal — only hides when JS is present, so no-JS users see everything */
+/* scroll reveal - only hides when JS is present, so no-JS users see everything */
 @layer base {
   .js .reveal {
     opacity: 0;
@@ -139,7 +139,7 @@
   }
 }
 
-/* paper grain — faint, adds warmth/depth instead of a flat fill */
+/* paper grain - faint, adds warmth/depth instead of a flat fill */
 @layer base {
   body::before {
     content: "";

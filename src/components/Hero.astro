@@ -2,6 +2,7 @@
 import { type Locale, t, localizedPath } from '../i18n/ui';
 import HandPawArt from './art/HandPawArt.astro';
 import CatAccent from './art/CatAccent.astro';
+import heroHands from '../assets/hero-hands.png';
 
 interface Props {
   locale: Locale;
@@ -22,7 +23,7 @@ const { locale } = Astro.props;
     </div>
 
     <div class="hero-art reveal" style="--reveal-delay:200ms">
-      <HandPawArt eager />
+      <HandPawArt image={heroHands} alt="A human hand and a cat's paw reaching toward each other" eager blend />
       <span class="hero-badge">
         <CatAccent variant="paw" class="hero-badge-paw" />
       </span>

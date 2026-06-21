@@ -33,7 +33,7 @@ export const ui = {
     'hero.kicker': 'Με αγάπη για κάθε ζώο',
     'hero.title': 'Φροντίδα που νιώθει σαν στο σπίτι',
     'hero.lead':
-      'Το Vet & Pet είναι το νέο κτηνιατρείο και pet shop της Κατερίνας — ένας ζεστός χώρος όπου κάθε κατοικίδιο αντιμετωπίζεται με υπομονή, σεβασμό και αληθινή αγάπη.',
+      'Το Vet & Pet είναι το νέο κτηνιατρείο και pet shop της Κατερίνας - ένας ζεστός χώρος όπου κάθε κατοικίδιο αντιμετωπίζεται με υπομονή, σεβασμό και αληθινή αγάπη.',
 
     'home.services.kicker': 'Τι προσφέρουμε',
     'home.services.title': 'Ολοκληρωμένη φροντίδα υγείας',
@@ -48,7 +48,7 @@ export const ui = {
     'home.shop.kicker': 'Pet shop',
     'home.shop.title': 'Ό,τι χρειάζεται το κατοικίδιό σας',
     'home.shop.sub':
-      'Τροφές, παιχνίδια, αξεσουάρ και προϊόντα υγείας — επιλεγμένα με προσοχή.',
+      'Τροφές, παιχνίδια, αξεσουάρ και προϊόντα υγείας - επιλεγμένα με προσοχή.',
 
     'home.visit.kicker': 'Επισκεφθείτε μας',
     'home.visit.title': 'Θα χαρούμε να σας γνωρίσουμε',
@@ -86,7 +86,7 @@ export const ui = {
     'about.lead':
       'Το Vet & Pet γεννήθηκε από μια απλή πεποίθηση: τα ζώα αξίζουν φροντίδα με αγάπη και σεβασμό.',
     'about.body1':
-      'Η Κατερίνα είναι κτηνίατρος με βαθιά αγάπη για τα ζώα. Άνοιξε το Vet & Pet για να προσφέρει φροντίδα που συνδυάζει την επιστήμη με την ανθρωπιά — έναν χώρο όπου τα κατοικίδια δεν είναι περιστατικά, αλλά μέλη μιας οικογένειας.',
+      'Η Κατερίνα είναι κτηνίατρος με βαθιά αγάπη για τα ζώα. Άνοιξε το Vet & Pet για να προσφέρει φροντίδα που συνδυάζει την επιστήμη με την ανθρωπιά - έναν χώρο όπου τα κατοικίδια δεν είναι περιστατικά, αλλά μέλη μιας οικογένειας.',
     'about.body2':
       'Από την πρώτη εξέταση μέχρι τη μακροχρόνια παρακολούθηση, στόχος μας είναι κάθε ζώο να φεύγει πιο υγιές και κάθε ιδιοκτήτης πιο ήσυχος.',
     'about.values.title': 'Αυτό που μας καθοδηγεί',
@@ -96,7 +96,7 @@ export const ui = {
     'about.value2.body': 'Ακούμε το ζώο και τον άνθρωπό του, χωρίς βιασύνη.',
     'about.value3.title': 'Επιστήμη',
     'about.value3.body': 'Σύγχρονη ιατρική γνώση στην υπηρεσία της φροντίδας.',
-    'about.paw.caption': 'Εκεί που το χέρι συναντά το πατουσάκι — η σχέση που μας εμπνέει.',
+    'about.paw.caption': 'Το κτηνιατρείο μας. Εδώ σας περιμένουμε.',
 
     'contact.kicker': 'Επικοινωνία',
     'contact.title': 'Ελάτε να μας βρείτε',
@@ -132,22 +132,22 @@ export const ui = {
     'footer.follow': 'Ακολουθήστε μας',
     'footer.rights': 'Με επιφύλαξη παντός δικαιώματος.',
 
-    'meta.home.title': 'Vet & Pet — Κτηνιατρείο & Pet Shop',
+    'meta.home.title': 'Vet & Pet - Κτηνιατρείο & Pet Shop',
     'meta.home.desc':
-      'Το κτηνιατρείο και pet shop της Κατερίνας. Φροντίδα με αγάπη για κάθε ζώο — εξετάσεις, εμβόλια, χειρουργική, τροφές και αξεσουάρ.',
-    'meta.services.title': 'Υπηρεσίες — Vet & Pet',
+      'Το κτηνιατρείο και pet shop της Κατερίνας. Φροντίδα με αγάπη για κάθε ζώο - εξετάσεις, εμβόλια, χειρουργική, τροφές και αξεσουάρ.',
+    'meta.services.title': 'Υπηρεσίες - Vet & Pet',
     'meta.services.desc':
       'Κτηνιατρικές υπηρεσίες: κλινική εξέταση, εμβολιασμοί, microchip, χειρουργική, οδοντιατρική και διατροφική συμβουλευτική.',
-    'meta.shop.title': 'Κατάστημα — Vet & Pet',
+    'meta.shop.title': 'Κατάστημα - Vet & Pet',
     'meta.shop.desc':
       'Pet shop: τροφές, παιχνίδια, αξεσουάρ και προϊόντα υγείας για σκύλους και γάτες.',
-    'meta.gallery.title': 'Gallery — Vet & Pet',
+    'meta.gallery.title': 'Gallery - Vet & Pet',
     'meta.gallery.desc':
-      'Φωτογραφίες από το Vet & Pet — ο χώρος μας, οι φίλοι μας και η καθημερινή φροντίδα.',
-    'meta.about.title': 'Σχετικά — Vet & Pet',
+      'Φωτογραφίες από το Vet & Pet - ο χώρος μας, οι φίλοι μας και η καθημερινή φροντίδα.',
+    'meta.about.title': 'Σχετικά - Vet & Pet',
     'meta.about.desc':
-      'Η ιστορία της Κατερίνας και του Vet & Pet — φροντίδα με αγάπη, σεβασμό και επιστήμη.',
-    'meta.contact.title': 'Επικοινωνία — Vet & Pet',
+      'Η ιστορία της Κατερίνας και του Vet & Pet - φροντίδα με αγάπη, σεβασμό και επιστήμη.',
+    'meta.contact.title': 'Επικοινωνία - Vet & Pet',
     'meta.contact.desc':
       'Επικοινωνήστε με το Vet & Pet. Διεύθυνση, τηλέφωνο, ώρες λειτουργίας και φόρμα επικοινωνίας.',
   },
@@ -179,7 +179,7 @@ export const ui = {
     'hero.kicker': 'With love for every animal',
     'hero.title': 'Care that feels like home',
     'hero.lead':
-      "Vet & Pet is Katerina's new veterinary clinic and pet shop — a warm place where every animal is met with patience, respect, and genuine love.",
+      "Vet & Pet is Katerina's new veterinary clinic and pet shop - a warm place where every animal is met with patience, respect, and genuine love.",
 
     'home.services.kicker': 'What we offer',
     'home.services.title': 'Complete health care',
@@ -194,7 +194,7 @@ export const ui = {
     'home.shop.kicker': 'Pet shop',
     'home.shop.title': 'Everything your pet needs',
     'home.shop.sub':
-      'Food, toys, accessories, and health products — carefully chosen.',
+      'Food, toys, accessories, and health products - carefully chosen.',
 
     'home.visit.kicker': 'Visit us',
     'home.visit.title': "We'd love to meet you",
@@ -232,7 +232,7 @@ export const ui = {
     'about.lead':
       'Vet & Pet was born from a simple belief: animals deserve care given with love and respect.',
     'about.body1':
-      'Katerina is a veterinarian with a deep love for animals. She opened Vet & Pet to offer care that blends science with humanity — a place where pets are not cases, but members of a family.',
+      'Katerina is a veterinarian with a deep love for animals. She opened Vet & Pet to offer care that blends science with humanity - a place where pets are not cases, but members of a family.',
     'about.body2':
       'From the first examination to long-term follow-up, our goal is for every animal to leave healthier and every owner to leave reassured.',
     'about.values.title': 'What guides us',
@@ -242,7 +242,7 @@ export const ui = {
     'about.value2.body': 'We listen to the animal and its person, without rushing.',
     'about.value3.title': 'Science',
     'about.value3.body': 'Modern medical knowledge in the service of care.',
-    'about.paw.caption': 'Where the hand meets the paw — the bond that inspires us.',
+    'about.paw.caption': 'Our clinic. This is where we welcome you.',
 
     'contact.kicker': 'Contact',
     'contact.title': 'Come find us',
@@ -278,22 +278,22 @@ export const ui = {
     'footer.follow': 'Follow us',
     'footer.rights': 'All rights reserved.',
 
-    'meta.home.title': 'Vet & Pet — Veterinary Clinic & Pet Shop',
+    'meta.home.title': 'Vet & Pet - Veterinary Clinic & Pet Shop',
     'meta.home.desc':
-      "Katerina's veterinary clinic and pet shop. Loving care for every animal — exams, vaccinations, surgery, food, and accessories.",
-    'meta.services.title': 'Services — Vet & Pet',
+      "Katerina's veterinary clinic and pet shop. Loving care for every animal - exams, vaccinations, surgery, food, and accessories.",
+    'meta.services.title': 'Services - Vet & Pet',
     'meta.services.desc':
       'Veterinary services: clinical examination, vaccinations, microchip, surgery, dental care, and nutrition advice.',
-    'meta.shop.title': 'Shop — Vet & Pet',
+    'meta.shop.title': 'Shop - Vet & Pet',
     'meta.shop.desc':
       'Pet shop: food, toys, accessories, and health products for dogs and cats.',
-    'meta.gallery.title': 'Gallery — Vet & Pet',
+    'meta.gallery.title': 'Gallery - Vet & Pet',
     'meta.gallery.desc':
-      'Photos from Vet & Pet — our space, our friends, and everyday care.',
-    'meta.about.title': 'About — Vet & Pet',
+      'Photos from Vet & Pet - our space, our friends, and everyday care.',
+    'meta.about.title': 'About - Vet & Pet',
     'meta.about.desc':
-      "Katerina's story and the Vet & Pet philosophy — care given with love, respect, and science.",
-    'meta.contact.title': 'Contact — Vet & Pet',
+      "Katerina's story and the Vet & Pet philosophy - care given with love, respect, and science.",
+    'meta.contact.title': 'Contact - Vet & Pet',
     'meta.contact.desc':
       'Contact Vet & Pet. Address, phone, opening hours, and a contact form.',
   },

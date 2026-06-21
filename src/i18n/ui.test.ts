@@ -34,4 +34,4 @@ assert.equal(formatPrice('el', null, 'Ρωτήστε'), 'Ρωτήστε');
 
 assert.deepEqual([...locales], ['el', 'en']);
 
-console.log('i18n ok — ' + Object.keys(ui.el).length + ' keys × 2 locales');
+console.log('i18n ok - ' + Object.keys(ui.el).length + ' keys × 2 locales');
