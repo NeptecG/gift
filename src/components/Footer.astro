@@ -29,7 +29,7 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
 ---
 
 <footer class="site-footer">
-  <div class="foot-main container grid gap-10 py-14 md:grid-cols-[1.6fr_0.9fr_1.2fr]">
+  <div class="foot-main container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-[1.6fr_0.9fr_1.1fr_1fr]">
     <div class="foot-brand">
       <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
       <p class="foot-tagline">{t(locale, 'footer.tagline')}</p>
@@ -37,14 +37,6 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
       <div class="foot-socials">
         <a class="foot-chip" href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener" aria-label={`Instagram: ${INSTAGRAM}`}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </a>
-
-        <a class="foot-chip" href={PHONE_HREF} aria-label={`Τηλέφωνο: ${PHONE_LABEL}`}>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3h3.1l1.6 5-2.2 1.6a12 12 0 0 0 5.3 5.3l1.6-2.2 5 1.6v3.1a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/></svg>
-        </a>
-
-        <a class="foot-chip" href={`mailto:${EMAIL}`} aria-label={`Email: ${EMAIL}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
         </a>
 
         <a class="foot-chip" href={`viber://chat?number=%2B306948659158`} aria-label={`Viber: ${VIBER_LABEL}`}>
@@ -68,8 +60,15 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
 
     <div class="foot-col">
       <h2 class="foot-h">{t(locale, 'footer.visit')}</h2>
-      <p class="foot-addr">{ADDRESS}</p>
-      <h2 class="foot-h" style="margin-top:1.6rem">{t(locale, 'contact.hoursLabel')}</h2>
+      <ul class="foot-contact">
+        <li>{ADDRESS}</li>
+        <li><a href={PHONE_HREF}>{PHONE_LABEL}</a></li>
+        <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h2 class="foot-h">{t(locale, 'contact.hoursLabel')}</h2>
       <dl class="foot-hours">
         <div><dt>{t(locale, 'hours.weekdays')}</dt><dd>{t(locale, 'hours.weekdaysValue')}</dd></div>
         <div><dt>{t(locale, 'hours.saturday')}</dt><dd>{t(locale, 'hours.saturdayValue')}</dd></div>
@@ -130,8 +129,9 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
   }
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .foot-col a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
-  .foot-col a:hover { color: var(--color-paper-raised); }
-  .foot-addr { line-height: 1.5; }
+  .foot-col a:hover { color: var(--color-orange); }
+  .foot-contact { line-height: 1.5; }
+  .foot-contact li { color: color-mix(in srgb, var(--color-paper) 80%, transparent); }
 
   .foot-hours { display: flex; flex-direction: column; gap: 0.55rem; }
   .foot-hours > div { display: flex; justify-content: space-between; gap: 1.5rem; white-space: nowrap; }
