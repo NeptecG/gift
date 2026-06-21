@@ -126,7 +126,8 @@ export const ui = {
     'form.required': 'Συμπληρώστε αυτό το πεδίο.',
     'form.invalidEmail': 'Δώστε ένα έγκυρο email.',
 
-    'footer.tagline': 'Κτηνιατρείο & pet shop με αγάπη για κάθε ζώο.',
+    'footer.tagline': 'Κτηνιατρείο & pet shop',
+    'footer.tagline2': 'με αγάπη για κάθε ζώο.',
     'footer.explore': 'Πλοήγηση',
     'footer.visit': 'Επισκεφθείτε μας',
     'footer.follow': 'Ακολουθήστε μας',
@@ -272,7 +273,8 @@ export const ui = {
     'form.required': 'Please fill in this field.',
     'form.invalidEmail': 'Please enter a valid email.',
 
-    'footer.tagline': 'Veterinary clinic & pet shop, with love for every animal.',
+    'footer.tagline': 'Veterinary clinic & pet shop',
+    'footer.tagline2': 'with love for every animal.',
     'footer.explore': 'Explore',
     'footer.visit': 'Visit us',
     'footer.follow': 'Follow us',

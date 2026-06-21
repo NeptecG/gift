@@ -7,24 +7,24 @@ interface Props {
 const { locale } = Astro.props;
 const year = new Date().getFullYear();
 
+// Contact lives in the "Visit us" column, so it's dropped from the footer nav list.
 const nav = [
   { key: 'nav.home', route: '/' },
   { key: 'nav.services', route: '/services' },
   { key: 'nav.shop', route: '/shop' },
   { key: 'nav.gallery', route: '/gallery' },
   { key: 'nav.about', route: '/about' },
-  { key: 'nav.contact', route: '/contact' },
 ] as const;
 
-// [PLACEHOLDER] street address still needed; the rest are the clinic's real details.
-const ADDRESS = 'Πρέβεζα';
-const PHONE_LABEL = '2682 089457';
+const ADDRESS_L1 = 'Ιωαννίνων 34B';
+const ADDRESS_L2 = 'Πρέβεζα, 481 00';
+const PHONE_LABEL = '26820 89457';
 const PHONE_HREF = 'tel:+302682089457';
 const EMAIL = 'vetandpetpreveza@gmail.com';
 const INSTAGRAM = 'vet_and_pet_preveza';
 const VIBER_LABEL = '+30 694 865 9158';
 const MESSENGER_LABEL = 'Vet & Pet - Katerina Giaprou';
-// [PLACEHOLDER] exact m.me handle unknown — links to the Facebook page search for now.
+// [PLACEHOLDER] exact m.me handle unknown - links to the Facebook page search for now.
 const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURIComponent(MESSENGER_LABEL);
 ---
 
@@ -32,7 +32,7 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
   <div class="foot-main container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-[1.6fr_0.9fr_1.1fr_1fr]">
     <div class="foot-brand">
       <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
-      <p class="foot-tagline">{t(locale, 'footer.tagline')}</p>
+      <p class="foot-tagline">{t(locale, 'footer.tagline')}<br />{t(locale, 'footer.tagline2')}</p>
 
       <div class="foot-socials">
         <a class="foot-chip" href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener" aria-label={`Instagram: ${INSTAGRAM}`}>
@@ -61,7 +61,7 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
     <div class="foot-col">
       <h2 class="foot-h">{t(locale, 'footer.visit')}</h2>
       <ul class="foot-contact">
-        <li>{ADDRESS}</li>
+        <li>{ADDRESS_L1}<br />{ADDRESS_L2}</li>
         <li><a href={PHONE_HREF}>{PHONE_LABEL}</a></li>
         <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
       </ul>

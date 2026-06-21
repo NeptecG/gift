@@ -80,7 +80,7 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
       <dl class="visit-info">
         <div>
           <dt>{t(locale, 'home.visit.addressLabel')}</dt>
-          <dd>{locale === 'el' ? 'Πρέβεζα' : 'Preveza'}</dd>
+          <dd>Ιωαννίνων 34B<br />Πρέβεζα, 481 00</dd>
         </div>
         <div>
           <dt>{t(locale, 'home.visit.hoursLabel')}</dt>
@@ -89,7 +89,7 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
       </dl>
       <div class="visit-actions">
         <a href={localizedPath(locale, '/contact')} class="btn btn-primary">{t(locale, 'cta.book')}</a>
-        <a href="https://www.openstreetmap.org/search?query=Athens" target="_blank" rel="noopener" class="btn btn-outline">{t(locale, 'cta.directions')}</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Ιωαννίνων%2034B%2C%20Πρέβεζα%20481%2000" target="_blank" rel="noopener" class="btn btn-outline">{t(locale, 'cta.directions')}</a>
       </div>
     </div>
     <div class="visit-map reveal" style="--reveal-delay:120ms" aria-hidden="true">
