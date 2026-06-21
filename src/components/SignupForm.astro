@@ -11,7 +11,7 @@ const { locale, variant = 'contact' } = Astro.props;
 // else falls back to a mailto: link so nothing breaks pre-launch. Upgrade path when
 // she wants real online ordering: swap the endpoint for an API route + checkout.
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
-const MAILTO = 'hello@vetandpet.gr'; // [PLACEHOLDER] clinic inbox
+const MAILTO = 'vetandpetpreveza@gmail.com'; // clinic inbox
 const submitLabel = variant === 'waitlist' ? t(locale, 'shop.notify') : t(locale, 'form.send');
 ---
 

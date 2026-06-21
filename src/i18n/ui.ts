@@ -96,7 +96,7 @@ export const ui = {
     'about.value2.body': 'Ακούμε το ζώο και τον άνθρωπό του, χωρίς βιασύνη.',
     'about.value3.title': 'Επιστήμη',
     'about.value3.body': 'Σύγχρονη ιατρική γνώση στην υπηρεσία της φροντίδας.',
-    'about.paw.caption': 'Το κτηνιατρείο μας. Εδώ σας περιμένουμε.',
+    'about.paw.caption': 'Η Κατερίνα, με αγάπη για κάθε ζώο.',
 
     'contact.kicker': 'Επικοινωνία',
     'contact.title': 'Ελάτε να μας βρείτε',
@@ -242,7 +242,7 @@ export const ui = {
     'about.value2.body': 'We listen to the animal and its person, without rushing.',
     'about.value3.title': 'Science',
     'about.value3.body': 'Modern medical knowledge in the service of care.',
-    'about.paw.caption': 'Our clinic. This is where we welcome you.',
+    'about.paw.caption': 'Katerina, with love for every animal.',
 
     'contact.kicker': 'Contact',
     'contact.title': 'Come find us',

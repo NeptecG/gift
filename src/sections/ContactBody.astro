@@ -6,10 +6,11 @@ import CatAccent from '../components/art/CatAccent.astro';
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 
-// [PLACEHOLDER] real clinic details before launch
-const ADDRESS = locale === 'el' ? 'Οδός Παραδείγματος 12, Αθήνα 11522' : '12 Example Street, Athens 11522';
-const PHONE = '+30 21 0000 0000';
-const EMAIL = 'hello@vetandpet.gr';
+// [PLACEHOLDER] street address still needed; phone/email are the clinic's real details.
+const ADDRESS = locale === 'el' ? 'Πρέβεζα' : 'Preveza';
+const PHONE = '2682 089457';
+const PHONE_HREF = 'tel:+302682089457';
+const EMAIL = 'vetandpetpreveza@gmail.com';
 ---
 
 <section class="container page-head">
@@ -27,7 +28,7 @@ const EMAIL = 'hello@vetandpet.gr';
       </div>
       <div>
         <dt>{t(locale, 'contact.phoneLabel')}</dt>
-        <dd><a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a></dd>
+        <dd><a href={PHONE_HREF}>{PHONE}</a></dd>
       </div>
       <div>
         <dt>{t(locale, 'contact.emailLabel')}</dt>

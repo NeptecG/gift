@@ -16,18 +16,50 @@ const nav = [
   { key: 'nav.contact', route: '/contact' },
 ] as const;
 
-// [PLACEHOLDER] swap for the clinic's real details before launch
-const ADDRESS = locale === 'el' ? 'Οδός Παραδείγματος 12, Αθήνα 11522' : '12 Example Street, Athens 11522';
-const PHONE = '+30 21 0000 0000';
-const EMAIL = 'hello@vetandpet.gr';
+// [PLACEHOLDER] street address still needed; the rest are the clinic's real details.
+const ADDRESS = 'Πρέβεζα';
+const PHONE_LABEL = '2682 089457';
+const PHONE_HREF = 'tel:+302682089457';
+const EMAIL = 'vetandpetpreveza@gmail.com';
+const INSTAGRAM = 'vet_and_pet_preveza';
+const VIBER_LABEL = '+30 694 865 9158';
+const MESSENGER_LABEL = 'Vet & Pet - Katerina Giaprou';
+// [PLACEHOLDER] exact m.me handle unknown — links to the Facebook page search for now.
+const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURIComponent(MESSENGER_LABEL);
 ---
 
 <footer class="site-footer">
-  <div class="foot-main container grid gap-10 py-14 md:grid-cols-[1.5fr_0.9fr_1.2fr_1.3fr]">
+  <div class="foot-main container grid gap-10 py-14 md:grid-cols-[1.6fr_0.9fr_1.2fr]">
     <div class="foot-brand">
       <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
-      <div class="foot-word">Vet <span class="amp">&amp;</span> Pet</div>
       <p class="foot-tagline">{t(locale, 'footer.tagline')}</p>
+
+      <div class="foot-socials">
+        <a class="foot-chip" href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener" aria-label={`Instagram: ${INSTAGRAM}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+          <span class="foot-chip-tx">{INSTAGRAM}</span>
+        </a>
+
+        <a class="foot-chip" href={PHONE_HREF} aria-label={`Τηλέφωνο: ${PHONE_LABEL}`}>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3h3.1l1.6 5-2.2 1.6a12 12 0 0 0 5.3 5.3l1.6-2.2 5 1.6v3.1a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/></svg>
+          <span class="foot-chip-tx">{PHONE_LABEL}</span>
+        </a>
+
+        <a class="foot-chip" href={`mailto:${EMAIL}`} aria-label={`Email: ${EMAIL}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+          <span class="foot-chip-tx">{EMAIL}</span>
+        </a>
+
+        <a class="foot-chip" href={`viber://chat?number=%2B306948659158`} aria-label={`Viber: ${VIBER_LABEL}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c4.4 0 7.5 2.8 7.5 6.8 0 4-3.1 6.8-7.5 6.8-.8 0-1.5-.08-2.2-.24L6 20l.5-3.1A6.6 6.6 0 0 1 4.5 10.3C4.5 6.3 7.6 3.5 12 3.5z"/><path d="M9.2 8.2c1.2-.2 2.4.3 3.2 1.1.8.8 1.3 2 1.1 3.2" stroke-width="1.5"/></svg>
+          <span class="foot-chip-tx">{VIBER_LABEL}</span>
+        </a>
+
+        <a class="foot-chip" href={MESSENGER_HREF} target="_blank" rel="noopener" aria-label={`Messenger: ${MESSENGER_LABEL}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c5 0 8.8 3.6 8.8 8.2S17 19.6 12 19.6c-1 0-1.9-.12-2.8-.35L5 21l.4-3.4A8 8 0 0 1 3.2 11.4C3.2 6.8 7 3.2 12 3.2z"/><path d="M7.5 13.3l2.8-3 2 1.6 2.3-2.2" stroke-width="1.5"/></svg>
+          <span class="foot-chip-tx">{MESSENGER_LABEL}</span>
+        </a>
+      </div>
     </div>
 
     <nav class="foot-col" aria-label={t(locale, 'footer.explore')}>
@@ -41,15 +73,8 @@ const EMAIL = 'hello@vetandpet.gr';
 
     <div class="foot-col">
       <h2 class="foot-h">{t(locale, 'footer.visit')}</h2>
-      <address class="foot-address">
-        <span>{ADDRESS}</span>
-        <a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a>
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-      </address>
-    </div>
-
-    <div class="foot-col">
-      <h2 class="foot-h">{t(locale, 'contact.hoursLabel')}</h2>
+      <p class="foot-addr">{ADDRESS}</p>
+      <h2 class="foot-h" style="margin-top:1.6rem">{t(locale, 'contact.hoursLabel')}</h2>
       <dl class="foot-hours">
         <div><dt>{t(locale, 'hours.weekdays')}</dt><dd>{t(locale, 'hours.weekdaysValue')}</dd></div>
         <div><dt>{t(locale, 'hours.saturday')}</dt><dd>{t(locale, 'hours.saturdayValue')}</dd></div>
@@ -77,19 +102,28 @@ const EMAIL = 'hello@vetandpet.gr';
     width: 6.5rem;
     height: auto;
     border-radius: 1rem;
-    margin-bottom: 1.25rem;
-    margin-left: 0; /* align with the navbar logo (both at content's left edge) */
+    margin-bottom: 1.1rem;
+    margin-left: 0;
     background: var(--color-paper);
   }
-  .foot-word {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 1.9rem;
-    color: var(--color-paper-raised);
-    line-height: 1;
+  .foot-tagline { max-width: 24rem; line-height: 1.55; }
+
+  .foot-socials { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.4rem; max-width: 24rem; }
+  .foot-chip {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.6rem 0.85rem; border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper) 7%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-paper) 13%, transparent);
+    color: var(--color-paper); text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
   }
-  .foot-word .amp { color: var(--color-orange); font-style: italic; }
-  .foot-tagline { margin-top: 0.75rem; max-width: 22rem; line-height: 1.55; }
+  .foot-chip svg { width: 1.2rem; height: 1.2rem; flex: none; color: var(--color-orange); transition: color 0.2s ease; }
+  .foot-chip-tx { font-size: 0.92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .foot-chip:hover {
+    background: var(--color-orange); border-color: var(--color-orange);
+    color: var(--color-paper-raised); transform: translateY(-2px);
+  }
+  .foot-chip:hover svg { color: var(--color-paper-raised); }
 
   .foot-h {
     font-family: var(--font-sans);
@@ -101,10 +135,9 @@ const EMAIL = 'hello@vetandpet.gr';
     margin-bottom: 1rem;
   }
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .foot-col a, .foot-address a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
-  .foot-col a:hover, .foot-address a:hover { color: var(--color-paper-raised); }
-
-  .foot-address { font-style: normal; display: flex; flex-direction: column; gap: 0.55rem; line-height: 1.5; }
+  .foot-col a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  .foot-col a:hover { color: var(--color-paper-raised); }
+  .foot-addr { line-height: 1.5; }
 
   .foot-hours { display: flex; flex-direction: column; gap: 0.55rem; }
   .foot-hours > div { display: flex; justify-content: space-between; gap: 1.5rem; white-space: nowrap; }

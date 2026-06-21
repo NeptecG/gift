@@ -2,7 +2,7 @@
 import { type Locale, t, localizedPath } from '../i18n/ui';
 import HandPawArt from '../components/art/HandPawArt.astro';
 import CatAccent from '../components/art/CatAccent.astro';
-import clinic from '../assets/clinic.jpg';
+import katerina from '../assets/about-katerina.jpg';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -23,7 +23,7 @@ const values = [
 <!-- Clinic storefront centerpiece -->
 <section class="container">
   <div class="centerpiece reveal">
-    <HandPawArt image={clinic} alt={locale === 'el' ? 'Το κτηνιατρείο Vet & Pet' : 'The Vet & Pet clinic'} caption={t(locale, 'about.paw.caption')} />
+    <HandPawArt image={katerina} alt={locale === 'el' ? 'Η Κατερίνα στο Vet & Pet' : 'Katerina at Vet & Pet'} caption={t(locale, 'about.paw.caption')} />
   </div>
 </section>
 
