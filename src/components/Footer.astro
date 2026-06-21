@@ -23,7 +23,7 @@ const EMAIL = 'hello@vetandpet.gr';
 ---
 
 <footer class="site-footer">
-  <div class="foot-main mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-[1.5fr_0.9fr_1.2fr_1.3fr] md:px-5">
+  <div class="foot-main container grid gap-10 py-14 md:grid-cols-[1.5fr_0.9fr_1.2fr_1.3fr]">
     <div class="foot-brand">
       <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
       <div class="foot-word">Vet <span class="amp">&amp;</span> Pet</div>
@@ -59,7 +59,7 @@ const EMAIL = 'hello@vetandpet.gr';
   </div>
 
   <div class="foot-bar">
-    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-sm sm:flex-row md:px-5">
+    <div class="container flex flex-col items-center justify-between gap-2 py-5 text-sm sm:flex-row">
       <p>© {year} Vet &amp; Pet. {t(locale, 'footer.rights')}</p>
       <p class="foot-made">{locale === 'el' ? 'Φτιαγμένο με αγάπη για τα ζώα' : 'Made with love for animals'} <span aria-hidden="true">🐾</span></p>
     </div>
@@ -78,7 +78,7 @@ const EMAIL = 'hello@vetandpet.gr';
     height: auto;
     border-radius: 1rem;
     margin-bottom: 1.25rem;
-    margin-left: -0.35rem; /* align with the navbar logo */
+    margin-left: 0; /* align with the navbar logo (both at content's left edge) */
     background: var(--color-paper);
   }
   .foot-word {
