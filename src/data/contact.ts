@@ -1,11 +1,11 @@
 // Single source of truth for the clinic's contact details + map.
 // [PLACEHOLDER] messenger uses a Facebook search until the exact m.me handle is known.
 const messengerLabel = 'Vet & Pet - Katerina Giaprou';
-const mapQuery = 'Ιωαννίνων 34B, Πρέβεζα 481 00';
+const mapQuery = 'Ιωαννίνων 34B, Πρέβεζα 48100';
 
 export const CONTACT = {
   addressL1: 'Ιωαννίνων 34B',
-  addressL2: 'Πρέβεζα, 481 00',
+  addressL2: 'Πρέβεζα, 48100',
   phoneLabel: '26820 89457',
   phoneHref: 'tel:+302682089457',
   email: 'vetandpetpreveza@gmail.com',
