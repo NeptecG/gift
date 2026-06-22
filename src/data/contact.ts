@@ -8,6 +8,8 @@ export const CONTACT = {
   addressL2: 'Πρέβεζα, 48100',
   phoneLabel: '26820 89457',
   phoneHref: 'tel:+302682089457',
+  mobileLabel: '694 865 9158',
+  mobileHref: 'tel:+306948659158',
   email: 'vetandpetpreveza@gmail.com',
   instagram: 'vet_and_pet_preveza',
   instagramHref: 'https://instagram.com/vet_and_pet_preveza',

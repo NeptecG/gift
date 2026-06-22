@@ -8,7 +8,7 @@ interface Props {
 const { locale } = Astro.props;
 const year = new Date().getFullYear();
 
-// Contact lives in the "Visit us" column, so it's dropped from the footer nav list.
+// Contact lives in its own column, so it's dropped from the footer nav list.
 const nav = [
   { key: 'nav.home', route: '/' },
   { key: 'nav.services', route: '/services' },
@@ -17,34 +17,14 @@ const nav = [
   { key: 'nav.about', route: '/about' },
 ] as const;
 
-const {
-  addressL1: ADDRESS_L1, addressL2: ADDRESS_L2,
-  phoneLabel: PHONE_LABEL, phoneHref: PHONE_HREF, email: EMAIL,
-  instagram: INSTAGRAM, instagramHref: INSTAGRAM_HREF,
-  viberLabel: VIBER_LABEL, viberHref: VIBER_HREF,
-  messengerLabel: MESSENGER_LABEL, messengerHref: MESSENGER_HREF,
-} = CONTACT;
+const C = CONTACT;
 ---
 
 <footer class="site-footer">
-  <div class="foot-main container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-[1.6fr_0.9fr_1.1fr_1fr]">
+  <div class="foot-main container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-[1.5fr_0.8fr_1fr_1.25fr]">
     <div class="foot-brand">
       <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
       <p class="foot-tagline">{t(locale, 'footer.tagline')}<br />{t(locale, 'footer.tagline2')}</p>
-
-      <div class="foot-socials">
-        <a class="foot-chip" href={INSTAGRAM_HREF} target="_blank" rel="noopener" aria-label={`Instagram: ${INSTAGRAM}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </a>
-
-        <a class="foot-chip" href={VIBER_HREF} aria-label={`Viber: ${VIBER_LABEL}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c4.4 0 7.5 2.8 7.5 6.8 0 4-3.1 6.8-7.5 6.8-.8 0-1.5-.08-2.2-.24L6 20l.5-3.1A6.6 6.6 0 0 1 4.5 10.3C4.5 6.3 7.6 3.5 12 3.5z"/><path d="M9.2 8.2c1.2-.2 2.4.3 3.2 1.1.8.8 1.3 2 1.1 3.2" stroke-width="1.5"/></svg>
-        </a>
-
-        <a class="foot-chip" href={MESSENGER_HREF} target="_blank" rel="noopener" aria-label={`Messenger: ${MESSENGER_LABEL}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c5 0 8.8 3.6 8.8 8.2S17 19.6 12 19.6c-1 0-1.9-.12-2.8-.35L5 21l.4-3.4A8 8 0 0 1 3.2 11.4C3.2 6.8 7 3.2 12 3.2z"/><path d="M7.5 13.3l2.8-3 2 1.6 2.3-2.2" stroke-width="1.5"/></svg>
-        </a>
-      </div>
     </div>
 
     <nav class="foot-col" aria-label={t(locale, 'footer.explore')}>
@@ -58,20 +38,44 @@ const {
 
     <div class="foot-col">
       <h2 class="foot-h">{t(locale, 'footer.visit')}</h2>
-      <ul class="foot-contact">
-        <li>{ADDRESS_L1}<br />{ADDRESS_L2}</li>
-        <li><a href={PHONE_HREF}>{PHONE_LABEL}</a></li>
-        <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h2 class="foot-h">{t(locale, 'contact.hoursLabel')}</h2>
+      <p class="foot-addr">{C.addressL1}<br />{C.addressL2}</p>
+      <h2 class="foot-h foot-h--sub">{t(locale, 'contact.hoursLabel')}</h2>
       <dl class="foot-hours">
         <div><dt>{t(locale, 'hours.weekdays')}</dt><dd>{t(locale, 'hours.weekdaysValue')}</dd></div>
         <div><dt>{t(locale, 'hours.saturday')}</dt><dd>{t(locale, 'hours.saturdayValue')}</dd></div>
         <div><dt>{t(locale, 'hours.sunday')}</dt><dd>{t(locale, 'hours.closed')}</dd></div>
       </dl>
+    </div>
+
+    <div class="foot-col">
+      <h2 class="foot-h">{t(locale, 'nav.contact')}</h2>
+
+      <div class="foot-contacts">
+        <a class="foot-chip foot-chip--text" href={C.phoneHref} aria-label={`${t(locale, 'contact.phoneLabel')}: ${C.phoneLabel}`}>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3h3.1l1.6 5-2.2 1.6a12 12 0 0 0 5.3 5.3l1.6-2.2 5 1.6v3.1a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/></svg>
+          <span class="foot-chip-tx">{C.phoneLabel}</span>
+        </a>
+        <a class="foot-chip foot-chip--text" href={C.mobileHref} aria-label={`${t(locale, 'contact.mobileLabel')}: ${C.mobileLabel}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          <span class="foot-chip-tx">{C.mobileLabel}</span>
+        </a>
+        <a class="foot-chip foot-chip--text" href={`mailto:${C.email}`} aria-label={`Email: ${C.email}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+          <span class="foot-chip-tx">{C.email}</span>
+        </a>
+      </div>
+
+      <div class="foot-socials">
+        <a class="foot-chip" href={C.instagramHref} target="_blank" rel="noopener" aria-label={`Instagram: ${C.instagram}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="foot-chip" href={C.viberHref} aria-label={`Viber: ${C.viberLabel}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c4.4 0 7.5 2.8 7.5 6.8 0 4-3.1 6.8-7.5 6.8-.8 0-1.5-.08-2.2-.24L6 20l.5-3.1A6.6 6.6 0 0 1 4.5 10.3C4.5 6.3 7.6 3.5 12 3.5z"/><path d="M9.2 8.2c1.2-.2 2.4.3 3.2 1.1.8.8 1.3 2 1.1 3.2" stroke-width="1.5"/></svg>
+        </a>
+        <a class="foot-chip" href={C.messengerHref} target="_blank" rel="noopener" aria-label={`Messenger: ${C.messengerLabel}`}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c5 0 8.8 3.6 8.8 8.2S17 19.6 12 19.6c-1 0-1.9-.12-2.8-.35L5 21l.4-3.4A8 8 0 0 1 3.2 11.4C3.2 6.8 7 3.2 12 3.2z"/><path d="M7.5 13.3l2.8-3 2 1.6 2.3-2.2" stroke-width="1.5"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -95,26 +99,9 @@ const {
     height: auto;
     border-radius: 1rem;
     margin-bottom: 1.1rem;
-    margin-left: 0;
     background: var(--color-paper);
   }
   .foot-tagline { max-width: 24rem; line-height: 1.55; }
-
-  .foot-socials { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
-  .foot-chip {
-    display: grid; place-items: center;
-    width: 2.8rem; height: 2.8rem; border-radius: 0.7rem;
-    background: color-mix(in srgb, var(--color-paper) 7%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-paper) 13%, transparent);
-    color: var(--color-paper); text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
-  }
-  .foot-chip svg { width: 1.3rem; height: 1.3rem; color: var(--color-orange); transition: color 0.2s ease; }
-  .foot-chip:hover {
-    background: var(--color-orange); border-color: var(--color-orange);
-    transform: translateY(-2px);
-  }
-  .foot-chip:hover svg { color: var(--color-paper-raised); }
 
   .foot-h {
     font-family: var(--font-sans);
@@ -125,16 +112,39 @@ const {
     color: var(--color-orange);
     margin-bottom: 1rem;
   }
+  .foot-h--sub { margin-top: 1.8rem; }
+
   .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .foot-col a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
   .foot-col a:hover { color: var(--color-orange); }
-  .foot-contact { line-height: 1.5; }
-  .foot-contact li { color: color-mix(in srgb, var(--color-paper) 80%, transparent); }
+  .foot-addr { line-height: 1.5; color: color-mix(in srgb, var(--color-paper) 80%, transparent); }
 
   .foot-hours { display: flex; flex-direction: column; gap: 0.55rem; }
   .foot-hours > div { display: flex; justify-content: space-between; gap: 1.5rem; white-space: nowrap; }
   .foot-hours dt { color: color-mix(in srgb, var(--color-paper) 65%, transparent); }
   .foot-hours dd { color: var(--color-paper-raised); font-variant-numeric: tabular-nums; }
+
+  /* contact column: text chips + social icon row */
+  .foot-contacts { display: flex; flex-direction: column; gap: 0.55rem; }
+  .foot-chip {
+    display: grid; place-items: center;
+    width: 2.8rem; height: 2.8rem; border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper) 7%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-paper) 13%, transparent);
+    color: var(--color-paper); text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
+  }
+  .foot-chip svg { width: 1.3rem; height: 1.3rem; color: var(--color-orange); transition: color 0.2s ease; flex: none; }
+  .foot-chip:hover { background: var(--color-orange); border-color: var(--color-orange); transform: translateY(-2px); }
+  .foot-chip:hover svg { color: var(--color-paper-raised); }
+
+  .foot-chip--text {
+    display: flex; align-items: center; justify-content: flex-start; gap: 0.65rem;
+    width: 100%; height: auto; min-height: 2.8rem; padding: 0.55rem 0.85rem;
+  }
+  .foot-chip-tx { font-size: 0.92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .foot-socials { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
 
   .foot-bar {
     border-top: 1px solid color-mix(in srgb, var(--color-paper) 12%, transparent);

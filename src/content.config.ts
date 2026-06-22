@@ -23,7 +23,7 @@ const services = defineCollection({
   schema: z.object({
     icon: z.enum([
       'stethoscope', 'syringe', 'chip', 'scalpel',
-      'tooth', 'shield', 'bowl', 'heart',
+      'tooth', 'shield', 'bowl', 'heart', 'ultrasound',
     ]),
     title_el: z.string(),
     title_en: z.string(),
