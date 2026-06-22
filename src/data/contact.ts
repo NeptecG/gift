@@ -1,5 +1,4 @@
 // Single source of truth for the clinic's contact details + map.
-// [PLACEHOLDER] messenger uses a Facebook search until the exact m.me handle is known.
 const messengerLabel = 'Vet & Pet - Katerina Giaprou';
 const mapQuery = 'Ιωαννίνων 34B, Πρέβεζα 48100';
 
@@ -16,7 +15,8 @@ export const CONTACT = {
   viberLabel: '+30 694 865 9158',
   viberHref: 'viber://chat?number=%2B306948659158',
   messengerLabel,
-  messengerHref: 'https://www.facebook.com/search/top?q=' + encodeURIComponent(messengerLabel),
+  facebookHref: 'https://www.facebook.com/vet.and.pet.katerina.giaprou',
+  messengerHref: 'https://m.me/vet.and.pet.katerina.giaprou',
   // full interactive Google embed (keyless): +/- zoom controls + scroll-wheel zoom
   mapEmbed:
     'https://www.google.com/maps/embed?pb=!1m3!2m1!1zzpnPic6xzr3Ovc6vzr3Pic69IDM0QiwgzqDPgc6tzrLOtc62zrEgNDgxIDAw!6i16',

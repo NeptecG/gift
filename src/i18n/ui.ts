@@ -158,6 +158,12 @@ export const ui = {
     'meta.about.title': 'Σχετικά - Vet & Pet',
     'meta.about.desc':
       'Η ιστορία της Κατερίνας και του Vet & Pet - φροντίδα με αγάπη, σεβασμό και επιστήμη.',
+    'notfound.title': 'Ωχ! Η σελίδα έκανε βόλτα.',
+    'notfound.sub': 'Δεν βρήκαμε αυτό που ψάχνατε. Ίσως κάποιο γατάκι την έκρυψε.',
+    'notfound.cta': 'Επιστροφή στην αρχική',
+    'meta.notfound.title': '404 - Vet & Pet',
+    'meta.notfound.desc': 'Η σελίδα δεν βρέθηκε.',
+
     'meta.contact.title': 'Επικοινωνία - Vet & Pet',
     'meta.contact.desc':
       'Επικοινωνήστε με το Vet & Pet. Διεύθυνση, τηλέφωνο, ώρες λειτουργίας και φόρμα επικοινωνίας.',
@@ -315,6 +321,12 @@ export const ui = {
     'meta.about.title': 'About - Vet & Pet',
     'meta.about.desc':
       "Katerina's story and the Vet & Pet philosophy - care given with love, respect, and science.",
+    'notfound.title': 'Oops! This page wandered off.',
+    'notfound.sub': "We couldn't find what you were looking for. Maybe a kitten hid it.",
+    'notfound.cta': 'Back to home',
+    'meta.notfound.title': '404 - Vet & Pet',
+    'meta.notfound.desc': 'Page not found.',
+
     'meta.contact.title': 'Contact - Vet & Pet',
     'meta.contact.desc':
       'Contact Vet & Pet. Address, phone, opening hours, and a contact form.',

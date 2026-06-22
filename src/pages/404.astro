@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CatAccent from '../components/art/CatAccent.astro';
+import { t, localizedPath } from '../i18n/ui';
+
+const locale = 'el' as const;
+---
+
+<BaseLayout locale={locale} path="/404" titleKey="meta.notfound.title" descKey="meta.notfound.desc">
+  <section class="nf">
+    <div class="nf-art">
+      <span class="nf-404">4</span>
+      <span class="nf-cat"><CatAccent variant="sitting" class="nf-cat-svg" /></span>
+      <span class="nf-404">4</span>
+    </div>
+
+    <h1 class="nf-title">{t(locale, 'notfound.title')}</h1>
+    <p class="nf-sub">{t(locale, 'notfound.sub')}</p>
+
+    <div class="nf-paws" aria-hidden="true">
+      <CatAccent variant="paw" class="nf-paw" />
+      <CatAccent variant="paw" class="nf-paw" />
+      <CatAccent variant="paw" class="nf-paw" />
+    </div>
+
+    <a href={localizedPath(locale, '/')} class="btn btn-primary nf-cta">{t(locale, 'notfound.cta')}</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    min-height: 62vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 6rem) 1.5rem;
+  }
+  .nf-art { display: flex; align-items: center; justify-content: center; gap: clamp(0.5rem, 2vw, 1.5rem); }
+  .nf-404 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(5rem, 4rem + 12vw, 11rem); line-height: 0.9; color: var(--color-ink);
+  }
+  .nf-cat { display: grid; place-items: center; }
+  :global(.nf-cat-svg) { width: clamp(5rem, 4rem + 11vw, 10.5rem); height: auto; color: var(--color-orange); }
+
+  .nf-title {
+    margin-top: 1.5rem;
+    font-size: clamp(1.8rem, 1.2rem + 2.6vw, 3rem); line-height: 1.08;
+  }
+  .nf-sub { margin-top: 1rem; max-width: 34rem; font-size: 1.2rem; line-height: 1.6; color: var(--color-ink-soft); }
+
+  .nf-paws { display: flex; gap: 0.9rem; margin: 1.8rem 0 0.4rem; opacity: 0.5; }
+  :global(.nf-paw) { width: 1.5rem; height: 1.5rem; color: var(--color-ink-faint); }
+  .nf-paws :global(.nf-paw):nth-child(2) { transform: translateY(0.5rem) rotate(12deg); }
+  .nf-paws :global(.nf-paw):nth-child(3) { transform: translateY(1rem); }
+
+  .nf-cta { margin-top: 2rem; }
+</style>
