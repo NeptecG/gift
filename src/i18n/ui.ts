@@ -118,13 +118,10 @@ export const ui = {
     'contact.formTitle': 'Στείλτε μας μήνυμα',
 
     'hours.weekdays': 'Δευτέρα – Παρασκευή',
-    'hours.weekdaysShort': 'Δευ-Παρ',
     'hours.weekdaysValue': '09:00 – 20:00',
     'hours.saturday': 'Σάββατο',
-    'hours.saturdayShort': 'Σάβ',
     'hours.saturdayValue': '09:00 – 15:00',
     'hours.sunday': 'Κυριακή',
-    'hours.sundayShort': 'Κυρ',
     'hours.closed': 'Κλειστά',
 
     'form.name': 'Όνομα',
@@ -276,13 +273,10 @@ export const ui = {
     'contact.formTitle': 'Send us a message',
 
     'hours.weekdays': 'Monday – Friday',
-    'hours.weekdaysShort': 'Mon-Fri',
     'hours.weekdaysValue': '09:00 – 20:00',
     'hours.saturday': 'Saturday',
-    'hours.saturdayShort': 'Sat',
     'hours.saturdayValue': '09:00 – 15:00',
     'hours.sunday': 'Sunday',
-    'hours.sundayShort': 'Sun',
     'hours.closed': 'Closed',
 
     'form.name': 'Name',
