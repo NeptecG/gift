@@ -89,6 +89,14 @@ export const ui = {
       'Η Κατερίνα είναι κτηνίατρος με βαθιά αγάπη για τα ζώα. Άνοιξε το Vet & Pet για να προσφέρει φροντίδα που συνδυάζει την επιστήμη με την ανθρωπιά - έναν χώρο όπου τα κατοικίδια δεν είναι περιστατικά, αλλά μέλη μιας οικογένειας.',
     'about.body2':
       'Από την πρώτη εξέταση μέχρι τη μακροχρόνια παρακολούθηση, στόχος μας είναι κάθε ζώο να φεύγει πιο υγιές και κάθε ιδιοκτήτης πιο ήσυχος.',
+    'about.team.kicker': 'Η ομάδα μας',
+    'about.p1.role': 'Κτηνίατρος',
+    'about.p1.name': 'Κατερίνα',
+    'about.p1.body': 'Η Κατερίνα είναι κτηνίατρος με βαθιά αγάπη για τα ζώα. Άνοιξε το Vet & Pet για να προσφέρει φροντίδα που συνδυάζει την επιστήμη με την ανθρωπιά, έναν χώρο όπου τα κατοικίδια είναι μέλη μιας οικογένειας.',
+    'about.p2.role': 'Βοηθός',
+    'about.p2.name': 'Η Μαμά',
+    'about.p2.body': 'Δίπλα στην Κατερίνα, η μαμά της βοηθά καθημερινά στο κατάστημα. Με χαμόγελο και μεράκι, φροντίζει κάθε πελάτης και κάθε ζωάκι να νιώθει ευπρόσδεκτο.',
+
     'about.values.title': 'Αυτό που μας καθοδηγεί',
     'about.value1.title': 'Αγάπη',
     'about.value1.body': 'Κάθε ζώο αντιμετωπίζεται με τρυφερότητα και υπομονή.',
@@ -110,10 +118,13 @@ export const ui = {
     'contact.formTitle': 'Στείλτε μας μήνυμα',
 
     'hours.weekdays': 'Δευτέρα – Παρασκευή',
+    'hours.weekdaysShort': 'Δευ-Παρ',
     'hours.weekdaysValue': '09:00 – 20:00',
     'hours.saturday': 'Σάββατο',
+    'hours.saturdayShort': 'Σάβ',
     'hours.saturdayValue': '09:00 – 15:00',
     'hours.sunday': 'Κυριακή',
+    'hours.sundayShort': 'Κυρ',
     'hours.closed': 'Κλειστά',
 
     'form.name': 'Όνομα',
@@ -236,6 +247,14 @@ export const ui = {
       'Katerina is a veterinarian with a deep love for animals. She opened Vet & Pet to offer care that blends science with humanity - a place where pets are not cases, but members of a family.',
     'about.body2':
       'From the first examination to long-term follow-up, our goal is for every animal to leave healthier and every owner to leave reassured.',
+    'about.team.kicker': 'Our team',
+    'about.p1.role': 'Veterinarian',
+    'about.p1.name': 'Katerina',
+    'about.p1.body': 'Katerina is a veterinarian with a deep love for animals. She opened Vet & Pet to offer care that blends science with humanity, a place where pets are members of a family.',
+    'about.p2.role': 'Helper',
+    'about.p2.name': 'Mom',
+    'about.p2.body': "Right beside Katerina, her mom helps in the shop every day. With a warm smile and real care, she makes sure every customer and every little animal feels welcome.",
+
     'about.values.title': 'What guides us',
     'about.value1.title': 'Love',
     'about.value1.body': 'Every animal is treated with tenderness and patience.',
@@ -257,10 +276,13 @@ export const ui = {
     'contact.formTitle': 'Send us a message',
 
     'hours.weekdays': 'Monday – Friday',
+    'hours.weekdaysShort': 'Mon-Fri',
     'hours.weekdaysValue': '09:00 – 20:00',
     'hours.saturday': 'Saturday',
+    'hours.saturdayShort': 'Sat',
     'hours.saturdayValue': '09:00 – 15:00',
     'hours.sunday': 'Sunday',
+    'hours.sundayShort': 'Sun',
     'hours.closed': 'Closed',
 
     'form.name': 'Name',

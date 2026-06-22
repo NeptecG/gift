@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="Η Μαμά">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D9CC"/>
+      <stop offset="1" stop-color="#DAD7C6"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <g fill="#1A1A1A" opacity="0.12">
+    <circle cx="450" cy="470" r="150"/>
+    <path d="M210 1010 c0 -160 108 -270 240 -270 s240 110 240 270 z"/>
+  </g>
+  <text x="450" y="980" text-anchor="middle" font-family="Alegreya, Georgia, serif" font-style="italic" font-size="74" fill="#1A1A1A" opacity="0.78">Η Μαμά</text>
+  <text x="450" y="64" text-anchor="middle" font-family="Alegreya Sans, sans-serif" font-size="22" letter-spacing="3" fill="#D9531E" opacity="0.85">PLACEHOLDER</text>
+</svg>
