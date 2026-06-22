@@ -4,7 +4,7 @@ import { type Locale, t, localizedPath } from '../i18n/ui';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProductCard from '../components/ProductCard.astro';
-import CatAccent from '../components/art/CatAccent.astro';
+import { CONTACT } from '../data/contact';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -92,10 +92,14 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
         <a href="https://www.google.com/maps/search/?api=1&query=Ιωαννίνων%2034B%2C%20Πρέβεζα%20481%2000" target="_blank" rel="noopener" class="btn btn-outline">{t(locale, 'cta.directions')}</a>
       </div>
     </div>
-    <div class="visit-map reveal" style="--reveal-delay:120ms" aria-hidden="true">
-      <span class="visit-pin"><CatAccent variant="paw" class="visit-pin-paw" /></span>
-      <span class="visit-map-note">{locale === 'el' ? 'Χάρτης - σύντομα' : 'Map - coming soon'}</span>
-    </div>
+    <iframe
+      class="visit-map reveal"
+      style="--reveal-delay:120ms"
+      title={locale === 'el' ? 'Χάρτης - Vet & Pet, Ιωαννίνων 34B, Πρέβεζα' : 'Map - Vet & Pet, Ioanninon 34B, Preveza'}
+      src={CONTACT.mapEmbed}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen></iframe>
   </div>
 </section>
 
@@ -134,15 +138,7 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
   .visit-info dd { font-size: 1.08rem; line-height: 1.5; }
   .visit-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
   .visit-map {
-    position: relative; min-height: 14rem; border-radius: 1rem;
-    background:
-      radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--color-orange) 12%, transparent), transparent 60%),
-      repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-ink) 5%, transparent) 0 1px, transparent 1px 28px),
-      repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 5%, transparent) 0 1px, transparent 1px 28px),
-      var(--color-sand);
-    display: grid; place-items: center;
+    display: block; width: 100%; height: 100%; min-height: 16rem;
+    border: 0; border-radius: 1rem;
   }
-  .visit-pin { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--color-orange); box-shadow: 0 12px 24px -12px var(--color-orange); }
-  :global(.visit-pin-paw) { width: 1.7rem; height: 1.7rem; color: var(--color-paper-raised); transform: rotate(45deg); }
-  .visit-map-note { position: absolute; bottom: 0.9rem; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--color-ink-faint); }
 </style>

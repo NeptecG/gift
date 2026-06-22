@@ -1,5 +1,6 @@
 ---
 import { type Locale, t, localizedPath } from '../i18n/ui';
+import { CONTACT } from '../data/contact';
 
 interface Props {
   locale: Locale;
@@ -16,16 +17,13 @@ const nav = [
   { key: 'nav.about', route: '/about' },
 ] as const;
 
-const ADDRESS_L1 = 'Ιωαννίνων 34B';
-const ADDRESS_L2 = 'Πρέβεζα, 481 00';
-const PHONE_LABEL = '26820 89457';
-const PHONE_HREF = 'tel:+302682089457';
-const EMAIL = 'vetandpetpreveza@gmail.com';
-const INSTAGRAM = 'vet_and_pet_preveza';
-const VIBER_LABEL = '+30 694 865 9158';
-const MESSENGER_LABEL = 'Vet & Pet - Katerina Giaprou';
-// [PLACEHOLDER] exact m.me handle unknown - links to the Facebook page search for now.
-const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURIComponent(MESSENGER_LABEL);
+const {
+  addressL1: ADDRESS_L1, addressL2: ADDRESS_L2,
+  phoneLabel: PHONE_LABEL, phoneHref: PHONE_HREF, email: EMAIL,
+  instagram: INSTAGRAM, instagramHref: INSTAGRAM_HREF,
+  viberLabel: VIBER_LABEL, viberHref: VIBER_HREF,
+  messengerLabel: MESSENGER_LABEL, messengerHref: MESSENGER_HREF,
+} = CONTACT;
 ---
 
 <footer class="site-footer">
@@ -35,11 +33,11 @@ const MESSENGER_HREF = 'https://www.facebook.com/search/top?q=' + encodeURICompo
       <p class="foot-tagline">{t(locale, 'footer.tagline')}<br />{t(locale, 'footer.tagline2')}</p>
 
       <div class="foot-socials">
-        <a class="foot-chip" href={`https://instagram.com/${INSTAGRAM}`} target="_blank" rel="noopener" aria-label={`Instagram: ${INSTAGRAM}`}>
+        <a class="foot-chip" href={INSTAGRAM_HREF} target="_blank" rel="noopener" aria-label={`Instagram: ${INSTAGRAM}`}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
         </a>
 
-        <a class="foot-chip" href={`viber://chat?number=%2B306948659158`} aria-label={`Viber: ${VIBER_LABEL}`}>
+        <a class="foot-chip" href={VIBER_HREF} aria-label={`Viber: ${VIBER_LABEL}`}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c4.4 0 7.5 2.8 7.5 6.8 0 4-3.1 6.8-7.5 6.8-.8 0-1.5-.08-2.2-.24L6 20l.5-3.1A6.6 6.6 0 0 1 4.5 10.3C4.5 6.3 7.6 3.5 12 3.5z"/><path d="M9.2 8.2c1.2-.2 2.4.3 3.2 1.1.8.8 1.3 2 1.1 3.2" stroke-width="1.5"/></svg>
         </a>
 
