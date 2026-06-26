@@ -16,7 +16,7 @@ export const ui = {
     'nav.gallery': 'Gallery',
     'nav.about': 'Σχετικά με εμάς',
     'nav.contact': 'Επικοινωνία',
-    'nav.faq': 'Συχνές ερωτήσεις',
+    'nav.faq': 'Συχνές Ερωτήσεις',
     'nav.menu': 'Μενού',
 
     'brand.name': 'Vet & Pet',
