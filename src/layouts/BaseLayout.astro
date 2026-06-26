@@ -31,7 +31,7 @@ const isHome = path === '/';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline>document.documentElement.classList.add('js');</script>
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#D9531E" />
@@ -60,7 +60,9 @@ const isHome = path === '/';
       "@context": "https://schema.org",
       "@type": "VeterinaryCare",
       "name": "Vet & Pet",
-      "description": "Κτηνιατρείο και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο.",
+      "description": locale === 'el'
+        ? "Κτηνιατρείο και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο."
+        : "Veterinary clinic and pet shop in Preveza. Caring for every animal with love.",
       "url": site + "/",
       "telephone": "+302682089457",
       "email": "vetandpetpreveza@gmail.com",
