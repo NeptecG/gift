@@ -2,7 +2,9 @@
 
 import '../styles/fonts.ts';
 import '../styles/global.css';
-import { type Locale, t, type UIKey } from '../i18n/ui';
+import { getCollection } from 'astro:content';
+import { type Locale, t, type UIKey, localizedPath, faq } from '../i18n/ui';
+import { CONTACT } from '../data/contact';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -18,11 +20,64 @@ const { locale, path, titleKey, descKey } = Astro.props;
 const title = t(locale, titleKey);
 const description = t(locale, descKey);
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
-const elPath = path === '/' ? '/' : path;
-const enPath = path === '/' ? '/en/' : '/en' + path;
+const elPath = localizedPath('el', path);
+const enPath = localizedPath('en', path);
 const canonicalUrl = site + (locale === 'el' ? elPath : enPath);
-const ogImage = site + '/og-image.png';
+const ogImage = site + '/og-image.jpg';
 const isHome = path === '/';
+
+// LocalBusiness schema (home only) — services pulled from the content collection so it stays in sync.
+const serviceList = isHome
+  ? (await getCollection('services'))
+      .sort((a, b) => a.data.order - b.data.order)
+      .map((s) => ({ '@type': 'Service', name: locale === 'el' ? s.data.title_el : s.data.title_en }))
+  : [];
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VeterinaryCare',
+  name: 'Vet & Pet',
+  description:
+    locale === 'el'
+      ? 'Κτηνιατρείο και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο.'
+      : 'Veterinary clinic and pet shop in Preveza. Caring for every animal with love.',
+  url: site + '/',
+  image: ogImage,
+  logo: site + '/favicon.png',
+  telephone: CONTACT.phoneHref.replace('tel:', ''),
+  email: CONTACT.email,
+  priceRange: '€€',
+  currenciesAccepted: 'EUR',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Ιωαννίνων 34B',
+    addressLocality: 'Πρέβεζα',
+    postalCode: '48100',
+    addressCountry: 'GR',
+  },
+  areaServed: { '@type': 'City', name: 'Πρέβεζα' },
+  hasMap: CONTACT.mapDirections,
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '20:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '15:00' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: locale === 'el' ? 'Υπηρεσίες' : 'Services',
+    itemListElement: serviceList,
+  },
+  sameAs: [CONTACT.facebookHref, CONTACT.instagramHref],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq[locale].map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
 <!doctype html>
@@ -49,6 +104,7 @@ const isHome = path === '/';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={locale === 'el' ? 'el_GR' : 'en_US'} />
@@ -56,42 +112,12 @@ const isHome = path === '/';
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
 
-    {isHome && <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "VeterinaryCare",
-      "name": "Vet & Pet",
-      "description": locale === 'el'
-        ? "Κτηνιατρείο και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο."
-        : "Veterinary clinic and pet shop in Preveza. Caring for every animal with love.",
-      "url": site + "/",
-      "telephone": "+302682089457",
-      "email": "vetandpetpreveza@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ιωαννίνων 34B",
-        "addressLocality": "Πρέβεζα",
-        "postalCode": "48100",
-        "addressCountry": "GR"
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "09:00",
-          "closes": "20:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "09:00",
-          "closes": "15:00"
-        }
-      ],
-      "sameAs": [
-        "https://www.facebook.com/vet.and.pet.katerina.giaprou",
-        "https://instagram.com/vet_and_pet_preveza"
-      ]
-    })} />}
+    {isHome && (
+      <>
+        <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+        <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+      </>
+    )}
   </head>
   <body>
     <a href="#main" class="skip-link">{locale === 'el' ? 'Μετάβαση στο περιεχόμενο' : 'Skip to content'}</a>

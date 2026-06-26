@@ -55,6 +55,9 @@ export const ui = {
     'home.visit.addressLabel': 'Διεύθυνση',
     'home.visit.hoursLabel': 'Ώρες λειτουργίας',
 
+    'faq.kicker': 'Συχνές ερωτήσεις',
+    'faq.title': 'Ό,τι θέλετε να ξέρετε',
+
     'services.kicker': 'Υπηρεσίες',
     'services.title': 'Φροντίδα για κάθε ανάγκη',
     'services.intro':
@@ -145,7 +148,7 @@ export const ui = {
 
     'meta.home.title': 'Vet & Pet - Κτηνιατρείο & Pet Shop',
     'meta.home.desc':
-      'Το κτηνιατρείο και pet shop της Κατερίνας. Φροντίδα με αγάπη για κάθε ζώο - εξετάσεις, εμβόλια, χειρουργική, τροφές και αξεσουάρ.',
+      'Κτηνίατρος και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο: εξετάσεις, εμβόλια, χειρουργική, τροφές και αξεσουάρ.',
     'meta.services.title': 'Υπηρεσίες - Vet & Pet',
     'meta.services.desc':
       'Κτηνιατρικές υπηρεσίες: κλινική εξέταση, εμβολιασμοί, microchip, χειρουργική, οδοντιατρική και διατροφική συμβουλευτική.',
@@ -217,6 +220,9 @@ export const ui = {
     'home.visit.title': "We'd love to meet you",
     'home.visit.addressLabel': 'Address',
     'home.visit.hoursLabel': 'Opening hours',
+
+    'faq.kicker': 'Frequently asked',
+    'faq.title': 'Everything you want to know',
 
     'services.kicker': 'Services',
     'services.title': 'Care for every need',
@@ -308,7 +314,7 @@ export const ui = {
 
     'meta.home.title': 'Vet & Pet - Veterinary Clinic & Pet Shop',
     'meta.home.desc':
-      "Katerina's veterinary clinic and pet shop. Loving care for every animal - exams, vaccinations, surgery, food, and accessories.",
+      "Veterinarian and pet shop in Preveza. Loving care for every animal: exams, vaccinations, surgery, food, and accessories.",
     'meta.services.title': 'Services - Vet & Pet',
     'meta.services.desc':
       'Veterinary services: clinical examination, vaccinations, microchip, surgery, dental care, and nutrition advice.',
@@ -335,17 +341,67 @@ export const ui = {
 
 export type UIKey = keyof (typeof ui)['el'];
 
+/** FAQ content — rendered visibly on the home page AND emitted as FAQPage schema.
+ *  Keep the two in sync (Google requires visible text to match the structured data). */
+export const faq: Record<Locale, { q: string; a: string }[]> = {
+  el: [
+    {
+      q: 'Πού βρίσκεται το Vet & Pet στην Πρέβεζα;',
+      a: 'Βρισκόμαστε στην Ιωαννίνων 34B, Πρέβεζα 48100. Υπάρχει εύκολη πρόσβαση και στάθμευση κοντά.',
+    },
+    {
+      q: 'Ποιες ώρες λειτουργεί το κτηνιατρείο;',
+      a: 'Δευτέρα έως Παρασκευή 09:00–20:00 και Σάββατο 09:00–15:00. Την Κυριακή είμαστε κλειστά.',
+    },
+    {
+      q: 'Δέχεστε επείγοντα περιστατικά;',
+      a: 'Ναι. Για επείγοντα περιστατικά καλέστε μας στο 694 865 9158 και θα σας εξυπηρετήσουμε άμεσα.',
+    },
+    {
+      q: 'Τι υπηρεσίες προσφέρει ο κτηνίατρος;',
+      a: 'Κλινική εξέταση, εμβολιασμούς, microchip, διαγνωστικό υπέρηχο, χειρουργική, οδοντιατρική και διατροφική συμβουλευτική. Λειτουργεί και pet shop με τροφές και αξεσουάρ.',
+    },
+    {
+      q: 'Κάνετε microchip και έκδοση διαβατηρίου;',
+      a: 'Ναι, τοποθετούμε microchip και σας βοηθάμε με την έκδοση διαβατηρίου και τα ταξιδιωτικά έγγραφα του κατοικιδίου σας.',
+    },
+  ],
+  en: [
+    {
+      q: 'Where is Vet & Pet located in Preveza?',
+      a: 'We are at Ioanninon 34B, Preveza 48100, with easy access and parking nearby.',
+    },
+    {
+      q: 'What are the clinic opening hours?',
+      a: 'Monday to Friday 09:00–20:00 and Saturday 09:00–15:00. We are closed on Sundays.',
+    },
+    {
+      q: 'Do you handle emergencies?',
+      a: 'Yes. For emergencies call us at +30 694 865 9158 and we will help you right away.',
+    },
+    {
+      q: 'What services does the vet offer?',
+      a: 'Clinical examination, vaccinations, microchip, diagnostic ultrasound, surgery, dental and nutrition advice. We also run a pet shop with food and accessories.',
+    },
+    {
+      q: 'Do you do microchipping and pet passports?',
+      a: 'Yes, we place microchips and help you with pet passports and travel documents for your pet.',
+    },
+  ],
+};
+
 /** Translate a key for a locale, falling back to Greek, then the raw key. */
 export function t(locale: Locale, key: UIKey): string {
   const dict = ui[locale] as Record<string, string>;
   return dict[key] ?? (ui.el as Record<string, string>)[key] ?? key;
 }
 
-/** Build a localized URL. EL has no prefix; EN lives under /en. */
+/** Build a localized URL. EL has no prefix; EN lives under /en. Always trailing-slash. */
 export function localizedPath(locale: Locale, path: string): string {
-  const clean = '/' + path.replace(/^\/+/, '').replace(/\/+$/, '');
-  const base = clean === '/' ? '' : clean;
-  return locale === 'en' ? '/en' + base + (base ? '' : '/') : base || '/';
+  const clean = path.replace(/^\/+/, '').replace(/\/+$/, ''); // "services" or ""
+  const prefix = locale === 'en' ? '/en' : '';
+  const body = clean ? '/' + clean : '';
+  return prefix + body + '/';
 }
 
 /** The same page in the other locale, given the current path's route key. */
