@@ -16,6 +16,7 @@ export const ui = {
     'nav.gallery': 'Gallery',
     'nav.about': 'Σχετικά με εμάς',
     'nav.contact': 'Επικοινωνία',
+    'nav.faq': 'Συχνές ερωτήσεις',
     'nav.menu': 'Μενού',
 
     'brand.name': 'Vet & Pet',
@@ -57,6 +58,7 @@ export const ui = {
 
     'faq.kicker': 'Συχνές ερωτήσεις',
     'faq.title': 'Ό,τι θέλετε να ξέρετε',
+    'faq.intro': 'Απαντήσεις στις πιο συχνές ερωτήσεις για το κτηνιατρείο και το pet shop μας στην Πρέβεζα.',
 
     'services.kicker': 'Υπηρεσίες',
     'services.title': 'Φροντίδα για κάθε ανάγκη',
@@ -170,6 +172,9 @@ export const ui = {
     'meta.contact.title': 'Επικοινωνία - Vet & Pet',
     'meta.contact.desc':
       'Επικοινωνήστε με το Vet & Pet. Διεύθυνση, τηλέφωνο, ώρες λειτουργίας και φόρμα επικοινωνίας.',
+    'meta.faq.title': 'Συχνές ερωτήσεις - Vet & Pet Πρέβεζα',
+    'meta.faq.desc':
+      'Συχνές ερωτήσεις για το Vet & Pet στην Πρέβεζα: ώρες, επείγοντα, υπηρεσίες, microchip και διαβατήρια.',
   },
   en: {
     'lang.el': 'Ελληνικά',
@@ -182,6 +187,7 @@ export const ui = {
     'nav.gallery': 'Gallery',
     'nav.about': 'About us',
     'nav.contact': 'Contact',
+    'nav.faq': 'FAQ',
     'nav.menu': 'Menu',
 
     'brand.name': 'Vet & Pet',
@@ -223,6 +229,7 @@ export const ui = {
 
     'faq.kicker': 'Frequently asked',
     'faq.title': 'Everything you want to know',
+    'faq.intro': 'Answers to the most common questions about our veterinary clinic and pet shop in Preveza.',
 
     'services.kicker': 'Services',
     'services.title': 'Care for every need',
@@ -336,6 +343,9 @@ export const ui = {
     'meta.contact.title': 'Contact - Vet & Pet',
     'meta.contact.desc':
       'Contact Vet & Pet. Address, phone, opening hours, and a contact form.',
+    'meta.faq.title': 'FAQ - Vet & Pet Preveza',
+    'meta.faq.desc':
+      'Frequently asked questions about Vet & Pet in Preveza: hours, emergencies, services, microchip, and pet passports.',
   },
 } as const;
 

@@ -1,0 +1,68 @@
+---
+import { type Locale, t, localizedPath, faq } from '../i18n/ui';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{t(locale, 'faq.kicker')}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{t(locale, 'faq.title')}</h1>
+  <p class="page-intro reveal" style="--reveal-delay:120ms">{t(locale, 'faq.intro')}</p>
+</section>
+
+<section class="container faq-section">
+  <div class="faq-list reveal">
+    {faq[locale].map((item, i) => (
+      <details class="faq-item" open={i === 0}>
+        <summary class="faq-q">{item.q}</summary>
+        <p class="faq-a">{item.a}</p>
+      </details>
+    ))}
+  </div>
+
+  <div class="faq-cta reveal">
+    <p>{locale === 'el' ? 'Έχετε άλλη ερώτηση;' : 'Have another question?'}</p>
+    <a href={localizedPath(locale, '/contact')} class="btn btn-primary">{t(locale, 'cta.contactUs')}</a>
+  </div>
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 1.5rem; max-width: 48rem; }
+  .page-title { font-size: clamp(2.4rem, 1.4rem + 4vw, 4rem); line-height: 1.04; margin-top: 0.8rem; }
+  .page-intro { margin-top: 1.2rem; font-size: 1.2rem; line-height: 1.6; color: var(--color-ink-soft); }
+
+  .faq-section { padding-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+  .faq-list { display: grid; gap: 0.9rem; max-width: 48rem; }
+  .faq-item {
+    background: var(--color-paper-raised);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+    border-radius: var(--radius-card);
+    padding: 0 1.4rem;
+    transition: border-color 0.2s ease;
+  }
+  .faq-item[open] { border-color: color-mix(in srgb, var(--color-orange) 35%, transparent); }
+  .faq-q {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.15rem 0;
+    font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; color: var(--color-ink);
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after {
+    content: "+"; flex: none;
+    font-family: var(--font-sans); font-size: 1.5rem; line-height: 1; color: var(--color-orange);
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    margin: 0; padding: 0 0 1.2rem; max-width: 42rem;
+    color: var(--color-ink-soft); line-height: 1.6;
+  }
+
+  .faq-cta {
+    margin-top: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem;
+    max-width: 48rem;
+  }
+  .faq-cta p { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-ink); }
+</style>

@@ -25,6 +25,7 @@ const enPath = localizedPath('en', path);
 const canonicalUrl = site + (locale === 'el' ? elPath : enPath);
 const ogImage = site + '/og-image.jpg';
 const isHome = path === '/';
+const isFaq = path === '/faq';
 
 // LocalBusiness schema (home only) — services pulled from the content collection so it stays in sync.
 const serviceList = isHome
@@ -69,15 +70,17 @@ const businessSchema = {
   sameAs: [CONTACT.facebookHref, CONTACT.instagramHref],
 };
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq[locale].map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+const faqSchema = isFaq
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq[locale].map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
 ---
 
 <!doctype html>
@@ -112,12 +115,8 @@ const faqSchema = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
 
-    {isHome && (
-      <>
-        <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
-        <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-      </>
-    )}
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />}
+    {isFaq && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   </head>
   <body>
     <a href="#main" class="skip-link">{locale === 'el' ? 'Μετάβαση στο περιεχόμενο' : 'Skip to content'}</a>
