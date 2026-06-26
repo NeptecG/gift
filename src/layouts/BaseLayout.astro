@@ -20,7 +20,9 @@ const description = t(locale, descKey);
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const elPath = path === '/' ? '/' : path;
 const enPath = path === '/' ? '/en/' : '/en' + path;
+const canonicalUrl = site + (locale === 'el' ? elPath : enPath);
 const ogImage = site + '/og-image.png';
+const isHome = path === '/';
 ---
 
 <!doctype html>
@@ -35,20 +37,59 @@ const ogImage = site + '/og-image.png';
     <meta name="theme-color" content="#D9531E" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <link rel="alternate" hreflang="el" href={site + elPath} />
     <link rel="alternate" hreflang="en" href={site + enPath} />
     <link rel="alternate" hreflang="x-default" href={site + elPath} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vet & Pet" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={locale === 'el' ? 'el_GR' : 'en_US'} />
+    <meta property="og:locale:alternate" content={locale === 'el' ? 'en_US' : 'el_GR'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+
+    {isHome && <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "VeterinaryCare",
+      "name": "Vet & Pet",
+      "description": "Κτηνιατρείο και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο.",
+      "url": site + "/",
+      "telephone": "+302682089457",
+      "email": "vetandpetpreveza@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ιωαννίνων 34B",
+        "addressLocality": "Πρέβεζα",
+        "postalCode": "48100",
+        "addressCountry": "GR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "15:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/vet.and.pet.katerina.giaprou",
+        "https://instagram.com/vet_and_pet_preveza"
+      ]
+    })} />}
   </head>
   <body>
     <a href="#main" class="skip-link">{locale === 'el' ? 'Μετάβαση στο περιεχόμενο' : 'Skip to content'}</a>
