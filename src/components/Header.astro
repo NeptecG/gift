@@ -1,6 +1,8 @@
 ---
 import { type Locale, t, localizedPath, altLocalePath } from '../i18n/ui';
 import CatAccent from './art/CatAccent.astro';
+import { Image } from 'astro:assets';
+import logoBeige from '../assets/logo-beige.png';
 
 interface Props {
   locale: Locale;
@@ -24,7 +26,7 @@ const altHref = altLocalePath(locale, path);
 <header class="site-header">
   <div class="container flex items-center justify-between gap-4 py-2">
     <a href={homeHref} class="brand" aria-label="Vet & Pet - home">
-      <img src="/logo-mark.png" class="brand-logo" alt="" width="600" height="619" decoding="async" fetchpriority="high" />
+      <Image src={logoBeige} class="brand-logo" alt="" format="webp" widths={[120, 240]} sizes="120px" fetchpriority="high" />
       <span class="brand-word">Vet <span class="amp">&amp;</span> Pet</span>
     </a>
 
