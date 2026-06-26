@@ -141,7 +141,7 @@ export const ui = {
     'footer.explore': 'Πλοήγηση',
     'footer.visit': 'Επισκεφθείτε μας',
     'footer.follow': 'Ακολουθήστε μας',
-    'footer.rights': 'Με επιφύλαξη παντός δικαιώματος.',
+    'footer.rights': 'All rights reserved.',
 
     'meta.home.title': 'Vet & Pet - Κτηνιατρείο & Pet Shop',
     'meta.home.desc':
