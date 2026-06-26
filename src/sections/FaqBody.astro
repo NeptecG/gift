@@ -13,8 +13,8 @@ const { locale } = Astro.props;
 
 <section class="container faq-section">
   <div class="faq-list reveal">
-    {faq[locale].map((item, i) => (
-      <details class="faq-item" open={i === 0}>
+    {faq[locale].map((item) => (
+      <details class="faq-item">
         <summary class="faq-q">{item.q}</summary>
         <p class="faq-a">{item.a}</p>
       </details>
