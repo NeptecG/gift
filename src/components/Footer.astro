@@ -1,7 +1,6 @@
 ---
 import { type Locale, t, localizedPath } from '../i18n/ui';
 import { CONTACT } from '../data/contact';
-import CatAccent from './art/CatAccent.astro';
 
 interface Props {
   locale: Locale;
@@ -83,7 +82,7 @@ const C = CONTACT;
   <div class="foot-bar">
     <div class="container flex flex-col items-center justify-between gap-2 py-5 text-sm sm:flex-row">
       <p>© {year} Vet &amp; Pet. {t(locale, 'footer.rights')}</p>
-      <p class="foot-made">{locale === 'el' ? 'Φτιαγμένο με αγάπη για τα ζώα' : 'Made with love for animals'} <CatAccent variant="paw" class="foot-made-paw" /></p>
+      <p class="foot-made">{locale === 'el' ? 'Φτιαγμένο με αγάπη για τα ζώα' : 'Made with love for animals'} <span aria-hidden="true">🐾</span></p>
     </div>
   </div>
 </footer>
@@ -159,6 +158,5 @@ const C = CONTACT;
     border-top: 1px solid color-mix(in srgb, var(--color-paper) 12%, transparent);
     color: color-mix(in srgb, var(--color-paper) 60%, transparent);
   }
-  .foot-made { display: inline-flex; align-items: center; gap: 0.45rem; }
-  :global(.foot-made-paw) { width: 1.05rem; height: 1.05rem; color: var(--color-orange); flex: none; }
+  .foot-made { display: inline-flex; align-items: center; gap: 0.4rem; }
 </style>
