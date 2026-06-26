@@ -31,7 +31,7 @@ export const ui = {
     'cta.directions': 'Οδηγίες πρόσβασης',
 
     'hero.kicker': 'Με αγάπη για κάθε ζώο',
-    'hero.title': 'Φροντίδα που νιώθει σαν στο σπίτι',
+    'hero.title': 'Εκεί που κάθε κατοικίδιο νιώθει ασφαλές, αγαπημένο και σαν στο σπίτι του.',
     'hero.lead':
       'Το Vet & Pet είναι το νέο κτηνιατρείο και pet shop της Κατερίνας - ένας ζεστός χώρος όπου κάθε κατοικίδιο αντιμετωπίζεται με υπομονή, σεβασμό και αληθινή αγάπη.',
 
@@ -194,7 +194,7 @@ export const ui = {
     'cta.directions': 'Get directions',
 
     'hero.kicker': 'With love for every animal',
-    'hero.title': 'Care that feels like home',
+    'hero.title': 'Where every pet feels safe, loved, and at home.',
     'hero.lead':
       "Vet & Pet is Katerina's new veterinary clinic and pet shop - a warm place where every animal is met with patience, respect, and genuine love.",
 
