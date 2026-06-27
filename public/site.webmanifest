@@ -1,0 +1,16 @@
+{
+  "name": "Vet & Pet — Κτηνιατρείο & Pet Shop",
+  "short_name": "Vet & Pet",
+  "description": "Κτηνίατρος και pet shop στην Πρέβεζα. Φροντίδα με αγάπη για κάθε ζώο.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#e8e6da",
+  "theme_color": "#d9531e",
+  "lang": "el",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

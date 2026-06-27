@@ -179,6 +179,7 @@ export const ui = {
     'meta.privacy.desc':
       'Πολιτική απορρήτου και cookies του Vet & Pet: ποια δεδομένα συλλέγουμε, cookies, Google Analytics και τα δικαιώματά σας (GDPR).',
     'nav.privacy': 'Απόρρητο & Cookies',
+    'nav.cookieSettings': 'Ρυθμίσεις cookies',
   },
   en: {
     'lang.el': 'Ελληνικά',
@@ -354,6 +355,7 @@ export const ui = {
     'meta.privacy.desc':
       'Vet & Pet privacy and cookie policy: what data we collect, cookies, Google Analytics, and your rights (GDPR).',
     'nav.privacy': 'Privacy & Cookies',
+    'nav.cookieSettings': 'Cookie settings',
   },
 } as const;
 

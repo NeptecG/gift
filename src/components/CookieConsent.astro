@@ -13,6 +13,7 @@ const privacyHref = locale === 'el' ? '/privacy/' : '/en/privacy/';
     var isGreek = LOCALE === 'el';
 
     function loadGA() {
+      window['ga-disable-' + GA_ID] = false;
       if (window.__gaLoaded) return;
       window.__gaLoaded = true;
       var s = document.createElement('script');
@@ -25,6 +26,10 @@ const privacyHref = locale === 'el' ? '/privacy/' : '/en/privacy/';
       gtag('js', new Date());
       gtag('config', GA_ID, { anonymize_ip: true });
     }
+    function disableGA() {
+      // official GA opt-out: stops any further hits if GA already loaded this session
+      window['ga-disable-' + GA_ID] = true;
+    }
 
     function getConsent() {
       try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; }
@@ -35,11 +40,8 @@ const privacyHref = locale === 'el' ? '/privacy/' : '/en/privacy/';
           necessary: true, analytics: !!analytics, date: new Date().toISOString(),
         }));
       } catch (e) { /* storage unavailable */ }
-      if (analytics) loadGA();
+      if (analytics) loadGA(); else disableGA();
     }
-
-    var existing = getConsent();
-    if (existing) { if (existing.analytics) loadGA(); return; }
 
     var T = isGreek ? {
       title: 'Σεβόμαστε την ιδιωτικότητά σας',
@@ -59,46 +61,64 @@ const privacyHref = locale === 'el' ? '/privacy/' : '/en/privacy/';
       ariaLabel: 'Cookie consent', more: 'Learn more',
     };
 
-    var banner = document.createElement('div');
-    banner.className = 'cookie-banner';
-    banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-modal', 'false');
-    banner.setAttribute('aria-label', T.ariaLabel);
-    banner.innerHTML =
-      '<h3>' + T.title + '</h3>' +
-      '<p>' + T.text + ' <a href="' + PRIVACY + '" class="cookie-policy-link">' + T.more + '</a></p>' +
-      '<div class="cookie-prefs" id="cookie-prefs">' +
-        '<label class="cookie-pref"><span><strong>' + T.necessary + '</strong><small>' + T.necessaryDesc + '</small></span><input type="checkbox" checked disabled></label>' +
-        '<label class="cookie-pref"><span><strong>' + T.analytics + '</strong><small>' + T.analyticsDesc + '</small></span><input type="checkbox" id="cookie-analytics" checked></label>' +
-      '</div>' +
-      '<div class="cookie-actions">' +
-        '<button type="button" class="cookie-btn" id="cookie-customise">' + T.customise + '</button>' +
-        '<button type="button" class="cookie-btn" id="cookie-reject">' + T.reject + '</button>' +
-        '<button type="button" class="cookie-btn primary" id="cookie-accept">' + T.accept + '</button>' +
-      '</div>';
-    document.body.appendChild(banner);
-    requestAnimationFrame(function () { banner.classList.add('show'); });
+    // Builds + shows the banner. `prefilled` = current analytics choice (or true on first visit).
+    // `expanded` = open the per-category toggles straight away (used for re-opening settings).
+    function showBanner(prefilled, expanded) {
+      if (document.querySelector('.cookie-banner')) return;
+      var banner = document.createElement('div');
+      banner.className = 'cookie-banner';
+      banner.setAttribute('role', 'dialog');
+      banner.setAttribute('aria-modal', 'false');
+      banner.setAttribute('aria-label', T.ariaLabel);
+      banner.innerHTML =
+        '<h3>' + T.title + '</h3>' +
+        '<p>' + T.text + ' <a href="' + PRIVACY + '" class="cookie-policy-link">' + T.more + '</a></p>' +
+        '<div class="cookie-prefs' + (expanded ? ' open' : '') + '" id="cookie-prefs">' +
+          '<label class="cookie-pref"><span><strong>' + T.necessary + '</strong><small>' + T.necessaryDesc + '</small></span><input type="checkbox" checked disabled></label>' +
+          '<label class="cookie-pref"><span><strong>' + T.analytics + '</strong><small>' + T.analyticsDesc + '</small></span><input type="checkbox" id="cookie-analytics"' + (prefilled ? ' checked' : '') + '></label>' +
+        '</div>' +
+        '<div class="cookie-actions">' +
+          '<button type="button" class="cookie-btn" id="cookie-customise">' + (expanded ? T.save : T.customise) + '</button>' +
+          '<button type="button" class="cookie-btn" id="cookie-reject">' + T.reject + '</button>' +
+          '<button type="button" class="cookie-btn primary" id="cookie-accept">' + T.accept + '</button>' +
+        '</div>';
+      document.body.appendChild(banner);
+      requestAnimationFrame(function () { banner.classList.add('show'); });
 
-    function closeBanner() {
-      banner.classList.remove('show');
-      setTimeout(function () { banner.remove(); }, 450);
-    }
-    document.getElementById('cookie-accept').addEventListener('click', function () {
-      saveConsent(true); closeBanner();
-    });
-    document.getElementById('cookie-reject').addEventListener('click', function () {
-      saveConsent(false); closeBanner();
-    });
-    document.getElementById('cookie-customise').addEventListener('click', function () {
-      var prefs = document.getElementById('cookie-prefs');
-      var open = prefs.classList.toggle('open');
-      if (open) {
-        this.textContent = T.save;
-      } else {
-        saveConsent(document.getElementById('cookie-analytics').checked);
-        closeBanner();
+      function closeBanner() {
+        banner.classList.remove('show');
+        setTimeout(function () { banner.remove(); }, 450);
       }
-    });
+      banner.querySelector('#cookie-accept').addEventListener('click', function () {
+        saveConsent(true); closeBanner();
+      });
+      banner.querySelector('#cookie-reject').addEventListener('click', function () {
+        saveConsent(false); closeBanner();
+      });
+      banner.querySelector('#cookie-customise').addEventListener('click', function () {
+        var prefs = banner.querySelector('#cookie-prefs');
+        var open = prefs.classList.toggle('open');
+        if (open) {
+          this.textContent = T.save;
+        } else {
+          saveConsent(banner.querySelector('#cookie-analytics').checked);
+          closeBanner();
+        }
+      });
+    }
+
+    // Footer "Cookie settings" link re-opens the banner (GDPR: withdrawal must be easy).
+    window.openCookieSettings = function () {
+      var c = getConsent();
+      showBanner(c ? !!c.analytics : true, true);
+    };
+
+    var existing = getConsent();
+    if (existing) {
+      if (existing.analytics) loadGA(); else disableGA();
+    } else {
+      showBanner(true, false);
+    }
   })();
 </script>
 
