@@ -56,9 +56,10 @@ const C = CONTACT;
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3h3.1l1.6 5-2.2 1.6a12 12 0 0 0 5.3 5.3l1.6-2.2 5 1.6v3.1a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/></svg>
           <span class="foot-chip-tx">{C.phoneLabel}</span>
         </a>
-        <a class="foot-chip foot-chip--text" href={C.mobileHref} aria-label={`${t(locale, 'contact.mobileLabel')}: ${C.mobileLabel}`}>
+        <a class="foot-chip foot-chip--text" href={C.mobileHref} aria-label={`${t(locale, 'contact.mobileLabel')}: ${C.mobileLabel} (${t(locale, 'contact.emergency')})`}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
           <span class="foot-chip-tx">{C.mobileLabel}</span>
+          <span class="foot-emergency">({t(locale, 'contact.emergency')})</span>
         </a>
         <a class="foot-chip foot-chip--text" href={`mailto:${C.email}`} aria-label={`Email: ${C.email}`}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
@@ -151,6 +152,7 @@ const C = CONTACT;
     width: 100%; height: auto; min-height: 2.8rem; padding: 0.55rem 0.85rem;
   }
   .foot-chip-tx { font-size: 0.92rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .foot-emergency { margin-left: 0.7em; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: var(--color-orange); white-space: nowrap; }
   /* text chips: keep readable orange-on-dark on hover (not white-on-orange) */
   .foot-chip--text:hover {
     background: color-mix(in srgb, var(--color-paper) 12%, transparent);
