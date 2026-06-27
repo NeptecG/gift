@@ -18,7 +18,11 @@ const updated = el ? 'Ιούνιος 2026' : 'June 2026';
   {el ? (
     <div class="legal-body">
       <h2>Υπεύθυνος επεξεργασίας</h2>
-      <p>Το Vet & Pet (Κατερίνα Γιαπρού), {CONTACT.addressL1}, {CONTACT.addressL2}. Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> · Τηλ: <a href={CONTACT.phoneHref}>{CONTACT.phoneLabel}</a>.</p>
+      <p class="legal-controller">
+        Το Vet &amp; Pet (Κατερίνα Γιαπρού), {CONTACT.addressL1}, {CONTACT.addressL2}.<br />
+        Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><br />
+        Τηλ: <a href={CONTACT.phoneHref}>{CONTACT.phoneLabel}</a>.
+      </p>
 
       <h2>Ποια δεδομένα συλλέγουμε</h2>
       <p>Δεν χρειάζεται να δημιουργήσετε λογαριασμό για να περιηγηθείτε στον ιστότοπο. Συλλέγουμε δεδομένα μόνο όταν:</p>
@@ -49,7 +53,11 @@ const updated = el ? 'Ιούνιος 2026' : 'June 2026';
   ) : (
     <div class="legal-body">
       <h2>Data controller</h2>
-      <p>Vet & Pet (Katerina Giaprou), {CONTACT.addressL1}, {CONTACT.addressL2}. Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> · Tel: <a href={CONTACT.phoneHref}>{CONTACT.phoneLabel}</a>.</p>
+      <p class="legal-controller">
+        Vet &amp; Pet (Katerina Giaprou), {CONTACT.addressL1}, {CONTACT.addressL2}.<br />
+        Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a><br />
+        Tel: <a href={CONTACT.phoneHref}>{CONTACT.phoneLabel}</a>.
+      </p>
 
       <h2>What data we collect</h2>
       <p>You don't need an account to browse this site. We only collect data when:</p>
@@ -91,6 +99,7 @@ const updated = el ? 'Ιούνιος 2026' : 'June 2026';
     font-size: 1.4rem; margin-top: 2.2rem; margin-bottom: 0.6rem; color: var(--color-ink);
   }
   .legal-body p { margin-bottom: 0.9rem; color: var(--color-ink-soft); line-height: 1.7; }
+  .legal-controller { line-height: 2; }
   .legal-body ul { margin: 0 0 1.1rem 1.2rem; display: grid; gap: 0.5rem; }
   .legal-body li { color: var(--color-ink-soft); line-height: 1.6; }
   .legal-body a { color: var(--color-orange-deep); text-decoration: underline; }

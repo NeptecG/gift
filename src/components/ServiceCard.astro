@@ -30,7 +30,7 @@ const moreLabel = locale === 'el' ? 'Διαβάστε περισσότερα' : 
       <button class="dialog-close" aria-label={locale === 'el' ? 'Κλείσιμο' : 'Close'}>&times;</button>
     </form>
     {image ? (
-      <img class="dialog-img" src={image} alt={title} width="640" height="420" />
+      <img class="dialog-img" src={image} alt={title} width="640" height="400" loading="lazy" decoding="async" />
     ) : (
       <div class="dialog-img dialog-img--icon"><ServiceIcon name={icon} class="dialog-hero-icon" /></div>
     )}

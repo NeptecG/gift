@@ -171,7 +171,7 @@ export const ui = {
 
     'meta.contact.title': 'Επικοινωνία - Vet & Pet',
     'meta.contact.desc':
-      'Επικοινωνήστε με το Vet & Pet. Διεύθυνση, τηλέφωνο, ώρες λειτουργίας και φόρμα επικοινωνίας.',
+      'Επικοινωνήστε με το Vet & Pet στην Πρέβεζα. Διεύθυνση, τηλέφωνο, ώρες λειτουργίας και χάρτης πρόσβασης.',
     'meta.faq.title': 'Συχνές ερωτήσεις - Vet & Pet Πρέβεζα',
     'meta.faq.desc':
       'Συχνές ερωτήσεις για το Vet & Pet στην Πρέβεζα: ώρες, επείγοντα, υπηρεσίες, microchip και διαβατήρια.',
@@ -347,7 +347,7 @@ export const ui = {
 
     'meta.contact.title': 'Contact - Vet & Pet',
     'meta.contact.desc':
-      'Contact Vet & Pet. Address, phone, opening hours, and a contact form.',
+      'Contact Vet & Pet in Preveza. Address, phone, opening hours, and an access map.',
     'meta.faq.title': 'FAQ - Vet & Pet Preveza',
     'meta.faq.desc':
       'Frequently asked questions about Vet & Pet in Preveza: hours, emergencies, services, microchip, and pet passports.',
@@ -361,7 +361,7 @@ export const ui = {
 
 export type UIKey = keyof (typeof ui)['el'];
 
-/** FAQ content — rendered visibly on the home page AND emitted as FAQPage schema.
+/** FAQ content — rendered visibly on the /faq page AND emitted there as FAQPage schema.
  *  Keep the two in sync (Google requires visible text to match the structured data). */
 export const faq: Record<Locale, { q: string; a: string }[]> = {
   el: [
