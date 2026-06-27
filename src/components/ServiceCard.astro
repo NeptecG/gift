@@ -1,5 +1,5 @@
 ---
-import type { Locale } from '../i18n/ui';
+import { type Locale, t, localizedPath } from '../i18n/ui';
 import ServiceIcon from './art/ServiceIcon.astro';
 
 interface Props {
@@ -7,14 +7,40 @@ interface Props {
   icon: string;
   title: string;
   desc: string;
+  details?: string;
+  image?: string;
+  price?: string;
 }
-const { icon, title, desc } = Astro.props;
+const { locale, icon, title, desc, details, image, price } = Astro.props;
+const uid = 'svc-' + Math.random().toString(36).slice(2, 9);
+const body = details || desc; // longer text in the modal, falls back to the short blurb
+const moreLabel = locale === 'el' ? 'Διαβάστε περισσότερα' : 'Read more';
 ---
 
 <article class="svc-card reveal">
-  <span class="svc-icon"><ServiceIcon name={icon} class="svc-icon-svg" /></span>
-  <h3 class="svc-title">{title}</h3>
-  <p class="svc-desc">{desc}</p>
+  <button type="button" class="svc-trigger" aria-haspopup="dialog" aria-controls={uid} aria-label={`${moreLabel}: ${title}`}>
+    <span class="svc-icon"><ServiceIcon name={icon} class="svc-icon-svg" /></span>
+    <h3 class="svc-title">{title}</h3>
+    <p class="svc-desc">{desc}</p>
+    <span class="svc-more">{moreLabel}</span>
+  </button>
+
+  <dialog id={uid} class="svc-dialog" aria-labelledby={`${uid}-title`}>
+    <form method="dialog" class="dialog-closeform">
+      <button class="dialog-close" aria-label={locale === 'el' ? 'Κλείσιμο' : 'Close'}>&times;</button>
+    </form>
+    {image ? (
+      <img class="dialog-img" src={image} alt={title} width="640" height="420" />
+    ) : (
+      <div class="dialog-img dialog-img--icon"><ServiceIcon name={icon} class="dialog-hero-icon" /></div>
+    )}
+    <div class="dialog-content">
+      <h3 id={`${uid}-title`} class="dialog-title">{title}</h3>
+      <p class="dialog-desc">{body}</p>
+      {price && <p class="dialog-price">{price}</p>}
+      <a class="btn btn-primary dialog-cta" href={localizedPath(locale, '/contact')}>{t(locale, 'cta.book')}</a>
+    </div>
+  </dialog>
 </article>
 
 <style>
@@ -22,13 +48,21 @@ const { icon, title, desc } = Astro.props;
     background: var(--color-paper-raised);
     border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
     border-radius: var(--radius-card);
-    padding: 1.6rem 1.5rem;
+    overflow: hidden;
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   }
   .svc-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 22px 40px -26px rgba(26, 22, 14, 0.5);
     border-color: color-mix(in srgb, var(--color-orange) 35%, transparent);
+  }
+
+  /* whole card is the trigger */
+  .svc-trigger {
+    display: flex; flex-direction: column; align-items: flex-start;
+    width: 100%; text-align: left; cursor: pointer;
+    background: none; border: none; font: inherit; color: inherit;
+    padding: 1.6rem 1.5rem;
   }
   .svc-icon {
     display: inline-grid;
@@ -41,4 +75,64 @@ const { icon, title, desc } = Astro.props;
   :global(.svc-icon-svg) { width: 1.7rem; height: 1.7rem; }
   .svc-title { font-size: 1.45rem; margin-top: 1.1rem; }
   .svc-desc { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
+  .svc-more {
+    margin-top: 1rem; font-weight: 600; font-size: 0.95rem; color: var(--color-orange-deep);
+    display: inline-flex; align-items: center; gap: 0.3rem; transition: transform 0.2s ease;
+  }
+  .svc-more::after { content: "→"; transition: transform 0.2s ease; }
+  .svc-trigger:hover .svc-more::after { transform: translateX(3px); }
+
+  /* ---- modal (mirrors the shop product modal) ---- */
+  .svc-dialog {
+    position: fixed; inset: 0; margin: auto;
+    width: min(92vw, 30rem);
+    max-height: 90vh;
+    border: none; padding: 0; border-radius: 1.3rem;
+    background: var(--color-paper-raised); color: var(--color-ink);
+    box-shadow: 0 40px 80px -30px rgba(26, 22, 14, 0.6);
+    overflow: auto;
+  }
+  .svc-dialog::backdrop { background: rgba(26, 22, 14, 0.55); }
+  .svc-dialog[open] { animation: svc-dialog-in 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes svc-dialog-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .svc-dialog[open] { animation: none; } }
+
+  .dialog-closeform { position: absolute; top: 0.6rem; right: 0.6rem; margin: 0; z-index: 2; }
+  .dialog-close {
+    width: 2.2rem; height: 2.2rem; border-radius: 50%; cursor: pointer;
+    border: none; background: color-mix(in srgb, var(--color-paper-raised) 85%, transparent);
+    color: var(--color-ink); font-size: 1.5rem; line-height: 1; display: grid; place-items: center;
+    box-shadow: 0 4px 12px -4px rgba(26, 22, 14, 0.4);
+  }
+  .dialog-close:hover { background: var(--color-ink); color: var(--color-paper-raised); }
+
+  .dialog-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; background: var(--color-sand); }
+  .dialog-img--icon {
+    display: grid; place-items: center;
+    background: var(--color-orange-soft);
+  }
+  :global(.dialog-hero-icon) { width: 4.5rem; height: 4.5rem; color: var(--color-orange-deep); }
+
+  .dialog-content { padding: 1.5rem 1.6rem 1.7rem; }
+  .dialog-title { font-size: 1.7rem; line-height: 1.1; }
+  .dialog-desc { margin-top: 0.8rem; color: var(--color-ink-soft); line-height: 1.65; }
+  .dialog-price {
+    margin-top: 1rem; font-family: var(--font-serif); font-weight: 700; font-size: 1.5rem; color: var(--color-ink);
+  }
+  .dialog-cta { margin-top: 1.4rem; width: 100%; }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.svc-card').forEach((card) => {
+    const dialog = card.querySelector('dialog') as HTMLDialogElement | null;
+    const trigger = card.querySelector('.svc-trigger') as HTMLButtonElement | null;
+    if (!dialog || !trigger) return;
+    trigger.addEventListener('click', () => dialog.showModal());
+    // click outside the dialog box closes it
+    dialog.addEventListener('click', (e) => {
+      const r = dialog.getBoundingClientRect();
+      const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!inside) dialog.close();
+    });
+  });
+</script>

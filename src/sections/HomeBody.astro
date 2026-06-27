@@ -32,7 +32,15 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
   </header>
   <div class="card-grid">
     {services.map((s) => (
-      <ServiceCard locale={locale} icon={s.data.icon} title={locale === 'el' ? s.data.title_el : s.data.title_en} desc={locale === 'el' ? s.data.desc_el : s.data.desc_en} />
+      <ServiceCard
+        locale={locale}
+        icon={s.data.icon}
+        title={locale === 'el' ? s.data.title_el : s.data.title_en}
+        desc={locale === 'el' ? s.data.desc_el : s.data.desc_en}
+        details={locale === 'el' ? s.data.details_el : s.data.details_en}
+        image={s.data.image}
+        price={s.data.price}
+      />
     ))}
   </div>
   <div class="section-cta reveal">
