@@ -39,6 +39,7 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
         desc={locale === 'el' ? s.data.desc_el : s.data.desc_en}
         details={locale === 'el' ? s.data.details_el : s.data.details_en}
         image={s.data.image}
+        iconImage={s.data.iconImage}
         price={s.data.price}
       />
     ))}

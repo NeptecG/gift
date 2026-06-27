@@ -9,9 +9,10 @@ interface Props {
   desc: string;
   details?: string;
   image?: string;
+  iconImage?: string;
   price?: string;
 }
-const { locale, icon, title, desc, details, image, price } = Astro.props;
+const { locale, icon, title, desc, details, image, iconImage, price } = Astro.props;
 const uid = 'svc-' + Math.random().toString(36).slice(2, 9);
 const body = details || desc; // longer text in the modal, falls back to the short blurb
 const moreLabel = locale === 'el' ? 'Διαβάστε περισσότερα' : 'Read more';
@@ -19,7 +20,9 @@ const moreLabel = locale === 'el' ? 'Διαβάστε περισσότερα' : 
 
 <article class="svc-card reveal">
   <button type="button" class="svc-trigger" aria-haspopup="dialog" aria-controls={uid} aria-label={`${moreLabel}: ${title}`}>
-    <span class="svc-icon"><ServiceIcon name={icon} class="svc-icon-svg" /></span>
+    <span class="svc-icon">
+      {iconImage && <img src={iconImage} alt="" class="svc-icon-img" width="50" height="50" loading="lazy" decoding="async" />}
+    </span>
     <h3 class="svc-title">{title}</h3>
     <p class="svc-desc">{desc}</p>
     <span class="svc-more">{moreLabel}</span>
@@ -71,8 +74,10 @@ const moreLabel = locale === 'el' ? 'Διαβάστε περισσότερα' : 
     border-radius: 0.85rem;
     background: var(--color-orange-soft);
     color: var(--color-orange-deep);
+    overflow: hidden;
+    flex: none;
   }
-  :global(.svc-icon-svg) { width: 1.7rem; height: 1.7rem; }
+  .svc-icon-img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
   .svc-title { font-size: 1.45rem; margin-top: 1.1rem; }
   .svc-desc { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
   .svc-more {

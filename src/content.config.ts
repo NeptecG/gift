@@ -33,6 +33,7 @@ const services = defineCollection({
     details_el: z.string().optional(),
     details_en: z.string().optional(),
     image: z.string().optional(), // optional photo for the modal (path under /public)
+    iconImage: z.string().optional(), // optional little icon image for the card box (path under /public)
     price: z.string().optional(), // optional, free text e.g. "από 20€" — Katerina's call
     order: z.number(),
   }),

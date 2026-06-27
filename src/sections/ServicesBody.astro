@@ -25,6 +25,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         desc={locale === 'el' ? s.data.desc_el : s.data.desc_en}
         details={locale === 'el' ? s.data.details_el : s.data.details_en}
         image={s.data.image}
+        iconImage={s.data.iconImage}
         price={s.data.price}
       />
     ))}
