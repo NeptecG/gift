@@ -77,10 +77,8 @@ const moreLabel = locale === 'el' ? 'Διαβάστε περισσότερα' : 
   .svc-desc { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
   .svc-more {
     margin-top: 1rem; font-weight: 600; font-size: 0.95rem; color: var(--color-orange-deep);
-    display: inline-flex; align-items: center; gap: 0.3rem; transition: transform 0.2s ease;
+    display: inline-flex; align-items: center;
   }
-  .svc-more::after { content: "→"; transition: transform 0.2s ease; }
-  .svc-trigger:hover .svc-more::after { transform: translateX(3px); }
 
   /* ---- modal (mirrors the shop product modal) ---- */
   .svc-dialog {
