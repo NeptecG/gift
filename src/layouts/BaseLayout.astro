@@ -7,6 +7,9 @@ import { type Locale, t, type UIKey, localizedPath, faq } from '../i18n/ui';
 import { CONTACT } from '../data/contact';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+
+const GA_ID = 'G-2KGC12RDD2';
 
 interface Props {
   locale: Locale;
@@ -57,6 +60,9 @@ const businessSchema = {
     addressCountry: 'GR',
   },
   areaServed: { '@type': 'City', name: 'Πρέβεζα' },
+  // ponytail: approximate Preveza coordinates — replace with the exact pin from
+  // Google Maps (right-click the clinic -> click the lat,lng to copy) when handy.
+  geo: { '@type': 'GeoCoordinates', latitude: 38.9591, longitude: 20.7514 },
   hasMap: CONTACT.mapDirections,
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '20:00' },
@@ -125,6 +131,7 @@ const faqSchema = isFaq
       <slot />
     </main>
     <Footer locale={locale} />
+    <CookieConsent locale={locale} gaId={GA_ID} />
     <script>
       const els = document.querySelectorAll('.reveal');
       if (els.length) {

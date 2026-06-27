@@ -1,0 +1,98 @@
+---
+import { type Locale } from '../i18n/ui';
+import { CONTACT } from '../data/contact';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const el = locale === 'el';
+const updated = el ? 'Ιούνιος 2026' : 'June 2026';
+---
+
+<section class="container page-head">
+  <p class="kicker reveal">{el ? 'Νομικά' : 'Legal'}</p>
+  <h1 class="page-title reveal" style="--reveal-delay:60ms">{el ? 'Πολιτική Απορρήτου & Cookies' : 'Privacy & Cookie Policy'}</h1>
+  <p class="page-intro reveal" style="--reveal-delay:120ms">{el ? `Τελευταία ενημέρωση: ${updated}` : `Last updated: ${updated}`}</p>
+</section>
+
+<section class="container legal reveal">
+  {el ? (
+    <div class="legal-body">
+      <h2>Υπεύθυνος επεξεργασίας</h2>
+      <p>Το Vet & Pet (Κατερίνα Γιαπρού), {CONTACT.addressL1}, {CONTACT.addressL2}. Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> · Τηλ: <a href={CONTACT.phoneHref}>{CONTACT.phoneLabel}</a>.</p>
+
+      <h2>Ποια δεδομένα συλλέγουμε</h2>
+      <p>Δεν χρειάζεται να δημιουργήσετε λογαριασμό για να περιηγηθείτε στον ιστότοπο. Συλλέγουμε δεδομένα μόνο όταν:</p>
+      <ul>
+        <li><strong>Επικοινωνείτε μαζί μας</strong> (email, τηλέφωνο ή φόρμα): κρατάμε ό,τι μας στείλετε ώστε να απαντήσουμε.</li>
+        <li><strong>Συναινείτε σε στατιστικά cookies</strong>: ανώνυμα δεδομένα επισκεψιμότητας μέσω Google Analytics.</li>
+      </ul>
+
+      <h2>Cookies</h2>
+      <p>Χρησιμοποιούμε δύο κατηγορίες:</p>
+      <ul>
+        <li><strong>Απαραίτητα</strong> — αποθηκεύουν μόνο την επιλογή σας για τα cookies (τοπικά, στον browser σας). Δεν σας παρακολουθούν.</li>
+        <li><strong>Στατιστικά (Google Analytics)</strong> — φορτώνουν <em>μόνο</em> εφόσον πατήσετε «Αποδοχή». Μετρούν ανώνυμα πόσοι επισκέπτονται τις σελίδες μας, με ανωνυμοποίηση IP. Αν πατήσετε «Απόρριψη», δεν τοποθετείται κανένα cookie παρακολούθησης.</li>
+      </ul>
+
+      <h2>Νομική βάση</h2>
+      <p>Τα στατιστικά cookies βασίζονται στη <strong>συγκατάθεσή</strong> σας (άρθρο 6 ΓΚΠΔ). Η επικοινωνία μαζί μας βασίζεται στο έννομο συμφέρον μας να απαντήσουμε στο αίτημά σας.</p>
+
+      <h2>Ανάκληση συγκατάθεσης</h2>
+      <p>Μπορείτε ανά πάσα στιγμή να ανακαλέσετε τη συγκατάθεσή σας καθαρίζοντας τα δεδομένα ιστότοπου (cookies/storage) από τον browser σας. Στην επόμενη επίσκεψη θα εμφανιστεί ξανά το μήνυμα για τα cookies.</p>
+
+      <h2>Τα δικαιώματά σας</h2>
+      <p>Έχετε δικαίωμα πρόσβασης, διόρθωσης, διαγραφής και εναντίωσης στα δεδομένα σας. Για οποιοδήποτε αίτημα, επικοινωνήστε στο <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>. Έχετε επίσης δικαίωμα καταγγελίας στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (<a href="https://www.dpa.gr" target="_blank" rel="noopener">dpa.gr</a>).</p>
+
+      <h2>Τρίτα μέρη</h2>
+      <p>Google Analytics (Google Ireland Ltd) για ανώνυμα στατιστικά. Ο χάρτης φορτώνεται από το Google Maps. Δεν πουλάμε δεδομένα σε τρίτους.</p>
+    </div>
+  ) : (
+    <div class="legal-body">
+      <h2>Data controller</h2>
+      <p>Vet & Pet (Katerina Giaprou), {CONTACT.addressL1}, {CONTACT.addressL2}. Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> · Tel: <a href={CONTACT.phoneHref}>{CONTACT.phoneLabel}</a>.</p>
+
+      <h2>What data we collect</h2>
+      <p>You don't need an account to browse this site. We only collect data when:</p>
+      <ul>
+        <li><strong>You contact us</strong> (email, phone, or form): we keep what you send so we can reply.</li>
+        <li><strong>You consent to analytics cookies</strong>: anonymous traffic data via Google Analytics.</li>
+      </ul>
+
+      <h2>Cookies</h2>
+      <p>We use two categories:</p>
+      <ul>
+        <li><strong>Necessary</strong> — store only your cookie choice (locally, in your browser). They don't track you.</li>
+        <li><strong>Analytics (Google Analytics)</strong> — load <em>only</em> if you click "Accept". They anonymously measure how many people visit our pages, with IP anonymisation. If you click "Reject", no tracking cookie is set.</li>
+      </ul>
+
+      <h2>Legal basis</h2>
+      <p>Analytics cookies rely on your <strong>consent</strong> (Art. 6 GDPR). Contacting us relies on our legitimate interest in answering your request.</p>
+
+      <h2>Withdrawing consent</h2>
+      <p>You can withdraw consent any time by clearing this site's data (cookies/storage) in your browser. The cookie notice will appear again on your next visit.</p>
+
+      <h2>Your rights</h2>
+      <p>You have the right to access, correct, delete, and object to your data. For any request, contact <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>. You may also lodge a complaint with the Hellenic Data Protection Authority (<a href="https://www.dpa.gr/en" target="_blank" rel="noopener">dpa.gr</a>).</p>
+
+      <h2>Third parties</h2>
+      <p>Google Analytics (Google Ireland Ltd) for anonymous statistics. The map is loaded from Google Maps. We do not sell data to third parties.</p>
+    </div>
+  )}
+</section>
+
+<style>
+  .page-head { padding-top: clamp(2.5rem, 5vw, 4.5rem); padding-bottom: 1rem; max-width: 48rem; }
+  .page-title { font-size: clamp(2.2rem, 1.4rem + 3.4vw, 3.4rem); line-height: 1.06; margin-top: 0.8rem; }
+  .page-intro { margin-top: 1rem; font-size: 1.05rem; color: var(--color-ink-faint); }
+
+  .legal { padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .legal-body { max-width: 44rem; }
+  .legal-body h2 {
+    font-size: 1.4rem; margin-top: 2.2rem; margin-bottom: 0.6rem; color: var(--color-ink);
+  }
+  .legal-body p { margin-bottom: 0.9rem; color: var(--color-ink-soft); line-height: 1.7; }
+  .legal-body ul { margin: 0 0 1.1rem 1.2rem; display: grid; gap: 0.5rem; }
+  .legal-body li { color: var(--color-ink-soft); line-height: 1.6; }
+  .legal-body a { color: var(--color-orange-deep); text-decoration: underline; }
+  .legal-body a:hover { color: var(--color-orange); }
+</style>

@@ -175,6 +175,10 @@ export const ui = {
     'meta.faq.title': 'Συχνές ερωτήσεις - Vet & Pet Πρέβεζα',
     'meta.faq.desc':
       'Συχνές ερωτήσεις για το Vet & Pet στην Πρέβεζα: ώρες, επείγοντα, υπηρεσίες, microchip και διαβατήρια.',
+    'meta.privacy.title': 'Πολιτική Απορρήτου & Cookies - Vet & Pet',
+    'meta.privacy.desc':
+      'Πολιτική απορρήτου και cookies του Vet & Pet: ποια δεδομένα συλλέγουμε, cookies, Google Analytics και τα δικαιώματά σας (GDPR).',
+    'nav.privacy': 'Απόρρητο & Cookies',
   },
   en: {
     'lang.el': 'Ελληνικά',
@@ -346,6 +350,10 @@ export const ui = {
     'meta.faq.title': 'FAQ - Vet & Pet Preveza',
     'meta.faq.desc':
       'Frequently asked questions about Vet & Pet in Preveza: hours, emergencies, services, microchip, and pet passports.',
+    'meta.privacy.title': 'Privacy & Cookie Policy - Vet & Pet',
+    'meta.privacy.desc':
+      'Vet & Pet privacy and cookie policy: what data we collect, cookies, Google Analytics, and your rights (GDPR).',
+    'nav.privacy': 'Privacy & Cookies',
   },
 } as const;
 

@@ -1,0 +1,43 @@
+# Vet & Pet — Κτηνιατρείο & Pet Shop, Πρέβεζα
+
+> Veterinary clinic and pet shop in Preveza, Greece, run by veterinarian Katerina Giaprou (Κατερίνα Γιαπρού). Caring, modern small-animal care for dogs and cats, plus a pet shop. Bilingual site (Greek default, English under /en/).
+
+## Key facts
+- Business: Vet & Pet (Κτηνιατρείο & Pet Shop)
+- Veterinarian: Katerina Giaprou (Κατερίνα Γιαπρού)
+- Address: Ιωαννίνων 34B, Πρέβεζα 48100, Greece (Ioanninon 34B, Preveza)
+- Phone: 26820 89457 — Mobile/emergencies: 694 865 9158
+- Email: vetandpetpreveza@gmail.com
+- Hours: Mon–Fri 09:00–20:00, Sat 09:00–15:00, Sun closed
+- Languages: Greek (el), English (en)
+
+## Services
+- Clinical examination / wellness check
+- Vaccinations
+- Microchip and pet passports
+- Diagnostic ultrasound
+- Surgery
+- Dental care
+- Antiparasitic treatment
+- Nutrition advice
+- Pet shop: food, toys, accessories, health products
+
+## Pages
+- [Home (EL)](https://www.vetandpet.gr/): overview of the clinic and pet shop
+- [Services (EL)](https://www.vetandpet.gr/services/): full list of veterinary services
+- [Shop (EL)](https://www.vetandpet.gr/shop/): pet shop products
+- [Gallery (EL)](https://www.vetandpet.gr/gallery/): photos of the clinic
+- [About (EL)](https://www.vetandpet.gr/about/): Katerina's story and values
+- [FAQ (EL)](https://www.vetandpet.gr/faq/): common questions (hours, emergencies, microchip)
+- [Contact (EL)](https://www.vetandpet.gr/contact/): address, phone, map, hours
+- [Privacy & Cookies (EL)](https://www.vetandpet.gr/privacy/)
+
+## English versions
+- [Home (EN)](https://www.vetandpet.gr/en/)
+- [Services (EN)](https://www.vetandpet.gr/en/services/)
+- [FAQ (EN)](https://www.vetandpet.gr/en/faq/)
+- [Contact (EN)](https://www.vetandpet.gr/en/contact/)
+
+## Social
+- Facebook: https://www.facebook.com/vet.and.pet.katerina.giaprou
+- Instagram: https://instagram.com/vet_and_pet_preveza
