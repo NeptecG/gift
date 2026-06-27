@@ -15,8 +15,9 @@ export const CONTACT = {
   viberLabel: '+30 694 865 9158',
   viberHref: 'viber://chat?number=%2B306948659158',
   messengerLabel,
-  facebookHref: 'https://www.facebook.com/vet.and.pet.katerina.giaprou',
-  messengerHref: 'https://m.me/vet.and.pet.katerina.giaprou',
+  facebookHref: 'https://www.facebook.com/vet.and.pet.katerina.giaprou/',
+  // numeric page id (resolved from m.me) — more reliable than the username slug
+  messengerHref: 'https://m.me/792248400630594',
   // full interactive Google embed (keyless): +/- zoom controls + scroll-wheel zoom
   mapEmbed:
     'https://www.google.com/maps/embed?pb=!1m3!2m1!1zzpnPic6xzr3Ovc6vzr3Pic69IDM0QiwgzqDPgc6tzrLOtc62zrEgNDgxIDAw!6i16',
