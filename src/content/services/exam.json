@@ -6,5 +6,6 @@
   "desc_el": "Πλήρης έλεγχος υγείας για έγκαιρη πρόληψη και διάγνωση.",
   "desc_en": "A thorough health check for early prevention and diagnosis.",
   "details_el": "Η κλινική εξέταση περιλαμβάνει πλήρη έλεγχο: καρδιά, αναπνοή, θερμοκρασία, δέρμα, μάτια, αυτιά, στόμα και ψηλάφηση κοιλιάς. Εντοπίζουμε έγκαιρα τυχόν προβλήματα και σχεδιάζουμε μαζί το επόμενο βήμα.",
-  "details_en": "The clinical examination is a full check-up: heart, breathing, temperature, skin, eyes, ears, mouth and abdominal palpation. We catch issues early and plan the next step together."
+  "details_en": "The clinical examination is a full check-up: heart, breathing, temperature, skin, eyes, ears, mouth and abdominal palpation. We catch issues early and plan the next step together.",
+  "iconImage": "/images/services/icons/clinical-exam.png"
 }

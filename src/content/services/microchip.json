@@ -6,5 +6,6 @@
   "desc_el": "Ηλεκτρονική ταυτοποίηση και έκδοση διαβατηρίου για ταξίδια.",
   "desc_en": "Electronic ID and pet passport issuance for travel.",
   "details_el": "Τοποθετούμε microchip για μόνιμη ηλεκτρονική ταυτοποίηση και αναλαμβάνουμε την καταχώρηση και την έκδοση διαβατηρίου, ώστε το κατοικίδιό σας να ταξιδεύει νόμιμα και με ασφάλεια.",
-  "details_en": "We place a microchip for permanent electronic ID and handle registration and passport issuance, so your pet can travel legally and safely."
+  "details_en": "We place a microchip for permanent electronic ID and handle registration and passport issuance, so your pet can travel legally and safely.",
+  "iconImage": "/images/services/icons/microchip-passport.png"
 }

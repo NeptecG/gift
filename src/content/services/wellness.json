@@ -6,5 +6,6 @@
   "desc_el": "Τακτική παρακολούθηση για μια μακρά, υγιή ζωή.",
   "desc_en": "Regular monitoring for a long, healthy life.",
   "details_el": "Τακτικός προληπτικός έλεγχος που παρακολουθεί την υγεία του ζώου διαχρονικά, εντοπίζει αλλαγές νωρίς και προσαρμόζει τη φροντίδα ανάλογα με την ηλικία και τις ανάγκες του.",
-  "details_en": "A regular wellness check that tracks your pet's health over time, spots changes early and adapts care to its age and needs."
+  "details_en": "A regular wellness check that tracks your pet's health over time, spots changes early and adapts care to its age and needs.",
+  "iconImage": "/images/services/icons/preventive-checkup.png"
 }
