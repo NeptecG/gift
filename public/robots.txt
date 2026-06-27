@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vetandpet.gr/sitemap-index.xml
+Sitemap: https://www.vetandpet.gr/sitemap-index.xml
