@@ -389,10 +389,11 @@ export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
     {
       q: 'Τι κάνω αν φάει κάτι επικίνδυνο (σοκολάτα, φάρμακο, φόλα);',
       a: 'Μην περιμένετε. Σοκολάτα, σταφίδες, φάρμακα, φόλα ή κόκαλα μπορεί να είναι επικίνδυνα. Καλέστε μας αμέσως στο 694 865 9158 και, αν γίνεται, πείτε μας τι και πόσο έφαγε.',
+      aHtml: 'Μην περιμένετε. Σοκολάτα, σταφίδες, φάρμακα, φόλα ή κόκαλα μπορεί να είναι επικίνδυνα.<br />Καλέστε μας αμέσως στο <strong>694 865 9158</strong> και, αν γίνεται, πείτε μας τι και πόσο έφαγε.',
     },
     {
       q: 'Κάθε πότε χρειάζεται αποπαρασίτωση για σκουλήκια και ψύλλους/τσιμπούρια;',
-      a: 'Για εσωτερικά παράσιτα (σκουλήκια) συνήθως κάθε 3 μήνες, και για εξωτερικά (ψύλλοι, τσιμπούρια) μηνιαία ή ανάλογα με το σκεύασμα. Θα φτιάξουμε πρόγραμμα στα μέτρα του ζώου σας.',
+      a: 'Για εσωτερικά παράσιτα (σκουλήκια) συνήθως κάθε 3 μήνες, και για εξωτερικά (ψύλλοι, τσιμπούρια) μηνιαία ή ανάλογα με το σκεύασμα. Θα φτιάξουμε πρόγραμμα στα μέτρα του κατοικιδίου σας.',
     },
     {
       q: 'Πώς βγάζω ή ενημερώνω microchip και βιβλιάριο υγείας;',
@@ -444,6 +445,7 @@ export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
     {
       q: 'What do I do if my pet eats something dangerous (chocolate, medicine, bait poison)?',
       a: 'Do not wait. Chocolate, raisins, medicines, bait poison or bones can be dangerous. Call us immediately at +30 694 865 9158 and, if you can, tell us what and how much was eaten.',
+      aHtml: 'Do not wait. Chocolate, raisins, medicines, bait poison or bones can be dangerous.<br />Call us immediately at <strong>+30 694 865 9158</strong> and, if you can, tell us what and how much was eaten.',
     },
     {
       q: 'How often is deworming and flea/tick control needed?',
