@@ -8,19 +8,17 @@ export const HOURS: Record<Locale, { day: string; value: string }[]> = {
   el: [
     { day: 'Δευτέρα – Σάββατο', value: '10:00–14:00' },
     { day: 'Τρίτη, Πέμπτη, Παρασκευή', value: 'και 18:00–21:00' },
-    { day: 'Κυριακή', value: 'Κλειστά' },
   ],
   en: [
     { day: 'Monday – Saturday', value: '10:00–14:00' },
     { day: 'Tuesday, Thursday, Friday', value: 'plus 18:00–21:00' },
-    { day: 'Sunday', value: 'Closed' },
   ],
 };
 
 /** One-line summary for FAQ / llms.txt. */
 export const HOURS_SUMMARY: Record<Locale, string> = {
-  el: 'Δευτέρα έως Σάββατο 10:00–14:00, και επιπλέον Τρίτη, Πέμπτη, Παρασκευή 18:00–21:00. Κυριακή κλειστά.',
-  en: 'Monday to Saturday 10:00–14:00, plus Tuesday, Thursday, Friday 18:00–21:00. Sunday closed.',
+  el: 'Δευτέρα έως Σάββατο 10:00–14:00, και επιπλέον Τρίτη, Πέμπτη, Παρασκευή 18:00–21:00.',
+  en: 'Monday to Saturday 10:00–14:00, plus Tuesday, Thursday, Friday 18:00–21:00.',
 };
 
 /** schema.org OpeningHoursSpecification (grouped, accurate). */
