@@ -1,6 +1,6 @@
 ---
 // GDPR cookie consent. Google Analytics loads ONLY after the visitor accepts
-// analytics cookies — nothing tracking runs before consent. Choice persists in
+// analytics cookies - nothing tracking runs before consent. Choice persists in
 // localStorage. Adapted from the beach-bar template, themed to this project.
 interface Props { locale: 'el' | 'en'; gaId: string; }
 const { locale, gaId } = Astro.props;
@@ -47,7 +47,7 @@ const privacyHref = locale === 'el' ? '/privacy/' : '/en/privacy/';
       title: 'Σεβόμαστε την ιδιωτικότητά σας',
       text: 'Χρησιμοποιούμε cookies για να αναλύουμε την επισκεψιμότητα και να βελτιώνουμε την εμπειρία σας. Πατώντας «Αποδοχή», συναινείτε στη χρήση στατιστικών cookies.',
       necessary: 'Απαραίτητα', necessaryDesc: 'Απαιτούνται για τη λειτουργία του ιστότοπου',
-      analytics: 'Στατιστικά', analyticsDesc: 'Google Analytics — μας βοηθά να κατανοούμε την επισκεψιμότητα',
+      analytics: 'Στατιστικά', analyticsDesc: 'Google Analytics, μας βοηθά να κατανοούμε την επισκεψιμότητα',
       customise: 'Προσαρμογή', save: 'Αποθήκευση',
       reject: 'Απόρριψη', accept: 'Αποδοχή',
       ariaLabel: 'Συναίνεση cookies', more: 'Μάθετε περισσότερα',
@@ -55,7 +55,7 @@ const privacyHref = locale === 'el' ? '/privacy/' : '/en/privacy/';
       title: 'We value your privacy',
       text: 'We use cookies to analyse traffic and improve your experience. By clicking "Accept", you consent to analytics cookies.',
       necessary: 'Necessary', necessaryDesc: 'Required for the site to work',
-      analytics: 'Analytics', analyticsDesc: 'Google Analytics — helps us understand traffic',
+      analytics: 'Analytics', analyticsDesc: 'Google Analytics, helps us understand traffic',
       customise: 'Customise', save: 'Save',
       reject: 'Reject', accept: 'Accept',
       ariaLabel: 'Cookie consent', more: 'Learn more',

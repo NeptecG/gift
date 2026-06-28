@@ -361,7 +361,7 @@ export const ui = {
 
 export type UIKey = keyof (typeof ui)['el'];
 
-/** FAQ content — rendered visibly on the /faq page AND emitted there as FAQPage schema.
+/** FAQ content - rendered visibly on the /faq page AND emitted there as FAQPage schema.
  *  Keep the two in sync (Google requires visible text to match the structured data). */
 export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
   el: [
@@ -401,7 +401,7 @@ export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
     },
     {
       q: 'Τι χρειάζεται για ταξίδι με κατοικίδιο, εντός ή εκτός Ελλάδας;',
-      a: 'Χρειάζονται τουλάχιστον microchip, έγκυρο αντιλυσσικό εμβόλιο και βιβλιάριο ή διαβατήριο. Για εκτός Ελλάδας μπορεί να απαιτούνται επιπλέον εξετάσεις ανάλογα με τη χώρα — ρωτήστε μας αρκετές εβδομάδες πριν.',
+      a: 'Χρειάζονται τουλάχιστον microchip, έγκυρο αντιλυσσικό εμβόλιο και βιβλιάριο ή διαβατήριο. Για εκτός Ελλάδας μπορεί να απαιτούνται επιπλέον εξετάσεις ανάλογα με τη χώρα. Ρωτήστε μας αρκετές εβδομάδες πριν.',
     },
     {
       q: 'Ποια τροφή είναι κατάλληλη και πόση ποσότητα πρέπει να τρώει;',
@@ -457,7 +457,7 @@ export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
     },
     {
       q: 'What is needed to travel with a pet, inside or outside Greece?',
-      a: 'You will need at least a microchip, a valid rabies vaccine and a health book or passport. For outside Greece, extra tests may be required depending on the country — ask us several weeks in advance.',
+      a: 'You will need at least a microchip, a valid rabies vaccine and a health book or passport. For outside Greece, extra tests may be required depending on the country. Ask us several weeks in advance.',
     },
     {
       q: 'Which food is right and how much should my pet eat?',

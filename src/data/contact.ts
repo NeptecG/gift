@@ -16,7 +16,7 @@ export const CONTACT = {
   viberHref: 'viber://chat?number=%2B306948659158',
   messengerLabel,
   facebookHref: 'https://www.facebook.com/vet.and.pet.katerina.giaprou/',
-  // numeric page id (resolved from m.me) — more reliable than the username slug
+  // numeric page id (resolved from m.me) - more reliable than the username slug
   messengerHref: 'https://m.me/792248400630594',
   // full interactive Google embed (keyless): +/- zoom controls + scroll-wheel zoom
   mapEmbed:

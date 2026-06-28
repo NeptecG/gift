@@ -1,4 +1,4 @@
-# Vet & Pet — Κτηνιατρείο & Pet Shop, Πρέβεζα
+# Vet & Pet - Κτηνιατρείο & Pet Shop, Πρέβεζα
 
 > Veterinary clinic and pet shop in Preveza, Greece, run by veterinarian Katerina Giaprou (Κατερίνα Γιαπρού). Caring, modern small-animal care for dogs and cats, plus a pet shop. Bilingual site (Greek default, English under /en/).
 
@@ -6,7 +6,7 @@
 - Business: Vet & Pet (Κτηνιατρείο & Pet Shop)
 - Veterinarian: Katerina Giaprou (Κατερίνα Γιαπρού)
 - Address: Ιωαννίνων 34B, Πρέβεζα 48100, Greece (Ioanninon 34B, Preveza)
-- Phone: 26820 89457 — Mobile/emergencies: 694 865 9158
+- Phone: 26820 89457. Mobile/emergencies: 694 865 9158
 - Email: vetandpetpreveza@gmail.com
 - Hours: Mon–Fri 09:00–20:00, Sat 09:00–15:00, Sun closed
 - Languages: Greek (el), English (en)

@@ -30,7 +30,7 @@ const ogImage = site + '/og-image.jpg';
 const isHome = path === '/';
 const isFaq = path === '/faq';
 
-// LocalBusiness schema (home only) — services pulled from the content collection so it stays in sync.
+// LocalBusiness schema (home only) - services pulled from the content collection so it stays in sync.
 const serviceList = isHome
   ? (await getCollection('services'))
       .sort((a, b) => a.data.order - b.data.order)
@@ -119,14 +119,14 @@ const faqSchema = isFaq
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Vet & Pet — Κτηνιατρείο & Pet Shop, Πρέβεζα" />
+    <meta property="og:image:alt" content="Vet & Pet - Κτηνιατρείο & Pet Shop, Πρέβεζα" />
     <meta property="og:locale" content={locale === 'el' ? 'el_GR' : 'en_US'} />
     <meta property="og:locale:alternate" content={locale === 'el' ? 'en_US' : 'el_GR'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="Vet & Pet — Κτηνιατρείο & Pet Shop, Πρέβεζα" />
+    <meta name="twitter:image:alt" content="Vet & Pet - Κτηνιατρείο & Pet Shop, Πρέβεζα" />
 
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />}
     {isFaq && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
