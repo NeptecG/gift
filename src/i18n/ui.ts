@@ -366,46 +366,110 @@ export type UIKey = keyof (typeof ui)['el'];
 export const faq: Record<Locale, { q: string; a: string }[]> = {
   el: [
     {
-      q: 'Πού βρίσκεται το Vet & Pet στην Πρέβεζα;',
-      a: 'Βρισκόμαστε στην Ιωαννίνων 34B, Πρέβεζα 48100. Υπάρχει εύκολη πρόσβαση και στάθμευση κοντά.',
+      q: 'Πότε πρέπει να κάνει εμβόλια το κατοικίδιό μου;',
+      a: 'Τα κουτάβια και τα γατάκια συνήθως ξεκινούν εμβόλια από τις 6–8 εβδομάδες, με επαναλήψεις κάθε 3–4 εβδομάδες έως περίπου τους 4 μήνες, και ετήσιες αναμνηστικές δόσεις στη συνέχεια. Το ακριβές πρόγραμμα το προσαρμόζουμε στο ζώο σας.',
     },
     {
-      q: 'Ποιες ώρες λειτουργεί το κτηνιατρείο;',
-      a: 'Δευτέρα έως Παρασκευή 09:00–20:00 και Σάββατο 09:00–15:00. Την Κυριακή είμαστε κλειστά.',
+      q: 'Πότε πρέπει να στειρωθεί ο σκύλος ή η γάτα μου;',
+      a: 'Συνήθως μετά τους 6 μήνες, αλλά η ιδανική ηλικία εξαρτάται από το είδος, τη φυλή και το μέγεθος. Θα σας συμβουλεύσουμε για την κατάλληλη στιγμή στην περίπτωσή σας.',
     },
     {
-      q: 'Δέχεστε επείγοντα περιστατικά;',
-      a: 'Ναι. Για επείγοντα περιστατικά καλέστε μας στο 694 865 9158 και θα σας εξυπηρετήσουμε άμεσα.',
+      q: 'Ποια είναι η κατάλληλη ηλικία για τον πρώτο έλεγχο;',
+      a: 'Ιδανικά φέρτε το νέο σας κατοικίδιο για πρώτο έλεγχο μέσα στις πρώτες ημέρες μετά την υιοθεσία ή την αγορά, ώστε να ελέγξουμε την υγεία του και να ξεκινήσουμε εμβόλια και αποπαρασίτωση.',
     },
     {
-      q: 'Τι υπηρεσίες προσφέρει ο κτηνίατρος;',
-      a: 'Κλινική εξέταση, εμβολιασμούς, microchip, διαγνωστικό υπέρηχο, χειρουργική, οδοντιατρική και διατροφική συμβουλευτική. Λειτουργεί και pet shop με τροφές και αξεσουάρ.',
+      q: 'Είναι φυσιολογικό να μην τρώει ή να κοιμάται περισσότερο;',
+      a: 'Μικρές, σύντομες αλλαγές μπορεί να είναι φυσιολογικές. Αν όμως δεν τρώει για πάνω από 24 ώρες, είναι άτονο ή αλλάζει απότομα η συμπεριφορά του, καλέστε μας για έλεγχο.',
     },
     {
-      q: 'Κάνετε microchip και έκδοση διαβατηρίου;',
-      a: 'Ναι, τοποθετούμε microchip και σας βοηθάμε με την έκδοση διαβατηρίου και τα ταξιδιωτικά έγγραφα του κατοικιδίου σας.',
+      q: 'Ποια συμπτώματα είναι επείγοντα;',
+      a: 'Επείγοντα θεωρούνται: δυσκολία στην αναπνοή, συνεχείς εμετοί ή διάρροια, έντονη αδυναμία, αιμορραγία, σπασμοί ή φουσκωμένη κοιλιά. Σε αυτές τις περιπτώσεις καλέστε αμέσως στο 694 865 9158.',
+    },
+    {
+      q: 'Τι κάνω αν φάει κάτι επικίνδυνο (σοκολάτα, φάρμακο, φόλα);',
+      a: 'Μην περιμένετε. Σοκολάτα, σταφίδες, φάρμακα, φόλα ή κόκαλα μπορεί να είναι επικίνδυνα. Καλέστε μας αμέσως στο 694 865 9158 και, αν γίνεται, πείτε μας τι και πόσο έφαγε.',
+    },
+    {
+      q: 'Κάθε πότε χρειάζεται αποπαρασίτωση για σκουλήκια και ψύλλους/τσιμπούρια;',
+      a: 'Για εσωτερικά παράσιτα (σκουλήκια) συνήθως κάθε 3 μήνες, και για εξωτερικά (ψύλλοι, τσιμπούρια) μηνιαία ή ανάλογα με το σκεύασμα. Θα φτιάξουμε πρόγραμμα στα μέτρα του ζώου σας.',
+    },
+    {
+      q: 'Πώς βγάζω ή ενημερώνω microchip και βιβλιάριο υγείας;',
+      a: 'Τοποθετούμε microchip, το καταχωρούμε και ενημερώνουμε ή εκδίδουμε βιβλιάριο υγείας ή διαβατήριο. Φέρτε τυχόν προηγούμενα έγγραφα, αν υπάρχουν.',
+    },
+    {
+      q: 'Τι χρειάζεται για ταξίδι με κατοικίδιο, εντός ή εκτός Ελλάδας;',
+      a: 'Χρειάζονται τουλάχιστον microchip, έγκυρο αντιλυσσικό εμβόλιο και βιβλιάριο ή διαβατήριο. Για εκτός Ελλάδας μπορεί να απαιτούνται επιπλέον εξετάσεις ανάλογα με τη χώρα — ρωτήστε μας αρκετές εβδομάδες πριν.',
+    },
+    {
+      q: 'Ποια τροφή είναι κατάλληλη και πόση ποσότητα πρέπει να τρώει;',
+      a: 'Η κατάλληλη τροφή και ποσότητα εξαρτώνται από την ηλικία, το βάρος, τη δραστηριότητα και την υγεία. Στη διατροφική συμβουλευτική φτιάχνουμε εξατομικευμένο πλάνο.',
+    },
+    {
+      q: 'Πότε χρειάζεται καθαρισμό δοντιών;',
+      a: 'Όταν υπάρχει πέτρα, κακοσμία, ερεθισμένα ούλα ή δυσκολία στο φαγητό. Σε τακτικό έλεγχο σάς λέμε αν χρειάζεται καθαρισμός.',
+    },
+    {
+      q: 'Πού βρίσκεστε και ποιες ώρες λειτουργείτε;',
+      a: 'Ιωαννίνων 34B, Πρέβεζα 48100. Δευτέρα–Παρασκευή 09:00–20:00, Σάββατο 09:00–15:00, Κυριακή κλειστά. Για επείγοντα: 694 865 9158.',
+    },
+    {
+      q: 'Πόσο κοστίζουν οι υπηρεσίες;',
+      a: 'Το κόστος εξαρτάται από την υπηρεσία και την περίπτωση του ζώου. Καλέστε μας ή περάστε από το ιατρείο και θα σας ενημερώσουμε με σαφήνεια πριν από κάθε πράξη.',
     },
   ],
   en: [
     {
-      q: 'Where is Vet & Pet located in Preveza?',
-      a: 'We are at Ioanninon 34B, Preveza 48100, with easy access and parking nearby.',
+      q: 'When should my pet be vaccinated?',
+      a: 'Puppies and kittens usually start vaccinations at 6–8 weeks, with boosters every 3–4 weeks until about 4 months, then yearly boosters. We tailor the exact schedule to your pet.',
     },
     {
-      q: 'What are the clinic opening hours?',
-      a: 'Monday to Friday 09:00–20:00 and Saturday 09:00–15:00. We are closed on Sundays.',
+      q: 'When should my dog or cat be neutered?',
+      a: 'Usually after 6 months, but the ideal age depends on species, breed and size. We will advise you on the right time for your pet.',
     },
     {
-      q: 'Do you handle emergencies?',
-      a: 'Yes. For emergencies call us at +30 694 865 9158 and we will help you right away.',
+      q: 'What is the right age for a first check-up?',
+      a: 'Ideally bring your new pet for a first check within the first few days after adoption or purchase, so we can assess its health and start vaccinations and parasite control.',
     },
     {
-      q: 'What services does the vet offer?',
-      a: 'Clinical examination, vaccinations, microchip, diagnostic ultrasound, surgery, dental and nutrition advice. We also run a pet shop with food and accessories.',
+      q: 'Is it normal for my pet to eat less or sleep more?',
+      a: 'Small, brief changes can be normal. But if your pet will not eat for over 24 hours, is lethargic, or its behaviour changes suddenly, call us for a check.',
     },
     {
-      q: 'Do you do microchipping and pet passports?',
-      a: 'Yes, we place microchips and help you with pet passports and travel documents for your pet.',
+      q: 'Which symptoms are an emergency?',
+      a: 'Urgent signs include difficulty breathing, repeated vomiting or diarrhoea, severe weakness, bleeding, seizures or a bloated abdomen. In these cases call us immediately at +30 694 865 9158.',
+    },
+    {
+      q: 'What do I do if my pet eats something dangerous (chocolate, medicine, bait poison)?',
+      a: 'Do not wait. Chocolate, raisins, medicines, bait poison or bones can be dangerous. Call us immediately at +30 694 865 9158 and, if you can, tell us what and how much was eaten.',
+    },
+    {
+      q: 'How often is deworming and flea/tick control needed?',
+      a: 'For internal parasites (worms) usually every 3 months, and for external ones (fleas, ticks) monthly or per product. We will set up a plan suited to your pet.',
+    },
+    {
+      q: 'How do I get or update a microchip and health book?',
+      a: 'We place the microchip, register it, and update or issue the health book or passport. Bring any previous documents if you have them.',
+    },
+    {
+      q: 'What is needed to travel with a pet, inside or outside Greece?',
+      a: 'You will need at least a microchip, a valid rabies vaccine and a health book or passport. For outside Greece, extra tests may be required depending on the country — ask us several weeks in advance.',
+    },
+    {
+      q: 'Which food is right and how much should my pet eat?',
+      a: 'The right food and amount depend on age, weight, activity and health. In a nutrition consultation we build a personalised plan.',
+    },
+    {
+      q: 'When is a dental cleaning needed?',
+      a: 'When there is tartar, bad breath, irritated gums or trouble eating. At a routine check we will tell you if a cleaning is needed.',
+    },
+    {
+      q: 'Where are you and what are your hours?',
+      a: 'Ioanninon 34B, Preveza 48100. Monday–Friday 09:00–20:00, Saturday 09:00–15:00, closed Sunday. For emergencies: +30 694 865 9158.',
+    },
+    {
+      q: 'How much do the services cost?',
+      a: 'Cost depends on the service and your pet\'s case. Call us or drop by the clinic and we will give you a clear estimate before any procedure.',
     },
   ],
 };
