@@ -8,9 +8,9 @@ const { locale } = Astro.props;
 
 // img: optional icon image for the #F0D9CC box (path under /public). Empty box until set.
 const values: { t: string; d: string; img?: string }[] = [
-  { t: t(locale, 'about.value1.title'), d: t(locale, 'about.value1.body') },
-  { t: t(locale, 'about.value2.title'), d: t(locale, 'about.value2.body') },
-  { t: t(locale, 'about.value3.title'), d: t(locale, 'about.value3.body') },
+  { t: t(locale, 'about.value1.title'), d: t(locale, 'about.value1.body'), img: '/images/about/values/love.png' },
+  { t: t(locale, 'about.value2.title'), d: t(locale, 'about.value2.body'), img: '/images/about/values/respect.png' },
+  { t: t(locale, 'about.value3.title'), d: t(locale, 'about.value3.body'), img: '/images/about/values/science.png' },
 ];
 ---
 
