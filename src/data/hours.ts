@@ -6,8 +6,8 @@ import type { Locale } from '../i18n/ui';
 /** Rows for display (label + value), accurate and compact. */
 export const HOURS: Record<Locale, { day: string; value: string }[]> = {
   el: [
-    { day: 'Δευτέρα έως Σάββατο', value: '10:00 π.μ. – 14:00 μ.μ.' },
-    { day: 'Τρίτη, Πέμπτη & Παρασκευή', value: 'και 18:00 μ.μ. – 21:00 μ.μ.' },
+    { day: 'Δευτέρα έως Σάββατο', value: '10:00 – 14:00' },
+    { day: 'Τρίτη, Πέμπτη & Παρασκευή', value: 'και 18:00 – 21:00' },
   ],
   en: [
     { day: 'Monday to Saturday', value: '10:00–14:00' },
