@@ -51,7 +51,7 @@ const values: { t: string; d: string; img?: string }[] = [
   <div class="values-grid">
     {values.map((v, i) => (
       <article class="value-card reveal" style={`--reveal-delay:${i * 90}ms`}>
-        <span class="value-paw">{v.img && <img src={v.img} alt="" class="value-paw-img" width="40" height="40" loading="lazy" decoding="async" />}</span>
+        <span class="value-paw" data-val={v.img?.split('/').pop()?.replace('.png', '')}>{v.img && <img src={v.img} alt="" class="value-paw-img" width="40" height="40" loading="lazy" decoding="async" />}</span>
         <h3 class="value-name">{v.t}</h3>
         <p class="value-body">{v.d}</p>
       </article>
@@ -98,6 +98,8 @@ const values: { t: string; d: string; img?: string }[] = [
   }
   .value-paw { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border-radius: 0.8rem; background: var(--color-orange-soft); overflow: hidden; }
   .value-paw-img { width: 1.9rem; height: 1.9rem; object-fit: contain; display: block; }
+  /* science is tall + thin, reads small — bump it 30% like the stethoscope */
+  .value-paw[data-val="science"] .value-paw-img { width: 2.47rem; height: 2.47rem; }
   .value-name { font-size: 1.5rem; margin-top: 1rem; }
   .value-body { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
   .values-cta { margin-top: 2.5rem; display: flex; justify-content: center; }
