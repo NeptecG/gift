@@ -1,13 +1,13 @@
 ---
 import { type Locale, t, localizedPath } from '../i18n/ui';
 import { Image } from 'astro:assets';
-import CatAccent from '../components/art/CatAccent.astro';
 import katerina from '../assets/about-katerina.jpg';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 
-const values = [
+// img: optional icon image for the #F0D9CC box (path under /public). Empty box until set.
+const values: { t: string; d: string; img?: string }[] = [
   { t: t(locale, 'about.value1.title'), d: t(locale, 'about.value1.body') },
   { t: t(locale, 'about.value2.title'), d: t(locale, 'about.value2.body') },
   { t: t(locale, 'about.value3.title'), d: t(locale, 'about.value3.body') },
@@ -51,7 +51,7 @@ const values = [
   <div class="values-grid">
     {values.map((v, i) => (
       <article class="value-card reveal" style={`--reveal-delay:${i * 90}ms`}>
-        <span class="value-paw"><CatAccent variant="paw" class="value-paw-svg" /></span>
+        <span class="value-paw">{v.img && <img src={v.img} alt="" class="value-paw-img" width="40" height="40" loading="lazy" decoding="async" />}</span>
         <h3 class="value-name">{v.t}</h3>
         <p class="value-body">{v.d}</p>
       </article>
@@ -96,8 +96,8 @@ const values = [
     border: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
     border-radius: var(--radius-card); padding: 1.8rem 1.6rem;
   }
-  .value-paw { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border-radius: 0.8rem; background: var(--color-orange-soft); }
-  :global(.value-paw-svg) { width: 1.6rem; height: 1.6rem; color: var(--color-orange-deep); }
+  .value-paw { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border-radius: 0.8rem; background: var(--color-orange-soft); overflow: hidden; }
+  .value-paw-img { width: 1.9rem; height: 1.9rem; object-fit: contain; display: block; }
   .value-name { font-size: 1.5rem; margin-top: 1rem; }
   .value-body { margin-top: 0.5rem; color: var(--color-ink-soft); line-height: 1.55; }
   .values-cta { margin-top: 2.5rem; display: flex; justify-content: center; }
