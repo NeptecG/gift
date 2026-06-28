@@ -5,6 +5,7 @@ import '../styles/global.css';
 import { getCollection } from 'astro:content';
 import { type Locale, t, type UIKey, localizedPath, faq } from '../i18n/ui';
 import { CONTACT } from '../data/contact';
+import { OPENING_HOURS_SCHEMA } from '../data/hours';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
@@ -65,10 +66,7 @@ const businessSchema = {
   areaServed: { '@type': 'City', name: 'Πρέβεζα' },
   geo: { '@type': 'GeoCoordinates', latitude: 38.96507457378602, longitude: 20.74910738429623 },
   hasMap: CONTACT.mapDirections,
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '20:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '15:00' },
-  ],
+  openingHoursSpecification: OPENING_HOURS_SCHEMA,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: locale === 'el' ? 'Υπηρεσίες' : 'Services',

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { type Locale, t, localizedPath } from '../i18n/ui';
+import { HOURS } from '../data/hours';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProductCard from '../components/ProductCard.astro';
@@ -93,7 +94,7 @@ const featured = (allProducts.filter((p) => p.data.featured).length ? allProduct
         </div>
         <div>
           <dt>{t(locale, 'home.visit.hoursLabel')}</dt>
-          <dd>{t(locale, 'hours.weekdays')}: {t(locale, 'hours.weekdaysValue')}<br />{t(locale, 'hours.saturday')}: {t(locale, 'hours.saturdayValue')}</dd>
+          <dd>{HOURS[locale].map((h, i) => (<>{i > 0 && <br />}{h.day}: {h.value}</>))}</dd>
         </div>
       </dl>
       <div class="visit-actions">

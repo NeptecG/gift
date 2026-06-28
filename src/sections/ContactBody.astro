@@ -1,6 +1,7 @@
 ---
 import { type Locale, t } from '../i18n/ui';
 import { CONTACT } from '../data/contact';
+import { HOURS } from '../data/hours';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -34,9 +35,9 @@ const { locale } = Astro.props;
       <div>
         <dt>{t(locale, 'contact.hoursLabel')}</dt>
         <dd>
-          {t(locale, 'hours.weekdays')}: {t(locale, 'hours.weekdaysValue')}<br />
-          {t(locale, 'hours.saturday')}: {t(locale, 'hours.saturdayValue')}<br />
-          {t(locale, 'hours.sunday')}: {t(locale, 'hours.closed')}
+          {HOURS[locale].map((h, i) => (
+            <>{i > 0 && <br />}{h.day}: {h.value}</>
+          ))}
         </dd>
       </div>
     </dl>

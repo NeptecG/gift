@@ -1,6 +1,7 @@
 ---
 import { type Locale, t, localizedPath } from '../i18n/ui';
 import { CONTACT } from '../data/contact';
+import { HOURS } from '../data/hours';
 
 interface Props {
   locale: Locale;
@@ -42,9 +43,9 @@ const C = CONTACT;
       <a class="foot-addr" href={localizedPath(locale, '/contact')}>{C.addressL1}<br />{C.addressL2}</a>
       <h2 class="foot-h foot-h--sub">{t(locale, 'contact.hoursLabel')}</h2>
       <dl class="foot-hours">
-        <div><dt>{t(locale, 'hours.weekdays')}</dt><dd>{t(locale, 'hours.weekdaysValue')}</dd></div>
-        <div><dt>{t(locale, 'hours.saturday')}</dt><dd>{t(locale, 'hours.saturdayValue')}</dd></div>
-        <div><dt>{t(locale, 'hours.sunday')}</dt><dd>{t(locale, 'hours.closed')}</dd></div>
+        {HOURS[locale].map((h) => (
+          <div><dt>{h.day}</dt><dd>{h.value}</dd></div>
+        ))}
       </dl>
     </div>
 
@@ -129,8 +130,8 @@ const C = CONTACT;
   .foot-addr { display: inline-block; line-height: 1.5; color: color-mix(in srgb, var(--color-paper) 80%, transparent); }
 
   .foot-hours { display: flex; flex-direction: column; gap: 0.55rem; }
-  .foot-hours > div { display: flex; justify-content: space-between; gap: 1.5rem; white-space: nowrap; }
-  .foot-hours dt { color: color-mix(in srgb, var(--color-paper) 65%, transparent); }
+  .foot-hours > div { display: flex; flex-direction: column; gap: 0.1rem; }
+  .foot-hours dt { color: color-mix(in srgb, var(--color-paper) 65%, transparent); font-size: 0.92rem; }
   .foot-hours dd { color: var(--color-paper-raised); font-variant-numeric: tabular-nums; }
 
   /* contact column: text chips + social icon row */
