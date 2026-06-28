@@ -363,7 +363,7 @@ export type UIKey = keyof (typeof ui)['el'];
 
 /** FAQ content — rendered visibly on the /faq page AND emitted there as FAQPage schema.
  *  Keep the two in sync (Google requires visible text to match the structured data). */
-export const faq: Record<Locale, { q: string; a: string }[]> = {
+export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
   el: [
     {
       q: 'Πότε πρέπει να κάνει εμβόλια το κατοικίδιό μου;',
@@ -384,6 +384,7 @@ export const faq: Record<Locale, { q: string; a: string }[]> = {
     {
       q: 'Ποια συμπτώματα είναι επείγοντα;',
       a: 'Επείγοντα θεωρούνται: δυσκολία στην αναπνοή, συνεχείς εμετοί ή διάρροια, έντονη αδυναμία, αιμορραγία, σπασμοί ή φουσκωμένη κοιλιά. Σε αυτές τις περιπτώσεις καλέστε αμέσως στο 694 865 9158.',
+      aHtml: 'Επείγοντα θεωρούνται: δυσκολία στην αναπνοή, συνεχείς εμετοί ή διάρροια, έντονη αδυναμία, αιμορραγία, σπασμοί ή φουσκωμένη κοιλιά.<br />Σε αυτές τις περιπτώσεις καλέστε αμέσως στο <strong>694 865 9158</strong>.',
     },
     {
       q: 'Τι κάνω αν φάει κάτι επικίνδυνο (σοκολάτα, φάρμακο, φόλα);',
@@ -438,6 +439,7 @@ export const faq: Record<Locale, { q: string; a: string }[]> = {
     {
       q: 'Which symptoms are an emergency?',
       a: 'Urgent signs include difficulty breathing, repeated vomiting or diarrhoea, severe weakness, bleeding, seizures or a bloated abdomen. In these cases call us immediately at +30 694 865 9158.',
+      aHtml: 'Urgent signs include difficulty breathing, repeated vomiting or diarrhoea, severe weakness, bleeding, seizures or a bloated abdomen.<br />In these cases call us immediately at <strong>+30 694 865 9158</strong>.',
     },
     {
       q: 'What do I do if my pet eats something dangerous (chocolate, medicine, bait poison)?',

@@ -16,7 +16,7 @@ const { locale } = Astro.props;
     {faq[locale].map((item) => (
       <details class="faq-item">
         <summary class="faq-q">{item.q}</summary>
-        <p class="faq-a">{item.a}</p>
+        <p class="faq-a" set:html={item.aHtml ?? item.a}></p>
       </details>
     ))}
   </div>
