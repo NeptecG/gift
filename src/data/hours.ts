@@ -7,7 +7,7 @@ import type { Locale } from '../i18n/ui';
 export const HOURS: Record<Locale, { day: string; value: string }[]> = {
   el: [
     { day: 'Δευτέρα έως Σάββατο', value: 'Πρωί: 10:00 – 14:00' },
-    { day: 'Τρίτη, Πέμπτη & Παρασκευή', value: 'και απόγευμα: 18:00 – 21:00' },
+    { day: 'Τρίτη, Πέμπτη & Παρασκευή', value: 'Και απόγευμα: 18:00 – 21:00' },
   ],
   en: [
     { day: 'Monday to Saturday', value: 'Morning: 10:00 – 14:00' },
