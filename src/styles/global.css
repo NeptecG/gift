@@ -29,7 +29,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    color-scheme: light;
+    color-scheme: only light; /* opt out of browser auto/forced dark mode */
   }
   body {
     background-color: var(--color-paper);
