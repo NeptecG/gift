@@ -11,7 +11,7 @@ export const HOURS: Record<Locale, { day: string; value: string }[]> = {
   ],
   en: [
     { day: 'Monday to Saturday', value: 'Morning: 10:00 – 14:00' },
-    { day: 'Tuesday, Thursday & Friday', value: 'plus afternoon: 18:00 – 21:00' },
+    { day: 'Tuesday, Thursday & Friday', value: 'Plus afternoon: 18:00 – 21:00' },
   ],
 };
 
