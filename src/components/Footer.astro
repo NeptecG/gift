@@ -1,7 +1,9 @@
 ---
 import { type Locale, t, localizedPath } from '../i18n/ui';
+import { Image } from 'astro:assets';
 import { CONTACT } from '../data/contact';
 import { HOURS } from '../data/hours';
+import logoFooter from '../assets/logo-footer.png';
 
 interface Props {
   locale: Locale;
@@ -25,7 +27,7 @@ const C = CONTACT;
 <footer class="site-footer">
   <div class="foot-main container grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-[1.5fr_0.8fr_1fr_1.25fr]">
     <div class="foot-brand">
-      <img src="/logo.png" class="foot-logo" alt="Vet & Pet" width="120" height="120" />
+      <Image src={logoFooter} class="foot-logo" alt="Vet & Pet" format="webp" widths={[170, 340]} sizes="170px" />
       <p class="foot-tagline">{t(locale, 'footer.tagline')}<br />{t(locale, 'footer.tagline2')}</p>
     </div>
 
