@@ -6,19 +6,19 @@ import type { Locale } from '../i18n/ui';
 /** Rows for display (label + value), accurate and compact. */
 export const HOURS: Record<Locale, { day: string; value: string }[]> = {
   el: [
-    { day: 'Δευτέρα έως Σάββατο', value: 'Πρωί: 10:00 – 14:00' },
-    { day: 'Τρίτη, Πέμπτη & Παρασκευή', value: 'Και απόγευμα: 18:00 – 21:00' },
+    { day: 'Δευτέρα, Τετάρτη & Σάββατο', value: '10:00 – 14:00' },
+    { day: 'Τρίτη, Πέμπτη & Παρασκευή', value: '10:00 – 14:00 & 18:00 – 21:00' },
   ],
   en: [
-    { day: 'Monday to Saturday', value: 'Morning: 10:00 – 14:00' },
-    { day: 'Tuesday, Thursday & Friday', value: 'Plus afternoon: 18:00 – 21:00' },
+    { day: 'Monday, Wednesday & Saturday', value: '10:00 – 14:00' },
+    { day: 'Tuesday, Thursday & Friday', value: '10:00 – 14:00 & 18:00 – 21:00' },
   ],
 };
 
 /** One-line summary for FAQ / llms.txt. */
 export const HOURS_SUMMARY: Record<Locale, string> = {
-  el: 'Δευτέρα έως Σάββατο 10:00–14:00, και επιπλέον Τρίτη, Πέμπτη, Παρασκευή 18:00–21:00.',
-  en: 'Monday to Saturday 10:00–14:00, plus Tuesday, Thursday, Friday 18:00–21:00.',
+  el: 'Δευτέρα, Τετάρτη, Σάββατο 10:00–14:00. Τρίτη, Πέμπτη, Παρασκευή 10:00–14:00 και 18:00–21:00.',
+  en: 'Monday, Wednesday, Saturday 10:00–14:00. Tuesday, Thursday, Friday 10:00–14:00 and 18:00–21:00.',
 };
 
 /** schema.org OpeningHoursSpecification (grouped, accurate). */

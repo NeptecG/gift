@@ -401,8 +401,8 @@ export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
     },
     {
       q: 'Πού βρίσκεστε και ποιες ώρες λειτουργείτε;',
-      a: 'Ιωαννίνων 34B, Πρέβεζα 48100. Δευτέρα έως Σάββατο 10:00–14:00, και επιπλέον Τρίτη, Πέμπτη, Παρασκευή 18:00–21:00. Για επείγοντα: 694 865 9158.',
-      aHtml: 'Ιωαννίνων 34B, Πρέβεζα 48100. Δευτέρα έως Σάββατο 10:00–14:00, και επιπλέον Τρίτη, Πέμπτη, Παρασκευή 18:00–21:00. Για επείγοντα: <strong>694 865 9158</strong>.',
+      a: 'Ιωαννίνων 34B, Πρέβεζα 48100. Δευτέρα, Τετάρτη, Σάββατο 10:00–14:00. Τρίτη, Πέμπτη, Παρασκευή 10:00–14:00 και 18:00–21:00. Για επείγοντα: 694 865 9158.',
+      aHtml: 'Ιωαννίνων 34B, Πρέβεζα 48100. Δευτέρα, Τετάρτη, Σάββατο 10:00–14:00. Τρίτη, Πέμπτη, Παρασκευή 10:00–14:00 και 18:00–21:00. Για επείγοντα: <strong>694 865 9158</strong>.',
     },
     {
       q: 'Πόσο κοστίζουν οι υπηρεσίες;',
@@ -458,8 +458,8 @@ export const faq: Record<Locale, { q: string; a: string; aHtml?: string }[]> = {
     },
     {
       q: 'Where are you and what are your hours?',
-      a: 'Ioanninon 34B, Preveza 48100. Monday to Saturday 10:00–14:00, plus Tuesday, Thursday, Friday 18:00–21:00. For emergencies: +30 694 865 9158.',
-      aHtml: 'Ioanninon 34B, Preveza 48100. Monday to Saturday 10:00–14:00, plus Tuesday, Thursday, Friday 18:00–21:00. For emergencies: <strong>+30 694 865 9158</strong>.',
+      a: 'Ioanninon 34B, Preveza 48100. Monday, Wednesday, Saturday 10:00–14:00. Tuesday, Thursday, Friday 10:00–14:00 and 18:00–21:00. For emergencies: +30 694 865 9158.',
+      aHtml: 'Ioanninon 34B, Preveza 48100. Monday, Wednesday, Saturday 10:00–14:00. Tuesday, Thursday, Friday 10:00–14:00 and 18:00–21:00. For emergencies: <strong>+30 694 865 9158</strong>.',
     },
     {
       q: 'How much do the services cost?',
